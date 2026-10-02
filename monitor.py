@@ -590,6 +590,13 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "season_pos_rank_of": pos_counts.get(position),
             # FPL's form (average points per match over the last 30 days) and availability flag.
             "form": float(el.get("form") or 0),
+            # Season numbers shared with the free-agent list, so a squad player can be
+            # weighed against a free agent column for column.
+            "ppg": float(el.get("points_per_game") or 0),
+            "starts": el.get("starts") or 0,
+            "xgi": round(float(el.get("expected_goal_involvements") or 0), 2),
+            "dc_total": el.get("defensive_contribution") or 0,
+            "pens": el.get("penalties_order"),
             "status": el.get("status", "a"),
             "chance_next": el.get("chance_of_playing_next_round"),
             "news": el.get("news") or "",
@@ -894,6 +901,9 @@ def poll_once(league_cfg):
                             and gameweek_status["finished"] >= gameweek_status["total"])
         recent = _recent_minutes((gw or 0) if current_done else (gw or 1) - 1)
         recent_gws = recent[0]
+        for ts in team_scores.values():
+            for row in ts.get("players", []):
+                row["recent_minutes"] = [recent[1].get(row["element"], {}).get(g, 0) for g in recent_gws]
     except Exception as e:
         log.warning("Recent minutes failed for league %s: %s", league_id, e)
         recent = None
