@@ -720,7 +720,19 @@ def _premier_league_table(all_fixtures, teams_by_id):
     return rows
 
 
-def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, teams_by_id, transactions, entries, pl_pos=None):
+def _recent_minutes(last_done_gw, n=3):
+    """Minutes per player (classic ids) in each of the last `n` finished gameweeks, from
+    FPL's per-gameweek live stats: one request per gameweek, not one per player.
+    Returns (gameweeks oldest first, {element_id: {gw: minutes}})."""
+    gws = [g for g in range(last_done_gw - n + 1, last_done_gw + 1) if g >= 1]
+    minutes = {}
+    for g in gws:
+        for row in (fpl_api.event_live(g) or {}).get("elements", []):
+            minutes.setdefault(row["id"], {})[g] = (row.get("stats") or {}).get("minutes", 0)
+    return gws, minutes
+
+
+def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, teams_by_id, transactions, entries, pl_pos=None, recent=None):
     """Every unowned player in this league who has played this season, with the numbers
     managers use for waiver calls: form, points, starts, xGI, defensive contributions,
     penalty duty, availability, the next three fixtures, and who dropped him last.
@@ -739,6 +751,7 @@ def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, t
         cid = to_classic.get(e["id"], e["id"])
         fixtures = [f for f in (difficulty_index.get(e["team"], {}).get("fixtures") or []) if f["event"] > (gw or 0)][:3]
         by, at = dropped.get(cid, (None, None))
+        recent_gws, recent_mins = recent or ([], {})
         rows.append({
             "id": cid,
             "name": e.get("web_name"),
@@ -760,6 +773,7 @@ def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, t
             "fixtures": fixtures,
             "dropped_by": by,
             "dropped_at": at,
+            "recent_minutes": [recent_mins.get(cid, {}).get(g, 0) for g in recent_gws],
         })
     rows.sort(key=lambda r: (-r["form"], -r["pts"]))
     return rows
@@ -852,10 +866,20 @@ def poll_once(league_cfg):
         except Exception as e:
             log.warning("Live score computation failed for league %s gw %s: %s", league_id, gw, e)
 
+    recent_gws = []
+    try:
+        # Last three *finished* gameweeks: include the current one only once it is over.
+        current_done = bool(gameweek_status and gameweek_status["total"]
+                            and gameweek_status["finished"] >= gameweek_status["total"])
+        recent = _recent_minutes((gw or 0) if current_done else (gw or 1) - 1)
+        recent_gws = recent[0]
+    except Exception as e:
+        log.warning("Recent minutes failed for league %s: %s", league_id, e)
+        recent = None
     try:
         free_agents = _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw,
                                    teams_by_id, transactions, entries,
-                                   {r["team_id"]: r["pos"] for r in pl_table})
+                                   {r["team_id"]: r["pos"] for r in pl_table}, recent)
     except Exception as e:
         log.warning("Free agent list failed for league %s: %s", league_id, e)
         free_agents = []
@@ -1065,6 +1089,7 @@ def poll_once(league_cfg):
         "match_events": match_events,
         "probability_history": probability_history_points,
         "free_agents": free_agents,
+        "recent_gws": recent_gws,
         "pl_table": pl_table,
         "new_moves_count": len(new_transactions),
         "lineup_changes": lineup_changes,
