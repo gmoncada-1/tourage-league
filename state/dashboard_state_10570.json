@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T04:31:17.721415+00:00",
+  "generated_at": "2026-10-02T04:47:24.013789+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
@@ -8,6 +8,7 @@
   "managers": [
     {
       "entry_id": 51945,
+      "league_entry_id": 52025,
       "name": "Plantain Papis \u2b50\ufe0f",
       "manager": "Plantain Papis \u2b50\ufe0f",
       "is_me": false,
@@ -843,6 +844,7 @@
     },
     {
       "entry_id": 51946,
+      "league_entry_id": 52026,
       "name": "Alvaro Arbeloa",
       "manager": "Alvaro Arbeloa",
       "is_me": false,
@@ -1678,6 +1680,7 @@
     },
     {
       "entry_id": 51947,
+      "league_entry_id": 52027,
       "name": "West St. Fc",
       "manager": "West St. Fc",
       "is_me": true,
@@ -2513,6 +2516,7 @@
     },
     {
       "entry_id": 51948,
+      "league_entry_id": 52028,
       "name": "Otra Vez En Primera",
       "manager": "Otra Vez En Primera",
       "is_me": false,
@@ -3348,6 +3352,7 @@
     },
     {
       "entry_id": 51949,
+      "league_entry_id": 52029,
       "name": "Fracelona \u2b50\ufe0f\u2b50\ufe0f\u2b50\ufe0f",
       "manager": "Fracelona \u2b50\ufe0f\u2b50\ufe0f\u2b50\ufe0f",
       "is_me": false,
@@ -4183,6 +4188,7 @@
     },
     {
       "entry_id": 51950,
+      "league_entry_id": 52030,
       "name": "Relax Sociedad",
       "manager": "Relax Sociedad",
       "is_me": false,
@@ -5018,6 +5024,7 @@
     },
     {
       "entry_id": 51951,
+      "league_entry_id": 52031,
       "name": "SONS OF HOUDINI",
       "manager": "SONS OF HOUDINI",
       "is_me": false,
@@ -5853,6 +5860,7 @@
     },
     {
       "entry_id": 51952,
+      "league_entry_id": 52032,
       "name": "Combadtrip \u2b50\u2b50\ufe0f",
       "manager": "Combadtrip \u2b50\u2b50\ufe0f",
       "is_me": false,
