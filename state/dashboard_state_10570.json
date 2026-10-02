@@ -1,10 +1,16 @@
 {
-  "generated_at": "2026-10-02T04:55:04.204260+00:00",
+  "generated_at": "2026-10-02T05:01:05.903444+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
   "gameweek": 5,
   "gameweek_live": false,
+  "next_gameweek": {
+    "event": 6,
+    "deadline": "2026-10-10T10:00:00Z",
+    "waivers": "2026-10-09T10:00:00Z",
+    "trades": "2026-10-08T10:00:00Z"
+  },
   "managers": [
     {
       "entry_id": 51945,
