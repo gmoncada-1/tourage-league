@@ -269,7 +269,8 @@
   #squad-rank-table td:nth-child(-n+2), #squad-rank-table th:nth-child(-n+2) { text-align: left; }
   #squad-rank-table td:first-child { width: 36px; color: var(--muted); font-weight: 600; }
   #squad-rank-table tr.is-me td { background: var(--surface-2); }
-  #squad-rank-table .sr-score { font: 800 24px/1 var(--font-display); }
+  #squad-rank-table .fdr { min-width: 40px; }
+  #squad-rank-table .sr-flag { color: var(--red); font-weight: 700; }
   #squad-rank-table .sr-cat { color: var(--muted); }
   #squad-rank-table .sr-cat.best { color: var(--ink); font-weight: 700; }
   #squad-rank-table .sr-gap { font-size: 12px; font-weight: 600; margin-left: 6px; }
@@ -405,7 +406,13 @@
     #standings-table tr.detail-row > td { display: table-cell; }
     #standings-table > thead > tr > th, #standings-table > tbody > tr.team-row > td { padding-inline: 5px; }
     #standings-table .live-count-tag { display: block; margin-left: 0; }
-    #squad-rank-table tr > :nth-child(8) { display: none; }
+    #squad-rank-table th, #squad-rank-table td { padding-inline: 5px; }
+    /* Wide table on a phone: keep # and Team pinned while the rest scrolls. */
+    #squad-rank-table tr > :nth-child(-n+2) { position: sticky; z-index: 1; background: var(--surface); }
+    #squad-rank-table tr > :nth-child(1) { left: 0; width: 26px; min-width: 26px; }
+    #squad-rank-table tr > :nth-child(2) { left: 26px; min-width: 104px; max-width: 104px; box-shadow: 1px 0 0 var(--line); }
+    #squad-rank-table tr.is-me > :nth-child(-n+2) { background: var(--surface-2); }
+    .table-wrap:has(> #squad-rank-table) { margin: 0; padding: 0; }
     .squad-table { font-size: 12.5px; }
     .final-badge { display: none; }
     .gc-stats { text-align: left; }
@@ -526,12 +533,13 @@
         <tr>
           <th>#</th>
           <th>Team</th>
-          <th class="sortable" data-srsort="score" title="Category score: 8 points for the best team in a position down to 1 for the worst, added across the four positions">Score<span class="sort-caret"></span></th>
           <th class="sortable" data-srsort="GK" title="Rank for the best goalkeeper's season points">GK<span class="sort-caret"></span></th>
           <th class="sortable" data-srsort="DEF" title="Rank for the best four defenders' season points">DEF<span class="sort-caret"></span></th>
           <th class="sortable" data-srsort="MID" title="Rank for the best four midfielders' season points">MID<span class="sort-caret"></span></th>
           <th class="sortable" data-srsort="FWD" title="Rank for the best two forwards' season points">FWD<span class="sort-caret"></span></th>
-          <th class="sortable" data-srsort="xi" title="Season points of the best 1-4-4-2 from the squad. Breaks ties on score.">Best XI pts<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="form" title="FPL form of the best eleven added up: average points per match over the last 30 days">Form<span class="sort-caret"></span></th>
+          <th class="sortable sr-fx-h" data-srsort="fixtures" title="Average FPL difficulty of the best eleven's next three fixtures, 1 easiest to 5 hardest">Fixtures<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="flagged" title="Players in the squad flagged injured, doubtful or suspended">Injured<span class="sort-caret"></span></th>
           <th class="sortable" data-srsort="table" title="Position in the league table, and how far it is from the squad rank">Table<span class="sort-caret"></span></th>
         </tr>
       </thead>
@@ -540,8 +548,10 @@
     </div>
     <details class="table-footnote">
       <summary>How squad rank works</summary>
-      <p>It's scored like a category league. Each squad is split into four positions, and in each one we add up the season FPL points of its best players: one goalkeeper, four defenders, four midfielders and two forwards. Teams are ranked within each position, the best getting 8 points and the worst 1, and the four results are added together. Ties go to the team whose best eleven has more season points.</p>
-      <p>Season points include anything a player scored before his current team signed him, so this measures the squad, not the results. The Table column shows where each team actually sits, so you can see who is punching above or below their squad.</p>
+      <p>It's scored like a category league. Each squad is split into four positions, and in each one we add up the season FPL points of its best players: one goalkeeper, four defenders, four midfielders and two forwards. Teams are ranked within each position, 8 points for the best down to 1, and the order comes from adding those up.</p>
+      <p>Form adds up FPL's form for that same best eleven: each player's average points per match over the last 30 days. Fixtures is the average FPL difficulty of their next three matches, 1 easiest to 5 hardest. Injured counts every flagged player in the squad; hover it to see who.</p>
+      <p>Fixture chips are green when the average is under 2.75 and red when it's over 3.25.</p>
+      <p>Season points include anything a player scored before his current team signed him, so this measures the squad, not the results. The Table column shows where each team actually sits.</p>
     </details>
   </section>
 
@@ -955,7 +965,17 @@ function computeSquadRanks(state) {
         .slice(0, SQUAD_SHAPE[pos]).reduce((a, b) => a + b, 0);
     }
     const h2h = (state.h2h_standings || []).find(h => h.entry_id === m.entry_id) || {};
-    return { m, cat, xi: POSITION_ORDER.reduce((a, pos) => a + cat[pos], 0), place: {}, score: 0, table: h2h.rank };
+    // The best eleven (same 1-4-4-2 as above) drives form and fixtures too.
+    const xiPlayers = POSITION_ORDER.flatMap(pos => (m.players || []).filter(p => p.position === pos)
+      .sort((a, b) => (b.season_points || 0) - (a.season_points || 0)).slice(0, SQUAD_SHAPE[pos]));
+    const hasForm = xiPlayers.some(p => p.form !== undefined);
+    const form = hasForm ? xiPlayers.reduce((t, p) => t + (p.form || 0), 0) : null;
+    const fdrs = xiPlayers.flatMap(p => ((p.difficulty && p.difficulty.fixtures) || []).map(f => f.difficulty)).filter(Boolean);
+    const fixtures = fdrs.length ? fdrs.reduce((a, b) => a + b, 0) / fdrs.length : null;
+    const flaggedPlayers = (m.players || []).filter(p => p.status && p.status !== "a");
+    const flagged = (m.players || []).some(p => p.status !== undefined) ? flaggedPlayers.length : null;
+    return { m, cat, xi: POSITION_ORDER.reduce((a, pos) => a + cat[pos], 0), place: {}, score: 0, table: h2h.rank,
+             form, fixtures, flagged, flaggedPlayers };
   });
   const n = teams.length;
   for (const pos of POSITION_ORDER) {
@@ -975,9 +995,11 @@ function renderSquadRanks(state) {
   const ranked = computeSquadRanks(state);
   ranked.forEach((t, i) => { t.rank = i + 1; });
   // Score, best-XI points: higher is better. Places and table position: lower is better.
-  const val = t => srSortKey === "score" ? t.score : srSortKey === "xi" ? t.xi
+  // Form: higher is better. Places, fixtures, injuries, table position: lower is better.
+  const val = t => srSortKey === "score" ? t.score : srSortKey === "form" ? (t.form ?? -1)
+    : srSortKey === "fixtures" ? (t.fixtures ?? 9) : srSortKey === "flagged" ? (t.flagged ?? 99)
     : srSortKey === "table" ? (t.table ?? 99) : t.place[srSortKey];
-  const lowerIsBetter = !["score", "xi"].includes(srSortKey);
+  const lowerIsBetter = !["score", "form"].includes(srSortKey);
   const rows = ranked.slice().sort((a, b) => {
     const d = lowerIsBetter ? val(a) - val(b) : val(b) - val(a);
     return (srSortBest ? d : -d) || a.rank - b.rank;
@@ -996,9 +1018,10 @@ function renderSquadRanks(state) {
     return `<tr class="${t.m.is_me ? "is-me" : ""}">
       <td>${rank}</td>
       <td class="team-cell">${t.m.name}</td>
-      <td class="sr-score">${t.score}</td>
       ${cats}
-      <td>${t.xi}</td>
+      <td>${t.form == null ? "–" : t.form.toFixed(1)}</td>
+      <td class="sr-fx">${t.fixtures == null ? "–" : `<span class="fdr fdr-${t.fixtures < 2.75 ? 2 : t.fixtures > 3.25 ? 4 : 3}" title="Average difficulty of the next three fixtures for the best eleven">${t.fixtures.toFixed(1)}</span>`}</td>
+      <td title="${t.flaggedPlayers.map(p => `${p.name}${p.chance_next != null ? ` ${p.chance_next}%` : ""}${p.news ? `: ${p.news}` : ""}`).join("&#10;").replace(/"/g, "&quot;")}">${t.flagged == null ? "–" : t.flagged ? `<span class="sr-flag">${t.flagged}</span>` : "0"}</td>
       <td>${t.table ? ordinal(t.table) : "–"}${gapHtml}</td>
     </tr>`;
   }).join("");

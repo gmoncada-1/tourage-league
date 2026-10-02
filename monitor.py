@@ -571,6 +571,11 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "season_pos_rank": season_ranks.get(eid, (None, None))[1],
             "season_rank_of": total_players,
             "season_pos_rank_of": pos_counts.get(position),
+            # FPL's form (average points per match over the last 30 days) and availability flag.
+            "form": float(el.get("form") or 0),
+            "status": el.get("status", "a"),
+            "chance_next": el.get("chance_of_playing_next_round"),
+            "news": el.get("news") or "",
         }
         return row, player_total
 
