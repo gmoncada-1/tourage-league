@@ -205,6 +205,10 @@
   .deadlines strong { color: var(--ink); font-weight: 600; }
   .deadlines .past { text-decoration: line-through; }
   .deadlines .rel { font-weight: 600; }
+  .gw-picker { display: flex; align-items: center; gap: 6px; }
+  .gw-picker .icon-btn { font-size: 20px; line-height: 1; }
+  .gw-picker .icon-btn:disabled { opacity: 0.35; }
+  .gw-picker select { padding: 8px 10px; font-size: 14px; }
   .deadlines .soon .rel, .deadlines .soon strong { color: var(--card-ink); }
 
   /* ---------- Compare ---------- */
@@ -601,7 +605,12 @@
     <div class="panel-head">
       <div>
         <h2 id="next-title">Next gameweek</h2>
-        <p class="panel-note">Who plays whom next. Tap a matchup to compare the two squads and their fixtures.</p>
+        <p class="panel-note">Pick any gameweek to see who plays whom. Tap a matchup to compare the two squads.</p>
+      </div>
+      <div class="gw-picker">
+        <button type="button" class="btn icon-btn" id="gw-prev" aria-label="Previous gameweek">‹</button>
+        <select id="gw-select" aria-label="Gameweek"></select>
+        <button type="button" class="btn icon-btn" id="gw-next" aria-label="Next gameweek">›</button>
       </div>
     </div>
     <div id="next-deadlines" class="deadlines"></div>
@@ -1054,22 +1063,15 @@ function teamForm(state, leId, n = 5) {
       return mine > theirs ? "<b>W</b>" : mine < theirs ? "<i>L</i>" : "D";
     }).join("");
 }
-function renderNextGameweek(state) {
-  const panel = document.getElementById("next-panel");
-  const info = state.next_gameweek;
-  const nextEvent = info ? info.event : (state.gameweek || 0) + 1;
-  const byLe = new Map((state.managers || []).filter(m => m.league_entry_id).map(m => [m.league_entry_id, m]));
-  const fixtures = (state.matches || []).filter(m => m.event === nextEvent);
-  panel.hidden = !fixtures.length || !byLe.size;
-  document.getElementById("next-panel-t").hidden = panel.hidden;
-  if (panel.hidden) return;
-  document.getElementById("next-title").textContent = `Next gameweek: GW${nextEvent}`;
-
+let matchupGw = null; // gameweek shown in Matchups (starts on the next one)
+let cmpGw = null;     // gameweek whose fixture Compare shows after this gameweek's
+function gwDeadlinesHtml(info) {
+  if (!info) return "";
   const when = iso => new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
   const now = Date.now();
   const rel = ms => ms < 3600e3 ? `in ${Math.max(1, Math.round(ms / 60e3))} min` : ms < 48 * 3600e3 ? `in ${Math.round(ms / 3600e3)} h` : `in ${Math.round(ms / 86400e3)} days`;
   // The nearest deadline still to come gets a countdown, in yellow inside 24 hours.
-  const upcoming = info ? [info.trades, info.waivers, info.deadline].filter(t => t && new Date(t).getTime() > now).sort() : [];
+  const upcoming = [info.trades, info.waivers, info.deadline].filter(t => t && new Date(t).getTime() > now).sort();
   const line = (label, iso) => {
     if (!iso) return "";
     const t = new Date(iso).getTime();
@@ -1077,16 +1079,35 @@ function renderNextGameweek(state) {
     const isNext = iso === upcoming[0];
     return `<span class="${isNext && t - now < 86400e3 ? "soon" : ""}">${label} <strong>${when(iso)}</strong>${isNext ? ` <span class="rel">(${rel(t - now)})</span>` : ""}</span>`;
   };
-  document.getElementById("next-deadlines").innerHTML = info
-    ? line("Trades", info.trades) + line("Waivers", info.waivers) + line("Lineup deadline", info.deadline) : "";
-
+  return line("Trades", info.trades) + line("Waivers", info.waivers) + line("Lineup deadline", info.deadline);
+}
+// One gameweek's head-to-heads: scores once played (live for the current gameweek),
+// otherwise each team's league position and last five results.
+function gwMatchupsHtml(state, ev) {
+  const byLe = new Map((state.managers || []).filter(m => m.league_entry_id).map(m => [m.league_entry_id, m]));
+  const fixtures = (state.matches || []).filter(m => m.event === ev);
+  if (!fixtures.length || !byLe.size) return "";
   const rank = new Map((state.h2h_standings || []).map(h => [h.entry_id, h.rank]));
-  document.getElementById("next-list").innerHTML = fixtures.map(fx => {
+  const cur = state.gameweek;
+  return fixtures.map(fx => {
     const a = byLe.get(fx.league_entry_1), b = byLe.get(fx.league_entry_2);
     if (!a || !b) return "";
     const sel = (a.entry_id === cmpA && b.entry_id === cmpB) || (a.entry_id === cmpB && b.entry_id === cmpA);
+    const attrs = `class="match-row${sel ? " is-selected" : ""}" data-a="${a.entry_id}" data-b="${b.entry_id}" data-gw="${ev}" aria-label="Compare ${a.name} and ${b.name}"`;
+    const played = fx.finished || (ev === cur && fx.started);
+    if (played) {
+      const sa = ev === cur ? (a.live_score ?? fx.league_entry_1_points) : fx.league_entry_1_points;
+      const sb = ev === cur ? (b.live_score ?? fx.league_entry_2_points) : fx.league_entry_2_points;
+      return `<button type="button" ${attrs}>
+        <span class="mr-name a${sa < sb ? " behind" : ""}">${a.name}</span>
+        <span class="mr-score${sa < sb ? " behind" : ""}">${sa}</span>
+        <span class="mr-dash">–</span>
+        <span class="mr-score${sb < sa ? " behind" : ""}">${sb}</span>
+        <span class="mr-name b${sb < sa ? " behind" : ""}">${b.name}</span>
+      </button>`;
+    }
     const ra = rank.get(a.entry_id), rb = rank.get(b.entry_id);
-    return `<button type="button" class="match-row${sel ? " is-selected" : ""}" data-a="${a.entry_id}" data-b="${b.entry_id}" aria-label="Compare ${a.name} and ${b.name}">
+    return `<button type="button" ${attrs}>
       <span class="mr-name a">${a.name}<span class="mr-form" title="Last five results, oldest first">${teamForm(state, fx.league_entry_1)}</span></span>
       <span class="mr-pos" title="League position">${ra ? ordinal(ra) : ""}</span>
       <span class="mr-dash">v</span>
@@ -1094,10 +1115,42 @@ function renderNextGameweek(state) {
       <span class="mr-name b">${b.name}<span class="mr-form" title="Last five results, oldest first">${teamForm(state, fx.league_entry_2)}</span></span>
     </button>`;
   }).join("");
-  // The same section also sits under the results in the Table view.
-  for (const id of ["next-title", "next-deadlines", "next-list"]) {
-    document.getElementById(`${id}-t`).innerHTML = document.getElementById(id).innerHTML;
+}
+function gwInfo(state, ev) {
+  return (state.gameweeks || []).find(g => g.event === ev)
+    || (state.next_gameweek && state.next_gameweek.event === ev ? state.next_gameweek : null);
+}
+function renderNextGameweek(state) {
+  const cur = state.gameweek || 0;
+  const next = state.next_gameweek ? state.next_gameweek.event : cur + 1;
+
+  // Table view: always the next gameweek.
+  const tHtml = gwMatchupsHtml(state, next);
+  document.getElementById("next-panel-t").hidden = !tHtml;
+  if (tHtml) {
+    document.getElementById("next-title-t").textContent = `Next gameweek: GW${next}`;
+    document.getElementById("next-deadlines-t").innerHTML = gwDeadlinesHtml(gwInfo(state, next));
+    document.getElementById("next-list-t").innerHTML = tHtml;
   }
+
+  // Matchups view: any gameweek of the season, starting on the next one.
+  const events = [...new Set((state.matches || []).map(m => m.event))].sort((a, b) => a - b);
+  const panel = document.getElementById("next-panel");
+  panel.hidden = !events.length;
+  if (!events.length) return;
+  if (matchupGw == null || !events.includes(matchupGw)) matchupGw = events.includes(next) ? next : events[events.length - 1];
+  const sel = document.getElementById("gw-select");
+  if (sel.options.length !== events.length || sel.dataset.cur !== String(cur)) {
+    sel.innerHTML = events.map(e => `<option value="${e}">GW${e}${e === cur ? " (current)" : e === next ? " (next)" : ""}</option>`).join("");
+    sel.dataset.cur = String(cur);
+  }
+  sel.value = String(matchupGw);
+  document.getElementById("gw-prev").disabled = matchupGw <= events[0];
+  document.getElementById("gw-next").disabled = matchupGw >= events[events.length - 1];
+  document.getElementById("next-title").textContent = matchupGw === next ? `Next gameweek: GW${next}`
+    : matchupGw === cur ? `This gameweek: GW${cur}` : matchupGw < cur ? `Gameweek ${matchupGw} results` : `Gameweek ${matchupGw}`;
+  document.getElementById("next-deadlines").innerHTML = matchupGw > cur ? gwDeadlinesHtml(gwInfo(state, matchupGw)) : "";
+  document.getElementById("next-list").innerHTML = gwMatchupsHtml(state, matchupGw) || '<div class="empty">No head-to-heads in this gameweek.</div>';
 }
 
 // Free agents: unowned players who have played, filterable and sortable for waiver calls.
@@ -1195,13 +1248,25 @@ function fxChip(f, current, pts) {
 function currentFixtureChips(p) {
   return (p.current_fixtures || []).map(f => fxChip(f, true, p.points)).join("");
 }
-// This gameweek's match (grey once played), then next gameweek's.
+// A player's fixture(s) in any gameweek, from his club's season schedule.
+function clubFixtures(p, ev) {
+  const sched = (lastState && lastState.club_fixtures && lastState.club_fixtures[p.club]) || null;
+  if (sched) return sched.filter(f => f[0] === ev).map(f => ({ event: f[0], opponent: f[1], is_home: !!f[2], difficulty: f[3] }));
+  return upcomingFixtures(p.difficulty).filter(f => f.event === ev);
+}
+function compareGw() {
+  const cur = (lastState && lastState.gameweek) || 0;
+  return cmpGw && cmpGw !== cur ? cmpGw : cur + 1;
+}
+// This gameweek's match (grey once played), then the chosen gameweek's (next by default).
 function fixtureRun(p) {
   const cur = currentFixtureChips(p) || '<span class="fdr fdr-sm fdr-blank" title="No fixture this gameweek">–</span>';
-  const gw = (lastState && lastState.gameweek) || 0;
-  const next = upcomingFixtures(p.difficulty).filter(f => f.event === gw + 1);
-  const nxt = next.length ? next.map(f => fxChip(f, false)).join("") : '<span class="fdr fdr-sm fdr-blank" title="No fixture next gameweek">–</span>';
-  return `<span class="fx-run">${cur}<span class="fx-sep" aria-hidden="true"></span>${nxt}</span>`;
+  const gwNow = (lastState && lastState.gameweek) || 0, ev = compareGw();
+  const fx = clubFixtures(p, ev);
+  const other = fx.length
+    ? fx.map(f => ev < gwNow ? fxChip({ ...f, status: "finished" }, true) : fxChip(f, false)).join("")
+    : `<span class="fdr fdr-sm fdr-blank" title="No fixture in GW${ev}">–</span>`;
+  return `<span class="fx-run">${cur}<span class="fx-sep" aria-hidden="true"></span>${other}</span>`;
 }
 // FPL availability flag: chance of playing next round, coloured as FPL does
 // (yellow 75%, orange 50/25%, red when out). Hover shows FPL's own news line.
@@ -1242,6 +1307,7 @@ function renderCompare(state) {
     return;
   }
   document.querySelector(".cmp-note").hidden = false;
+  document.querySelector(".cmp-note").textContent = `Fixtures: GW${state.gameweek}'s match, then GW${compareGw()}'s. Capitals are home games, lower case away, coloured by FPL difficulty; a struck-through grey chip has already been played. A % next to a name is FPL's chance of him playing; hover it for the news.`;
   const live = !!state.gameweek_live;
   const mu = (state.current_matchups || []).find(m =>
     (m.team1.entry_id === cmpA && m.team2.entry_id === cmpB) || (m.team1.entry_id === cmpB && m.team2.entry_id === cmpA));
@@ -1682,15 +1748,29 @@ async function refresh() {
 function openCompare(row, mode) {
   if (!row || !lastState) return;
   cmpA = Number(row.dataset.a); cmpB = Number(row.dataset.b);
-  cmpMode = mode;
+  const ev = Number(row.dataset.gw) || null, cur = lastState.gameweek;
+  cmpGw = ev && ev !== cur ? ev : null;
+  // This gameweek's points only exist for the current gameweek; otherwise compare the season.
+  cmpMode = ev && ev !== cur ? "season" : mode;
   showView("matchups", { push: currentView !== "matchups", scroll: false });
   render(lastState);
   const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("compare-panel").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
 }
 document.getElementById("match-list").addEventListener("click", (e) => openCompare(e.target.closest(".match-row"), "gw"));
-document.getElementById("next-list").addEventListener("click", (e) => openCompare(e.target.closest(".match-row"), "season"));
-document.getElementById("next-list-t").addEventListener("click", (e) => openCompare(e.target.closest(".match-row"), "season"));
+document.getElementById("next-list").addEventListener("click", (e) => openCompare(e.target.closest(".match-row"), "gw"));
+document.getElementById("gw-select").addEventListener("change", (e) => {
+  matchupGw = Number(e.target.value);
+  if (lastState) renderNextGameweek(lastState);
+});
+for (const [id, step] of [["gw-prev", -1], ["gw-next", 1]]) {
+  document.getElementById(id).addEventListener("click", () => {
+    const opts = [...document.getElementById("gw-select").options].map(o => Number(o.value));
+    const i = opts.indexOf(matchupGw) + step;
+    if (i >= 0 && i < opts.length) { matchupGw = opts[i]; if (lastState) renderNextGameweek(lastState); }
+  });
+}
+document.getElementById("next-list-t").addEventListener("click", (e) => openCompare(e.target.closest(".match-row"), "gw"));
 for (const id of ["cmp-a", "cmp-b"]) {
   document.getElementById(id).addEventListener("change", (e) => {
     const v = Number(e.target.value) || null;

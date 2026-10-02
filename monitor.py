@@ -582,6 +582,7 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "auto_sub": eid in subbed_in_ids,
             "difficulty": difficulty_index.get(team_id, {}),
             "current_fixtures": current_fixtures_by_team.get(team_id, []),
+            "club": teams_by_id.get(team_id, {}).get("short_name"),
             "season_points": el.get("total_points"),
             "season_rank": season_ranks.get(eid, (None, None))[0],
             "season_pos_rank": season_ranks.get(eid, (None, None))[1],
@@ -779,6 +780,14 @@ def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, t
     return rows
 
 
+def _gameweek_deadlines(draft_bootstrap):
+    """Trades, waivers and lineup deadlines for every gameweek of the season."""
+    events = draft_bootstrap.get("events") or {}
+    data = events.get("data", []) if isinstance(events, dict) else events
+    return [{"event": e["id"], "deadline": e.get("deadline_time"), "waivers": e.get("waivers_time"),
+             "trades": e.get("trades_time")} for e in data if e.get("id")]
+
+
 def _next_gameweek_info(draft_bootstrap, gw):
     """The coming gameweek's Draft deadlines (trades, waivers, lineups), for the
     Next gameweek section. None if the season is over."""
@@ -847,11 +856,23 @@ def poll_once(league_cfg):
     difficulty_index = {}
     pl_table = []
     gameweek_status = None
+    club_fixtures = {}
     if gw:
         try:
             all_fixtures = _get_all_fixtures()
             difficulty_index = _build_team_difficulty_index(all_fixtures, gw, teams_by_id)
             pl_table = _premier_league_table(all_fixtures, teams_by_id)
+            # Every club's full season, compact: [gameweek, opponent, home?, difficulty].
+            # Lets Matchups show any gameweek's fixture for each player.
+            for f in sorted(all_fixtures, key=lambda f: (f.get("event") or 99, f.get("id", 0))):
+                if not f.get("event"):
+                    continue
+                for team_key, opp_key, diff_key, home in (("team_h", "team_a", "team_h_difficulty", 1),
+                                                          ("team_a", "team_h", "team_a_difficulty", 0)):
+                    club = teams_by_id.get(f[team_key], {}).get("short_name")
+                    opp = teams_by_id.get(f[opp_key], {}).get("short_name")
+                    if club:
+                        club_fixtures.setdefault(club, []).append([f["event"], opp, home, f.get(diff_key)])
             # How far through the gameweek we are: the page opens on Live from the first
             # kickoff until the last match is over, and on Matchups between gameweeks.
             gw_fx = [f for f in all_fixtures if f.get("event") == gw]
@@ -1060,6 +1081,8 @@ def poll_once(league_cfg):
         "gameweek_live": any_live,
         "gameweek_status": gameweek_status,
         "next_gameweek": _next_gameweek_info(draft_bootstrap, gw),
+        "gameweeks": _gameweek_deadlines(draft_bootstrap),
+        "club_fixtures": club_fixtures,
         "managers": [
             {
                 "entry_id": e["entry_id"],
