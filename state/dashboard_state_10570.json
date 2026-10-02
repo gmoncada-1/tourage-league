@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T02:05:38.458667+00:00",
+  "generated_at": "2026-10-02T02:40:32.147250+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
@@ -35,12 +35,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -68,12 +80,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -101,13 +125,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -134,13 +170,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CRY",
+                "event": 6,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 7,
+                "opponent": "MUN",
                 "is_home": true,
-                "difficulty": 2
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -170,9 +218,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "FUL",
+                "event": 6,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "LEE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BOU",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -200,13 +260,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -236,9 +308,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -269,9 +353,21 @@
             "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LIV",
+                "event": 6,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "SUN",
                 "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MUN",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -299,12 +395,24 @@
           "bonus_points": 3,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "ARS",
+                "event": 6,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "CRY",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "LIV",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -332,13 +440,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CRY",
+                "event": 6,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 7,
+                "opponent": "MUN",
                 "is_home": true,
-                "difficulty": 2
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -365,12 +485,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -398,13 +530,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CHE",
+                "event": 6,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "LIV",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -434,10 +578,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -467,10 +623,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -497,13 +665,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "IPS",
-                "is_home": true,
+                "event": 6,
+                "opponent": "HUL",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           }
@@ -555,13 +735,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -591,9 +783,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -624,10 +828,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -654,13 +870,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CRY",
+                "event": 6,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 7,
+                "opponent": "MUN",
                 "is_home": true,
-                "difficulty": 2
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -687,13 +915,25 @@
           "bonus_points": 3,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "HUL",
-                "is_home": true,
+                "event": 6,
+                "opponent": "COV",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "AVL",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -720,13 +960,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -756,9 +1008,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -786,13 +1050,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "IPS",
-                "is_home": true,
+                "event": 6,
+                "opponent": "HUL",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           }
@@ -822,9 +1098,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -852,13 +1140,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 2,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "MUN",
+                "event": 6,
+                "opponent": "IPS",
+                "is_home": false,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "HUL",
                 "is_home": true,
-                "difficulty": 4
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "COV",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -888,10 +1188,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -918,13 +1230,25 @@
           "bonus_points": 3,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CRY",
+                "event": 6,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 7,
+                "opponent": "MUN",
                 "is_home": true,
-                "difficulty": 2
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -954,9 +1278,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "FUL",
+                "event": 6,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "LEE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BOU",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -987,9 +1323,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -1017,13 +1365,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "IPS",
-                "is_home": true,
+                "event": 6,
+                "opponent": "HUL",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           }
@@ -1078,9 +1438,21 @@
             "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LIV",
+                "event": 6,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "SUN",
                 "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MUN",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -1108,13 +1480,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -1141,13 +1525,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 2,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "MUN",
+                "event": 6,
+                "opponent": "IPS",
+                "is_home": false,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "HUL",
                 "is_home": true,
-                "difficulty": 4
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "COV",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -1174,13 +1570,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -1210,9 +1618,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -1243,10 +1663,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -1276,9 +1708,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -1306,13 +1750,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -1342,10 +1798,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -1375,10 +1843,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -1405,13 +1885,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CHE",
+                "event": 6,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "LIV",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -1441,10 +1933,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "TOT",
+                "event": 6,
+                "opponent": "BRE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NEW",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           }
@@ -1474,9 +1978,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -1504,12 +2020,24 @@
           "bonus_points": 2,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "ARS",
+                "event": 6,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "CRY",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "LIV",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -1540,10 +2068,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -1598,9 +2138,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "FUL",
+                "event": 6,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "LEE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BOU",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -1631,9 +2183,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "EVE",
+                "event": 6,
+                "opponent": "FUL",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "MCI",
                 "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 8,
+                "opponent": "NFO",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -1664,9 +2228,21 @@
             "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LIV",
+                "event": 6,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "SUN",
                 "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MUN",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -1697,9 +2273,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -1730,9 +2318,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -1760,13 +2360,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CHE",
+                "event": 6,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "LIV",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -1796,9 +2408,21 @@
             "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LIV",
+                "event": 6,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "SUN",
                 "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MUN",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -1826,13 +2450,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CHE",
+                "event": 6,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "LIV",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -1862,9 +2498,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -1892,13 +2540,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -1928,9 +2588,21 @@
             "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LIV",
+                "event": 6,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "SUN",
                 "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MUN",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -1961,10 +2633,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -1991,13 +2675,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CRY",
+                "event": 6,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 7,
+                "opponent": "MUN",
                 "is_home": true,
-                "difficulty": 2
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -2027,10 +2723,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -2057,12 +2765,24 @@
           "bonus_points": 1,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "ARS",
+                "event": 6,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "CRY",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "LIV",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -2118,9 +2838,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -2148,13 +2880,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -2184,9 +2928,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -2214,12 +2970,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -2250,10 +3018,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "TOT",
+                "event": 6,
+                "opponent": "BRE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NEW",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           }
@@ -2283,10 +3063,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -2313,13 +3105,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -2349,10 +3153,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -2382,10 +3198,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -2412,13 +3240,25 @@
           "bonus_points": 3,
           "auto_sub": false,
           "difficulty": {
-            "avg": 5,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "MCI",
+                "event": 6,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "BOU",
                 "is_home": false,
-                "difficulty": 5
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -2445,13 +3285,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "IPS",
-                "is_home": true,
+                "event": 6,
+                "opponent": "HUL",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           }
@@ -2481,10 +3333,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -2514,10 +3378,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -2544,12 +3420,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "ARS",
+                "event": 6,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "CRY",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "LIV",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -2607,13 +3495,25 @@
           "bonus_points": 1,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "IPS",
-                "is_home": true,
+                "event": 6,
+                "opponent": "HUL",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           }
@@ -2640,13 +3540,25 @@
           "bonus_points": 3,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "IPS",
-                "is_home": true,
+                "event": 6,
+                "opponent": "HUL",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           }
@@ -2676,9 +3588,21 @@
             "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LIV",
+                "event": 6,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "SUN",
                 "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MUN",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -2709,10 +3633,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -2739,13 +3675,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 4,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "IPS",
-                "is_home": true,
+                "event": 6,
+                "opponent": "HUL",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           }
@@ -2775,9 +3723,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "FUL",
+                "event": 6,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "LEE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BOU",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -2805,13 +3765,25 @@
           "bonus_points": 1,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "HUL",
-                "is_home": true,
+                "event": 6,
+                "opponent": "COV",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "AVL",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -2841,9 +3813,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "FUL",
+                "event": 6,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "LEE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BOU",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -2874,9 +3858,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "FUL",
+                "event": 6,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "LEE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BOU",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -2907,9 +3903,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -2937,12 +3945,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -2973,9 +3993,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "EVE",
+                "event": 6,
+                "opponent": "FUL",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "MCI",
                 "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 8,
+                "opponent": "NFO",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3006,9 +4038,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "EVE",
+                "event": 6,
+                "opponent": "FUL",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "MCI",
                 "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 8,
+                "opponent": "NFO",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3039,9 +4083,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LEE",
+                "event": 6,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "BHA",
                 "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "NEW",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3072,9 +4128,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -3127,13 +4195,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 2,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "MUN",
+                "event": 6,
+                "opponent": "IPS",
+                "is_home": false,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "HUL",
                 "is_home": true,
-                "difficulty": 4
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "COV",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -3163,9 +4243,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -3196,9 +4288,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -3229,9 +4333,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "NEW",
+                "event": 6,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "FUL",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BRE",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3262,9 +4378,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3295,9 +4423,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BOU",
+                "event": 6,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "BRE",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BHA",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3328,9 +4468,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "EVE",
+                "event": 6,
+                "opponent": "FUL",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "MCI",
                 "is_home": false,
+                "difficulty": 5
+              },
+              {
+                "event": 8,
+                "opponent": "NFO",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3358,13 +4510,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "CHE",
+                "event": 6,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "LIV",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -3391,12 +4555,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -3427,9 +4603,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -3460,10 +4648,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "TOT",
+                "event": 6,
+                "opponent": "BRE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NEW",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           }
@@ -3490,13 +4690,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 5,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "MCI",
+                "event": 6,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "BOU",
                 "is_home": false,
-                "difficulty": 5
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -3526,10 +4738,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -3556,12 +4780,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -3592,10 +4828,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -3650,9 +4898,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -3683,9 +4943,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -3713,12 +4985,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -3746,13 +5030,25 @@
           "bonus_points": 0,
           "auto_sub": true,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BHA",
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           }
@@ -3782,9 +5078,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "SUN",
+                "event": 6,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "IPS",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "AVL",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
@@ -3812,13 +5120,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 2,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "MUN",
+                "event": 6,
+                "opponent": "IPS",
+                "is_home": false,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "HUL",
                 "is_home": true,
-                "difficulty": 4
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "COV",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           }
@@ -3848,10 +5168,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "BRE",
+                "event": 6,
+                "opponent": "BOU",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "EVE",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "TOT",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           }
@@ -3878,12 +5210,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "COV",
+                "event": 6,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "ARS",
                 "is_home": true,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "IPS",
+                "is_home": false,
                 "difficulty": 2
               }
             ]
@@ -3914,9 +5258,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "NEW",
+                "event": 6,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "FUL",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BRE",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3947,9 +5303,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "NEW",
+                "event": 6,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "FUL",
                 "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "BRE",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
@@ -3977,13 +5345,25 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "HUL",
-                "is_home": true,
+                "event": 6,
+                "opponent": "COV",
+                "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "AVL",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "CRY",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           }
@@ -4010,12 +5390,24 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "ARS",
+                "event": 6,
+                "opponent": "SUN",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "CRY",
                 "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "LIV",
+                "is_home": false,
                 "difficulty": 4
               }
             ]
@@ -4046,10 +5438,22 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "AVL",
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           }
@@ -4079,9 +5483,21 @@
             "avg": 3,
             "fixtures": [
               {
-                "event": 5,
-                "opponent": "LEE",
+                "event": 6,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "BHA",
                 "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "NEW",
+                "is_home": true,
                 "difficulty": 3
               }
             ]
