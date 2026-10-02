@@ -1,0 +1,68 @@
+name: Update league data
+
+on:
+  schedule:
+    # Every 5 minutes (GitHub's minimum), offset from :00 because runs at the
+    # top of the hour are the ones most likely to be delayed or dropped.
+    - cron: "3-58/5 * * * *"
+  workflow_dispatch: {}   # "Run workflow" button = manual refresh
+  push:
+    branches: [main]
+
+permissions:
+  contents: write   # commit state/ back so history carries between runs
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-league-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Poll FPL once
+        run: python monitor.py --once
+
+      - name: Commit state if anything real changed
+        run: |
+          git add state/
+          # Skip commits where the only change is the generated_at timestamp,
+          # so the repo doesn't fill up with ~288 empty updates a day.
+          if git diff --cached -U0 | grep -E '^[+-] ' | grep -vq '"generated_at"'; then
+            git config user.name  "league-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Update league data"
+            git pull --rebase origin main
+            git push
+          else
+            echo "No meaningful changes"
+          fi
+
+      - name: Build site
+        run: |
+          mkdir -p _site/state
+          cp index.html _site/index.html
+          cp state/dashboard_state_*.json _site/state/
+          python -c "import json;c=json.load(open('config.json'));json.dump([{'league_id':l['league_id'],'label':l['label']} for l in c['leagues']],open('_site/leagues.json','w'))"
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
