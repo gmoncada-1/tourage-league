@@ -297,6 +297,12 @@
   #squad-rank-table .sr-gap { font-size: 12px; font-weight: 600; margin-left: 6px; }
   #squad-rank-table .sr-gap.up { color: var(--muted); }
   #squad-rank-table .sr-gap.down { color: var(--red); }
+  .squad-scroll { overflow-x: auto; width: 0; min-width: 100%; }
+  .prize-col { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .prize-pos { font-weight: 700; }
+  .prize-neg { color: var(--red); font-weight: 600; }
+  .prize-none { color: var(--muted); }
+  .gc-pool .v { color: var(--card-ink); }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
   .table-footnote p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 72ch; }
@@ -408,8 +414,10 @@
     .hero-vs { padding-bottom: 26px; }
     .hero-vs .flip-btn { width: 40px; height: 40px; }
     th, td { padding: 10px 6px; }
-    #standings-table tr > :nth-child(5), #standings-table tr > :nth-child(6) { display: none; }
+    #standings-table > thead > tr > :nth-child(-n+6):nth-child(n+4), #standings-table > tbody > tr.team-row > :nth-child(-n+6):nth-child(n+4) { display: none; }
     #standings-table tr.detail-row > td { display: table-cell; }
+    #standings-table > thead > tr > th, #standings-table > tbody > tr.team-row > td { padding-inline: 5px; }
+    #standings-table .live-count-tag { display: block; margin-left: 0; }
     #squad-rank-table tr > :nth-child(8) { display: none; }
     .squad-table { font-size: 12.5px; }
     .final-badge { display: none; }
@@ -446,7 +454,6 @@
         <h2 id="board-title">This gameweek</h2>
         <p class="panel-note" id="board-note">Live scores and each team's chance to win. Tap a match for its odds chart.</p>
       </div>
-      <select id="team-jump-select" aria-label="Open a team's match"><option value="">Find a team…</option></select>
     </div>
     <div class="chart-filter-row" id="board-control-row" style="display:none;">
       <button type="button" class="chart-filter-btn" id="board-back-btn">‹ All matches</button>
@@ -491,6 +498,7 @@
           <th class="sortable" data-sort="lost" title="Losses">L<span class="sort-caret"></span></th>
           <th class="sortable" data-sort="points_for" title="Total FPL points scored this season. Breaks ties on league points.">Total<span class="sort-caret"></span></th>
           <th class="sortable" data-sort="live_score" title="This gameweek's score, including FPL's live bonus estimate">This GW<span class="sort-caret"></span></th>
+          <th class="prize-col" title="What this position pays if the season ended now, at the current BTC price">Prize</th>
         </tr>
       </thead>
       <tbody id="standings-body"></tbody>
@@ -500,6 +508,7 @@
       <summary>How the table works</summary>
       <p>Teams are ranked by league points: 3 for a win and 1 for a draw. Ties are broken by total FPL points scored this season, the same rule FPL Draft uses. While a gameweek is in progress, points and "This GW" are worked out from the live scores, so the table moves as the matches do.</p>
       <p>Bonus points only become official when FPL marks a match finished. Until then, "This GW" includes FPL's own live bonus estimate, based on each player's current BPS ranking in his match.</p>
+      <p>Prize shows what each position pays if the season ended now. The pool is 0.201 BTC, valued at the live BTC price. First takes the pool minus $300, second takes $300, and third collects $150: $100 from last place and $50 from seventh.</p>
       <p><span class="key-swatch" style="background:var(--card)"></span>Top of the table <span class="key-swatch" style="background:var(--red); margin-left:14px"></span>Bottom of the table</p>
     </details>
   </section>
@@ -517,13 +526,13 @@
         <tr>
           <th>#</th>
           <th>Team</th>
-          <th title="Category score: 8 points for the best team in a position down to 1 for the worst, added across the four positions">Score</th>
-          <th title="Rank for the best goalkeeper's season points">GK</th>
-          <th title="Rank for the best four defenders' season points">DEF</th>
-          <th title="Rank for the best four midfielders' season points">MID</th>
-          <th title="Rank for the best two forwards' season points">FWD</th>
-          <th title="Season points of the best 1-4-4-2 from the squad. Breaks ties on score.">Best XI pts</th>
-          <th title="Position in the league table, and how far it is from the squad rank">Table</th>
+          <th class="sortable" data-srsort="score" title="Category score: 8 points for the best team in a position down to 1 for the worst, added across the four positions">Score<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="GK" title="Rank for the best goalkeeper's season points">GK<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="DEF" title="Rank for the best four defenders' season points">DEF<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="MID" title="Rank for the best four midfielders' season points">MID<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="FWD" title="Rank for the best two forwards' season points">FWD<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="xi" title="Season points of the best 1-4-4-2 from the squad. Breaks ties on score.">Best XI pts<span class="sort-caret"></span></th>
+          <th class="sortable" data-srsort="table" title="Position in the league table, and how far it is from the squad rank">Table<span class="sort-caret"></span></th>
         </tr>
       </thead>
       <tbody id="squad-rank-body"></tbody>
@@ -841,17 +850,6 @@ function renderOddsBoard(state, matchups) {
   const boardEl = document.getElementById("odds-board");
   const chartEl = document.getElementById("score-chart");
   const controlRow = document.getElementById("board-control-row");
-  const jumpSelect = document.getElementById("team-jump-select");
-
-  const knownTeamIds = new Set(Array.from(jumpSelect.options).map(o => o.value));
-  for (const m of state.managers || []) {
-    if (!knownTeamIds.has(String(m.entry_id))) {
-      const opt = document.createElement("option");
-      opt.value = m.entry_id;
-      opt.textContent = m.name;
-      jumpSelect.appendChild(opt);
-    }
-  }
 
   if (!matchups.length) {
     boardEl.innerHTML = '<div class="empty">No head-to-heads this gameweek.</div>';
@@ -954,8 +952,22 @@ function computeSquadRanks(state) {
 function renderSquadRanks(state) {
   const body = document.getElementById("squad-rank-body");
   const ranked = computeSquadRanks(state);
-  body.innerHTML = ranked.map((t, i) => {
-    const rank = i + 1;
+  ranked.forEach((t, i) => { t.rank = i + 1; });
+  // Score, best-XI points: higher is better. Places and table position: lower is better.
+  const val = t => srSortKey === "score" ? t.score : srSortKey === "xi" ? t.xi
+    : srSortKey === "table" ? (t.table ?? 99) : t.place[srSortKey];
+  const lowerIsBetter = !["score", "xi"].includes(srSortKey);
+  const rows = ranked.slice().sort((a, b) => {
+    const d = lowerIsBetter ? val(a) - val(b) : val(b) - val(a);
+    return (srSortBest ? d : -d) || a.rank - b.rank;
+  });
+  document.querySelectorAll("#squad-rank-table th.sortable").forEach(th => {
+    const active = th.dataset.srsort === srSortKey;
+    th.classList.toggle("active", active);
+    th.querySelector(".sort-caret").textContent = active ? (srSortBest ? " ▾" : " ▴") : "";
+  });
+  body.innerHTML = rows.map(t => {
+    const rank = t.rank;
     const gap = t.table ? t.table - rank : 0;
     const gapHtml = gap > 0 ? `<span class="sr-gap down" title="${gap} place${gap > 1 ? "s" : ""} lower in the table than the squad suggests">▼${gap}</span>`
       : gap < 0 ? `<span class="sr-gap up" title="${-gap} place${gap < -1 ? "s" : ""} higher in the table than the squad suggests">▲${-gap}</span>` : "";
@@ -969,6 +981,45 @@ function renderSquadRanks(state) {
       <td>${t.table ? ordinal(t.table) : "–"}${gapHtml}</td>
     </tr>`;
   }).join("");
+}
+
+// Prize pool: 0.201 BTC, valued live. 1st takes the pool minus $300, 2nd takes $300;
+// 3rd collects $100 from last place and $50 from 7th.
+const POOL_BTC = 0.201;
+let btcUsd = null, btcAt = null;
+const usd = n => (n < 0 ? "−" : "") + "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
+function payoutFor(rank, nTeams) {
+  if (rank === 1) return btcUsd == null ? null : POOL_BTC * btcUsd - 300;
+  if (rank === 2) return 300;
+  if (rank === 3) return 150;
+  if (rank === nTeams) return -100;
+  if (rank === nTeams - 1) return -50;
+  return 0;
+}
+function prizeHtml(rank) {
+  const n = (lastState && lastState.managers || []).length || 8;
+  const v = payoutFor(rank, n);
+  if (v === null) return `<span class="prize-pos">${POOL_BTC} BTC − $300</span>`;
+  if (!v) return '<span class="prize-none">–</span>';
+  return `<span class="${v > 0 ? "prize-pos" : "prize-neg"}">${usd(v)}</span>`;
+}
+function poolStatHtml() {
+  const v = btcUsd == null ? `${POOL_BTC} BTC` : usd(POOL_BTC * btcUsd);
+  const title = btcUsd == null ? "Live BTC price unavailable right now"
+    : `${POOL_BTC} BTC at ${usd(btcUsd)} per BTC (${fmtTime(btcAt)})`;
+  return `<div class="gc-stat gc-pool" title="${title}"><span class="v">${v}</span><span class="k">Prize pool, ${POOL_BTC} BTC</span></div>`;
+}
+async function refreshBtcPrice() {
+  const sources = [
+    ["https://api.coinbase.com/v2/prices/BTC-USD/spot", j => j.data.amount],
+    ["https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd", j => j.bitcoin.usd],
+  ];
+  for (const [url, pick] of sources) {
+    try {
+      const price = parseFloat(pick(await (await fetch(url, { cache: "no-store" })).json()));
+      if (price > 0) { btcUsd = price; btcAt = new Date().toISOString(); if (lastState) render(lastState); return; }
+    } catch (e) { /* try the next source */ }
+  }
 }
 
 function render(state) {
@@ -1001,6 +1052,9 @@ function render(state) {
     const team1 = view.primary, team2 = view.secondary;
     const prob1 = Math.round(view.primaryProb * 100);
     const prob2 = 100 - prob1;
+    const heroLive = !!state.gameweek_live;
+    const resultText = (a, b) => a > b ? "Won" : a < b ? "Lost" : "Drew";
+    const heroLine = (prob, mine, theirs) => heroLive ? `${prob}% chance to win` : resultText(mine, theirs);
     const flash1 = scoreFlashClass(`${leagueKey}:hero:${team1.entry_id}`, team1.score);
     const flash2 = scoreFlashClass(`${leagueKey}:hero:${team2.entry_id}`, team2.score);
     heroEl.classList.remove("empty");
@@ -1009,7 +1063,7 @@ function render(state) {
         <div class="hero-team${prob1 < prob2 ? " trailing" : ""}">
           <div class="hero-name">${team1.name}</div>
           <div class="hero-score${flash1}">${team1.score}</div>
-          <div class="hero-pct${prob1 >= prob2 ? " favored" : ""}">${prob1}% chance to win</div>
+          <div class="hero-pct${prob1 >= prob2 ? " favored" : ""}">${heroLine(prob1, team1.score, team2.score)}</div>
         </div>
         <div class="hero-vs">
           <button class="flip-btn" id="hero-flip-btn" type="button" title="Swap sides" aria-label="Swap sides">⇄</button>
@@ -1017,15 +1071,15 @@ function render(state) {
         <div class="hero-team right${prob2 < prob1 ? " trailing" : ""}">
           <div class="hero-name">${team2.name}</div>
           <div class="hero-score${flash2}">${team2.score}</div>
-          <div class="hero-pct${prob2 > prob1 ? " favored" : ""}">${prob2}% chance to win</div>
+          <div class="hero-pct${prob2 > prob1 ? " favored" : ""}">${heroLine(prob2, team2.score, team1.score)}</div>
         </div>
       </div>
-      <div class="hero-bar" role="img" aria-label="${team1.name} ${prob1}%, ${team2.name} ${prob2}%"><div class="a${prob1 >= prob2 ? " fav" : ""}" style="width:${prob1}%"></div><div class="b${prob2 > prob1 ? " fav" : ""}" style="width:${prob2}%"></div></div>
+      ${heroLive ? `<div class="hero-bar" role="img" aria-label="${team1.name} ${prob1}%, ${team2.name} ${prob2}%"><div class="a${prob1 >= prob2 ? " fav" : ""}" style="width:${prob1}%"></div><div class="b${prob2 > prob1 ? " fav" : ""}" style="width:${prob2}%"></div></div>
       <details class="win-prob-explainer">
         <summary>How the chance to win is worked out</summary>
         <p>Each team's likely final score is modeled as their <strong>current live points</strong> plus their <strong>starters who haven't played yet</strong> &times; a typical points-per-player value (this season's real gameweek average once one exists, otherwise a generic estimate). The more players a team still has left to play, the more uncertain their final score is &mdash; that uncertainty is factored in too, not just the average. The win % is the chance one team's projected final score beats the other's, given both projections and their uncertainty.</p>
         <p>This is a statistical estimate, not a prediction from FPL itself &mdash; it updates every poll as real results come in, and swings hardest early in a gameweek when most players haven't played yet.</p>
-      </details>
+      </details>` : ""}
     `;
     document.getElementById("hero-flip-btn").addEventListener("click", () => {
       toggleFlip(heroMatchup);
@@ -1124,19 +1178,25 @@ function render(state) {
     // excluded from the total.
     const starters = (m.players || []).filter(p => !p.is_bench);
     const bench = (m.players || []).filter(p => p.is_bench);
+    const sortGroup = g => {
+      if (!playerSortKey) return g;
+      // Points: higher is better. Ranks: lower is better; unranked players go last.
+      const v = p => playerSortKey === "points" ? -(p.points ?? 0) : (p[playerSortKey] ?? 1e9);
+      return g.slice().sort((a, b) => playerSortBest ? v(a) - v(b) : v(b) - v(a));
+    };
     let bodyRows = "";
     for (const pos of POSITION_ORDER) {
-      const group = starters.filter(p => p.position === pos);
+      const group = sortGroup(starters.filter(p => p.position === pos));
       if (!group.length) continue;
       bodyRows += `<tr class="squad-group-row"><td colspan="11">${pos}</td></tr>` + group.map(playerRowHtml).join("");
     }
     if (bench.length) {
-      bodyRows += `<tr class="squad-group-row"><td colspan="11">Bench <span class="squad-bn-note">(doesn't count)</span></td></tr>` + bench.map(playerRowHtml).join("");
+      bodyRows += `<tr class="squad-group-row"><td colspan="11">Bench <span class="squad-bn-note">(doesn't count)</span></td></tr>` + sortGroup(bench).map(playerRowHtml).join("");
     }
-    const playersHtml = bodyRows ? `<table class="squad-table">
-      <thead><tr><th>Player</th><th>Pos</th><th>Pts</th><th title="Goals">G</th><th title="Assists">A</th><th title="Clean sheet">CS</th><th title="Defensive contribution">DC</th><th>Bonus</th><th title="Season rank among all players, by total FPL points">Rank</th><th title="Season rank within his position, by total FPL points">Pos rank</th><th title="Next three fixtures, coloured by FPL's difficulty rating: 1 easiest, 5 hardest.">Next 3</th></tr></thead>
+    const playersHtml = bodyRows ? `<div class="squad-scroll"><table class="squad-table">
+      <thead><tr><th>Player</th><th>Pos</th><th class="sortable${playerSortKey === "points" ? " active" : ""}" data-psort="points" title="Sort by points this gameweek, within each position">Pts<span class="sort-caret">${playerSortKey === "points" ? (playerSortBest ? " ▾" : " ▴") : ""}</span></th><th title="Goals">G</th><th title="Assists">A</th><th title="Clean sheet">CS</th><th title="Defensive contribution">DC</th><th>Bonus</th><th class="sortable${playerSortKey === "season_rank" ? " active" : ""}" data-psort="season_rank" title="Season rank among all players, by total FPL points. Sorts within each position.">Rank<span class="sort-caret">${playerSortKey === "season_rank" ? (playerSortBest ? " ▾" : " ▴") : ""}</span></th><th class="sortable${playerSortKey === "season_pos_rank" ? " active" : ""}" data-psort="season_pos_rank" title="Season rank within his position, by total FPL points. Sorts within each position.">Pos rank<span class="sort-caret">${playerSortKey === "season_pos_rank" ? (playerSortBest ? " ▾" : " ▴") : ""}</span></th><th title="Next three fixtures, coloured by FPL's difficulty rating: 1 easiest, 5 hardest.">Next 3</th></tr></thead>
       <tbody>${bodyRows}</tbody>
-    </table>` : "";
+    </table></div>` : "";
 
     const scoreFlash = scoreFlashClass(`${leagueKey}:${m.entry_id}`, m.live_score);
     const ptsFlash = scoreFlashClass(`${leagueKey}:${m.entry_id}:h2hpts`, h2h.league_points);
@@ -1149,6 +1209,7 @@ function render(state) {
       <td>${h2h.lost}</td>
       <td>${h2h.points_for}</td>
       <td class="score${scoreFlash}">${m.live_score ?? "-"}${m.score_finalized ? '<span class="final-badge" title="Final score, confirmed by FPL">final</span>' : ""}${s.live_now ? `<span class="live-count-tag" title="${s.live_now} on the pitch now">${s.live_now} playing</span>` : ""}</td>
+      <td class="prize-col">${prizeHtml(h2h.rank ?? rowIndex)}</td>
     `;
     tbody.appendChild(tr);
     if (playersHtml) {
@@ -1165,7 +1226,7 @@ function render(state) {
         ev.currentTarget.setAttribute("aria-expanded", String(open));
       });
       const td = document.createElement("td");
-      td.colSpan = 8;
+      td.colSpan = 9;
       td.innerHTML = `${summaryLine}${playersHtml}`;
       detailRow.appendChild(td);
       tbody.appendChild(detailRow);
@@ -1175,10 +1236,10 @@ function render(state) {
   renderSquadRanks(state);
 
   const gc = state.global_context;
-  document.getElementById("global-context").innerHTML = gc
+  document.getElementById("global-context").innerHTML = poolStatHtml() + (gc
     ? `<div class="gc-stat" title="Average score across every FPL manager in gameweek ${gc.gw}"><span class="v">${gc.average_entry_score}</span><span class="k">FPL average, GW${gc.gw}</span></div>
        <div class="gc-stat" title="Highest score by any FPL manager in gameweek ${gc.gw}"><span class="v">${gc.highest_score}</span><span class="k">Highest, GW${gc.gw}</span></div>`
-    : "";
+    : "");
 }
 
 let lastState = null;
@@ -1188,6 +1249,8 @@ let selectedMatchupKey = null; // null = default to the first matchup
 let boardExpanded = false; // false = Live Odds Board shows the mini-card grid; true = one expanded chart
 let standingsSortKey = "league_points"; // which Standings column currently drives the ranking
 let standingsSortDir = "desc";
+let srSortKey = "score", srSortBest = true; // squad rank table: column and best-first order
+let playerSortKey = null, playerSortBest = true; // squad tables: null keeps FPL's pick order
 const openTeams = new Set(); // teams whose squad breakdown is open in the table
 
 // Which team displays first/primary for a given matchup — team1/team2 from the backend
@@ -1237,18 +1300,6 @@ document.getElementById("board-flip-btn").addEventListener("click", () => {
   if (mu) { toggleFlip(mu); render(lastState); }
 });
 
-document.getElementById("team-jump-select").addEventListener("change", (e) => {
-  const entryId = e.target.value;
-  e.target.value = "";
-  if (!entryId || !lastState) return;
-  const matchups = lastState.current_matchups || [];
-  const found = matchups.find(m => String(m.team1.entry_id) === entryId || String(m.team2.entry_id) === entryId);
-  if (found) {
-    selectedMatchupKey = matchupKey(found);
-    boardExpanded = true;
-    render(lastState);
-  }
-});
 
 async function refresh() {
   try {
@@ -1281,6 +1332,25 @@ document.querySelectorAll("#standings-table th.sortable").forEach(th => {
     standingsSortKey = key;
     if (lastState) render(lastState);
   });
+});
+
+document.querySelectorAll("#squad-rank-table th.sortable").forEach(th => {
+  th.addEventListener("click", () => {
+    const key = th.dataset.srsort;
+    srSortBest = srSortKey === key ? !srSortBest : true;
+    srSortKey = key;
+    if (lastState) renderSquadRanks(lastState);
+  });
+});
+
+// Squad tables are rebuilt on every render, so their sortable headers use delegation.
+document.getElementById("standings-body").addEventListener("click", (e) => {
+  const th = e.target.closest("th[data-psort]");
+  if (!th) return;
+  const key = th.dataset.psort;
+  if (playerSortKey === key && !playerSortBest) { playerSortKey = null; playerSortBest = true; } // third click: back to pick order
+  else { playerSortBest = playerSortKey === key ? false : true; playerSortKey = key; }
+  if (lastState) render(lastState);
 });
 
 document.getElementById("refresh-btn").addEventListener("click", async () => {
@@ -1323,9 +1393,11 @@ leagueSwitcherEl.addEventListener("change", () => {
   prevScores = {};
   selectedMatchupKey = null; // different league, different matchups
   boardExpanded = false;
-  document.getElementById("team-jump-select").innerHTML = '<option value="">Jump to team…</option>';
   refresh();
 });
+
+refreshBtcPrice();
+setInterval(refreshBtcPrice, 60000);
 
 async function initLeagues() {
   const resp = await fetch(`leagues.json?t=${Date.now()}`, {cache: "no-store"});
