@@ -913,6 +913,8 @@ def poll_once(league_cfg):
         "managers": [
             {
                 "entry_id": e["entry_id"],
+                # The league's own id for this team: H2H fixtures in `matches` use it.
+                "league_entry_id": e["id"],
                 "name": e["entry_name"],
                 # Public site: team name only, never the manager's real name.
                 "manager": e["entry_name"],

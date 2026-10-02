@@ -281,9 +281,12 @@
   .prize-pos { font-weight: 700; }
   .prize-neg { color: var(--red); font-weight: 600; }
   .prize-none { color: var(--muted); }
-  .gc-pool .v { color: var(--card-ink); }
-  .gc-pnl.up .v { color: var(--good); }
-  .gc-pnl.down .v { color: var(--red); }
+  .pool-line { margin: 14px 0 0; font-size: 14px; color: var(--muted); }
+  .pool-line strong { color: var(--ink); }
+  .pnl { font-weight: 700; }
+  .pnl.up { color: var(--good); }
+  .pnl.down { color: var(--red); }
+  .fdr.fdr-sm { min-width: 0; padding: 1px 4px; font-size: 10px; margin-right: 5px; vertical-align: 1px; }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
   .table-footnote p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 72ch; }
@@ -375,10 +378,6 @@
 
   .icon-btn { width: 38px; height: 38px; padding: 0; justify-content: center; }
   .icon-btn svg { width: 17px; height: 17px; }
-  .gc-stats { display: flex; gap: 22px; text-align: right; }
-  .gc-stat { display: flex; flex-direction: column; gap: 3px; }
-  .gc-stat .v { font: 800 30px/1 var(--font-display); }
-  .gc-stat .k { color: var(--muted); font-size: 12.5px; }
 
   .site-footer { color: var(--muted); font-size: 13px; padding: 12px 0 28px; text-align: left; }
 
@@ -415,7 +414,6 @@
     .table-wrap:has(> #squad-rank-table) { margin: 0; padding: 0; }
     .squad-table { font-size: 12.5px; }
     .final-badge { display: none; }
-    .gc-stats { text-align: left; }
     .squad-table th:nth-child(n+4), .squad-table td:nth-child(n+4) { padding-inline: 3px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -448,7 +446,6 @@
         <h2 id="table-title">League table</h2>
         <p class="panel-note">Tap a column to sort. Open a team to see its squad and where the points came from.</p>
       </div>
-      <div id="global-context" class="gc-stats"></div>
     </div>
     <div class="table-wrap">
     <table id="standings-table">
@@ -468,6 +465,7 @@
       <tbody id="standings-body"></tbody>
     </table>
     </div>
+    <p class="pool-line" id="global-context"></p>
     <details class="table-footnote">
       <summary>How the table works</summary>
       <p>Teams are ranked by league points: 3 for a win and 1 for a draw. Ties are broken by total FPL points scored this season, the same rule FPL Draft uses. While a gameweek is in progress, points and "This GW" are worked out from the live scores, so the table moves as the matches do.</p>
@@ -861,13 +859,19 @@ function renderMatchList(state, matchups) {
 
 // Compare: two squads side by side. Players are paired best-against-best within each
 // position: by this gameweek's points (starters, then the bench) or by season points.
+// The player's next fixture as a small FPL difficulty chip, e.g. "CRY A" in FDR colours.
+function nextFixtureChip(p) {
+  const f = p.difficulty && p.difficulty.fixtures && p.difficulty.fixtures[0];
+  if (!f) return "";
+  return `<span class="fdr fdr-${f.difficulty || 3} fdr-sm" title="Next: GW${f.event}, ${f.is_home ? "home to" : "away at"} ${f.opponent}, difficulty ${f.difficulty} of 5">${f.opponent}<small>${f.is_home ? "H" : "A"}</small></span>`;
+}
 function cmpPlayerMeta(p) {
   if (cmpMode === "season") {
     return p.season_rank ? `${ordinal(p.season_pos_rank)} ${p.position}, #${p.season_rank}` : "Unranked";
   }
   if (p.auto_sub) return "Auto-sub";
   if (p.subbed_off) return "Subbed off";
-  return { pending: "To play", live: "Playing now", benched: "Didn't play" }[p.club_status] || "Played";
+  return { pending: "To play", live: "Playing", benched: "Didn't play" }[p.club_status] || "Played";
 }
 function renderCompare(state) {
   const managers = state.managers || [];
@@ -940,7 +944,11 @@ function renderCompare(state) {
     for (let i = 0; i < Math.max(g.a.length, g.b.length); i++) {
       const pa = g.a[i], pb = g.b[i];
       const va = pa ? value(pa) : null, vb = pb ? value(pb) : null;
-      const cell = (p, side) => p ? `<td class="nm ${side}"><span class="n">${p.name}</span><span class="meta">${cmpPlayerMeta(p)}</span></td>` : `<td class="nm ${side}"></td>`;
+      const cell = (p, side) => {
+        if (!p) return `<td class="nm ${side}"></td>`;
+        const meta = `${nextFixtureChip(p)}${cmpPlayerMeta(p)}`;
+        return `<td class="nm ${side}"><span class="n">${p.name}</span><span class="meta">${meta}</span></td>`;
+      };
       rows += `<tr class="${g.bench ? "bench" : ""}">${cell(pa, "a")}
         <td class="val ${pa && pb ? cls(va, vb) : ""}">${pa ? va : ""}</td>
         <td class="val ${pa && pb ? cls(vb, va) : ""}">${pb ? vb : ""}</td>${cell(pb, "b")}</tr>`;
@@ -1049,17 +1057,12 @@ function prizeHtml(rank) {
   return `<span class="${v > 0 ? "prize-pos" : "prize-neg"}">${usd(v)}</span>`;
 }
 function poolStatHtml() {
-  const v = btcUsd == null ? `${POOL_BTC} BTC` : usd(POOL_BTC * btcUsd);
-  const title = btcUsd == null ? "Live BTC price unavailable right now"
-    : `${POOL_BTC} BTC at ${usd(btcUsd)} per BTC (${fmtTime(btcAt)})`;
   const paidIn = ENTRY_USD * ((lastState && lastState.managers || []).length || 8);
-  let pnl = "";
-  if (btcUsd != null) {
-    const pct = (POOL_BTC * btcUsd / paidIn - 1) * 100;
-    const sign = pct > 0 ? "+" : pct < 0 ? "−" : "";
-    pnl = `<div class="gc-stat gc-pnl ${pct >= 0 ? "up" : "down"}" title="Pool value against the ${usd(paidIn)} paid in (${usd(ENTRY_USD)} per team)"><span class="v">${sign}${Math.abs(pct).toFixed(1)}%</span><span class="k">vs ${usd(paidIn)} paid in</span></div>`;
-  }
-  return `<div class="gc-stat gc-pool" title="${title}"><span class="v">${v}</span><span class="k">Prize pool, ${POOL_BTC} BTC</span></div>` + pnl;
+  if (btcUsd == null) return `Prize pool <strong>${POOL_BTC} BTC</strong>, live price unavailable right now.`;
+  const pct = (POOL_BTC * btcUsd / paidIn - 1) * 100;
+  const sign = pct > 0 ? "+" : pct < 0 ? "−" : "";
+  return `Prize pool <strong title="${POOL_BTC} BTC at ${usd(btcUsd)} per BTC (${fmtTime(btcAt)})">${usd(POOL_BTC * btcUsd)}</strong> (${POOL_BTC} BTC), `
+    + `<span class="pnl ${pct >= 0 ? "up" : "down"}">${sign}${Math.abs(pct).toFixed(1)}%</span> against the ${usd(paidIn)} paid in.`;
 }
 async function refreshBtcPrice() {
   const sources = [
