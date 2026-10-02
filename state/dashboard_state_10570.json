@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T02:40:32.147250+00:00",
+  "generated_at": "2026-10-02T02:53:31.529312+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
@@ -56,7 +56,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 14,
+          "season_rank": 121,
+          "season_pos_rank": 13,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 469,
@@ -101,7 +106,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 19,
+          "season_rank": 83,
+          "season_pos_rank": 34,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 5,
@@ -146,7 +156,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 1,
+          "season_rank": 374,
+          "season_pos_rank": 129,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 334,
@@ -191,7 +206,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 27,
+          "season_rank": 32,
+          "season_pos_rank": 9,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 427,
@@ -236,7 +256,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 25,
+          "season_rank": 42,
+          "season_pos_rank": 19,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 13,
@@ -281,7 +306,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 20,
+          "season_rank": 75,
+          "season_pos_rank": 31,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 481,
@@ -326,7 +356,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 15,
+          "season_rank": 107,
+          "season_pos_rank": 46,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 68,
@@ -371,7 +406,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 31,
+          "season_rank": 16,
+          "season_pos_rank": 7,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 124,
@@ -416,7 +456,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 47,
+          "season_rank": 1,
+          "season_pos_rank": 1,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 346,
@@ -461,7 +506,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 22,
+          "season_rank": 59,
+          "season_pos_rank": 7,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 167,
@@ -506,7 +556,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 9,
+          "season_rank": 194,
+          "season_pos_rank": 19,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 82,
@@ -551,7 +606,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 20,
+          "season_rank": 75,
+          "season_pos_rank": 7,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 165,
@@ -596,7 +656,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 33,
+          "season_rank": 10,
+          "season_pos_rank": 2,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 200,
@@ -641,7 +706,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 13,
+          "season_rank": 139,
+          "season_pos_rank": 49,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 230,
@@ -686,7 +756,12 @@
                 "difficulty": 5
               }
             ]
-          }
+          },
+          "season_points": 27,
+          "season_rank": 32,
+          "season_pos_rank": 9,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         }
       ],
       "subs_made": [],
@@ -756,7 +831,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 30,
+          "season_rank": 20,
+          "season_pos_rank": 2,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 391,
@@ -801,7 +881,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 37,
+          "season_rank": 7,
+          "season_pos_rank": 4,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 503,
@@ -846,7 +931,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 16,
+          "season_rank": 99,
+          "season_pos_rank": 39,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 330,
@@ -891,7 +981,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 42,
+          "season_rank": 3,
+          "season_pos_rank": 2,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 449,
@@ -936,7 +1031,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 31,
+          "season_rank": 16,
+          "season_pos_rank": 6,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 12,
@@ -981,7 +1081,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 32,
+          "season_rank": 13,
+          "season_pos_rank": 5,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 397,
@@ -1026,7 +1131,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 33,
+          "season_rank": 10,
+          "season_pos_rank": 4,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 236,
@@ -1071,7 +1181,12 @@
                 "difficulty": 5
               }
             ]
-          }
+          },
+          "season_points": 20,
+          "season_rank": 75,
+          "season_pos_rank": 31,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 377,
@@ -1116,7 +1231,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 15,
+          "season_rank": 107,
+          "season_pos_rank": 46,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 569,
@@ -1161,7 +1281,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 14,
+          "season_rank": 121,
+          "season_pos_rank": 13,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 136,
@@ -1206,7 +1331,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 4,
+          "season_rank": 279,
+          "season_pos_rank": 29,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 385,
@@ -1251,7 +1381,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 28,
+          "season_rank": 26,
+          "season_pos_rank": 3,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 439,
@@ -1296,7 +1431,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 8,
+          "season_rank": 215,
+          "season_pos_rank": 21,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 358,
@@ -1341,7 +1481,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 13,
+          "season_rank": 139,
+          "season_pos_rank": 49,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 242,
@@ -1386,7 +1531,12 @@
                 "difficulty": 5
               }
             ]
-          }
+          },
+          "season_points": 19,
+          "season_rank": 83,
+          "season_pos_rank": 35,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         }
       ],
       "subs_made": [],
@@ -1456,7 +1606,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 13,
+          "season_rank": 139,
+          "season_pos_rank": 49,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 31,
@@ -1501,7 +1656,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 12,
+          "season_rank": 152,
+          "season_pos_rank": 56,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 580,
@@ -1546,7 +1706,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 13,
+          "season_rank": 139,
+          "season_pos_rank": 63,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 8,
@@ -1591,7 +1756,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 29,
+          "season_rank": 23,
+          "season_pos_rank": 8,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 389,
@@ -1636,7 +1806,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 11,
+          "season_rank": 167,
+          "season_pos_rank": 64,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 156,
@@ -1681,7 +1856,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 14,
+          "season_rank": 121,
+          "season_pos_rank": 56,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 368,
@@ -1726,7 +1906,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 20,
+          "season_rank": 75,
+          "season_pos_rank": 31,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 15,
@@ -1771,7 +1956,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 29,
+          "season_rank": 23,
+          "season_pos_rank": 11,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 403,
@@ -1816,7 +2006,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 8,
+          "season_rank": 215,
+          "season_pos_rank": 101,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 401,
@@ -1861,7 +2056,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 8,
+          "season_rank": 215,
+          "season_pos_rank": 21,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 106,
@@ -1906,7 +2106,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 10,
+          "season_rank": 179,
+          "season_pos_rank": 17,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 597,
@@ -1951,7 +2156,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 16,
+          "season_rank": 99,
+          "season_pos_rank": 11,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 400,
@@ -1996,7 +2206,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 1,
+          "season_rank": 374,
+          "season_pos_rank": 177,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 138,
@@ -2041,7 +2256,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 28,
+          "season_rank": 26,
+          "season_pos_rank": 4,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 145,
@@ -2086,7 +2306,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 8,
+          "season_rank": 215,
+          "season_pos_rank": 77,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         }
       ],
       "subs_made": [],
@@ -2156,7 +2381,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 11,
+          "season_rank": 167,
+          "season_pos_rank": 15,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 305,
@@ -2201,7 +2431,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 25,
+          "season_rank": 42,
+          "season_pos_rank": 15,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 61,
@@ -2246,7 +2481,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 10,
+          "season_rank": 179,
+          "season_pos_rank": 66,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 362,
@@ -2291,7 +2531,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 24,
+          "season_rank": 48,
+          "season_pos_rank": 19,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 399,
@@ -2336,7 +2581,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 34,
+          "season_rank": 8,
+          "season_pos_rank": 3,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 95,
@@ -2381,7 +2631,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 7,
+          "season_rank": 233,
+          "season_pos_rank": 109,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 67,
@@ -2426,7 +2681,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 10,
+          "season_rank": 179,
+          "season_pos_rank": 82,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 86,
@@ -2471,7 +2731,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 22,
+          "season_rank": 59,
+          "season_pos_rank": 22,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 379,
@@ -2516,7 +2781,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 33,
+          "season_rank": 10,
+          "season_pos_rank": 2,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 26,
@@ -2561,7 +2831,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 19,
+          "season_rank": 83,
+          "season_pos_rank": 9,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 79,
@@ -2606,7 +2881,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 18,
+          "season_rank": 89,
+          "season_pos_rank": 10,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 28,
@@ -2651,7 +2931,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 9,
+          "season_rank": 194,
+          "season_pos_rank": 17,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 336,
@@ -2696,7 +2981,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 18,
+          "season_rank": 89,
+          "season_pos_rank": 36,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 142,
@@ -2741,7 +3031,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 3,
+          "season_rank": 301,
+          "season_pos_rank": 107,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 115,
@@ -2786,7 +3081,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 38,
+          "season_rank": 6,
+          "season_pos_rank": 3,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         }
       ],
       "subs_made": [],
@@ -2856,7 +3156,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 27,
+          "season_rank": 32,
+          "season_pos_rank": 4,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 4,
@@ -2901,7 +3206,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 25,
+          "season_rank": 42,
+          "season_pos_rank": 15,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 356,
@@ -2946,7 +3256,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 25,
+          "season_rank": 42,
+          "season_pos_rank": 15,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 472,
@@ -2991,7 +3306,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 23,
+          "season_rank": 56,
+          "season_pos_rank": 24,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 631,
@@ -3036,7 +3356,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 2,
+          "season_rank": 338,
+          "season_pos_rank": 159,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 40,
@@ -3081,7 +3406,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 29,
+          "season_rank": 23,
+          "season_pos_rank": 11,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 452,
@@ -3126,7 +3456,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 9,
+          "season_rank": 194,
+          "season_pos_rank": 88,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 157,
@@ -3171,7 +3506,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 4,
+          "season_rank": 279,
+          "season_pos_rank": 129,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 112,
@@ -3216,7 +3556,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 24,
+          "season_rank": 48,
+          "season_pos_rank": 19,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 552,
@@ -3261,7 +3606,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 24,
+          "season_rank": 48,
+          "season_pos_rank": 6,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 249,
@@ -3306,7 +3656,12 @@
                 "difficulty": 5
               }
             ]
-          }
+          },
+          "season_points": 20,
+          "season_rank": 75,
+          "season_pos_rank": 8,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 496,
@@ -3351,7 +3706,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 18,
+          "season_rank": 89,
+          "season_pos_rank": 9,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 144,
@@ -3396,7 +3756,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 4,
+          "season_rank": 279,
+          "season_pos_rank": 102,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 125,
@@ -3441,7 +3806,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 6,
+          "season_rank": 250,
+          "season_pos_rank": 27,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         }
       ],
       "subs_made": [
@@ -3516,7 +3886,12 @@
                 "difficulty": 5
               }
             ]
-          }
+          },
+          "season_points": 25,
+          "season_rank": 42,
+          "season_pos_rank": 5,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 229,
@@ -3561,7 +3936,12 @@
                 "difficulty": 5
               }
             ]
-          }
+          },
+          "season_points": 43,
+          "season_rank": 2,
+          "season_pos_rank": 1,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 60,
@@ -3606,7 +3986,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 12,
+          "season_rank": 152,
+          "season_pos_rank": 56,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 502,
@@ -3651,7 +4036,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 17,
+          "season_rank": 96,
+          "season_pos_rank": 37,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 233,
@@ -3696,7 +4086,12 @@
                 "difficulty": 5
               }
             ]
-          }
+          },
+          "season_points": 27,
+          "season_rank": 32,
+          "season_pos_rank": 9,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 418,
@@ -3741,7 +4136,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 10,
+          "season_rank": 179,
+          "season_pos_rank": 66,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 453,
@@ -3786,7 +4186,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 28,
+          "season_rank": 26,
+          "season_pos_rank": 13,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 426,
@@ -3831,7 +4236,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 31,
+          "season_rank": 16,
+          "season_pos_rank": 7,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 428,
@@ -3876,7 +4286,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 26,
+          "season_rank": 38,
+          "season_pos_rank": 18,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 155,
@@ -3921,7 +4336,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 13,
+          "season_rank": 139,
+          "season_pos_rank": 63,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 491,
@@ -3966,7 +4386,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 12,
+          "season_rank": 152,
+          "season_pos_rank": 16,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 571,
@@ -4011,7 +4436,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 2,
+          "season_rank": 338,
+          "season_pos_rank": 159,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 316,
@@ -4056,7 +4486,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 26,
+          "season_rank": 38,
+          "season_pos_rank": 5,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 223,
@@ -4101,7 +4536,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 2,
+          "season_rank": 338,
+          "season_pos_rank": 40,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 398,
@@ -4146,7 +4586,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 9,
+          "season_rank": 194,
+          "season_pos_rank": 88,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         }
       ],
       "subs_made": [],
@@ -4216,7 +4661,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 18,
+          "season_rank": 89,
+          "season_pos_rank": 9,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 390,
@@ -4261,7 +4711,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 17,
+          "season_rank": 96,
+          "season_pos_rank": 37,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 387,
@@ -4306,7 +4761,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 6,
+          "season_rank": 250,
+          "season_pos_rank": 89,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 637,
@@ -4351,7 +4811,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 2,
+          "season_rank": 338,
+          "season_pos_rank": 40,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 366,
@@ -4396,7 +4861,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 18,
+          "season_rank": 89,
+          "season_pos_rank": 36,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 367,
@@ -4441,7 +4911,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 32,
+          "season_rank": 13,
+          "season_pos_rank": 5,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 554,
@@ -4486,7 +4961,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 0,
+          "season_rank": 420,
+          "season_pos_rank": 25,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 94,
@@ -4531,7 +5011,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 39,
+          "season_rank": 4,
+          "season_pos_rank": 2,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 483,
@@ -4576,7 +5061,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 15,
+          "season_rank": 107,
+          "season_pos_rank": 46,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 411,
@@ -4621,7 +5111,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 39,
+          "season_rank": 4,
+          "season_pos_rank": 1,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 166,
@@ -4666,7 +5161,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 10,
+          "season_rank": 179,
+          "season_pos_rank": 17,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 529,
@@ -4711,7 +5211,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 11,
+          "season_rank": 167,
+          "season_pos_rank": 15,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 526,
@@ -4756,7 +5261,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 7,
+          "season_rank": 233,
+          "season_pos_rank": 24,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 473,
@@ -4801,7 +5311,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 8,
+          "season_rank": 215,
+          "season_pos_rank": 77,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 152,
@@ -4846,7 +5361,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 0,
+          "season_rank": 420,
+          "season_pos_rank": 147,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         }
       ],
       "subs_made": [],
@@ -4916,7 +5436,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 19,
+          "season_rank": 83,
+          "season_pos_rank": 8,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 388,
@@ -4961,7 +5486,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 30,
+          "season_rank": 20,
+          "season_pos_rank": 7,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 201,
@@ -5006,7 +5536,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 5,
+          "season_rank": 265,
+          "season_pos_rank": 96,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 25,
@@ -5051,7 +5586,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 2,
+          "season_rank": 338,
+          "season_pos_rank": 40,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 237,
@@ -5096,7 +5636,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 22,
+          "season_rank": 59,
+          "season_pos_rank": 22,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 268,
@@ -5141,7 +5686,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 24,
+          "season_rank": 48,
+          "season_pos_rank": 20,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 154,
@@ -5186,7 +5736,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 28,
+          "season_rank": 26,
+          "season_pos_rank": 13,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 480,
@@ -5231,7 +5786,12 @@
                 "difficulty": 2
               }
             ]
-          }
+          },
+          "season_points": 28,
+          "season_rank": 26,
+          "season_pos_rank": 13,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         },
         {
           "element": 556,
@@ -5276,7 +5836,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 1,
+          "season_rank": 374,
+          "season_pos_rank": 129,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 295,
@@ -5321,7 +5886,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 13,
+          "season_rank": 139,
+          "season_pos_rank": 15,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 464,
@@ -5366,7 +5936,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 15,
+          "season_rank": 107,
+          "season_pos_rank": 11,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
         },
         {
           "element": 109,
@@ -5411,7 +5986,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 23,
+          "season_rank": 56,
+          "season_pos_rank": 6,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 73
         },
         {
           "element": 498,
@@ -5456,7 +6036,12 @@
                 "difficulty": 4
               }
             ]
-          }
+          },
+          "season_points": 3,
+          "season_rank": 301,
+          "season_pos_rank": 107,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
         },
         {
           "element": 595,
@@ -5501,7 +6086,12 @@
                 "difficulty": 3
               }
             ]
-          }
+          },
+          "season_points": 2,
+          "season_rank": 338,
+          "season_pos_rank": 159,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 298
         }
       ],
       "subs_made": [
