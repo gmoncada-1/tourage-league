@@ -844,7 +844,8 @@ def poll_once(league_cfg):
             {
                 "entry_id": e["entry_id"],
                 "name": e["entry_name"],
-                "manager": f"{e['player_first_name']} {e['player_last_name']}",
+                # Public site: team name only, never the manager's real name.
+                "manager": e["entry_name"],
                 "is_me": e["entry_id"] == my_entry_id,
                 "live_score": team_scores.get(e["entry_id"], {}).get("total"),
                 "players": team_scores.get(e["entry_id"], {}).get("players", []),
