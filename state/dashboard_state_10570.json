@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T03:14:45.300590+00:00",
+  "generated_at": "2026-10-02T03:19:47.484890+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
@@ -10758,24 +10758,7 @@
     }
   ],
   "new_moves_count": 0,
-  "lineup_changes": [
-    {
-      "entry_id": 51947,
-      "gw": 5
-    },
-    {
-      "entry_id": 51949,
-      "gw": 5
-    },
-    {
-      "entry_id": 51951,
-      "gw": 5
-    },
-    {
-      "entry_id": 51952,
-      "gw": 5
-    }
-  ],
+  "lineup_changes": [],
   "global_context": {
     "gw": 5,
     "average_entry_score": 48,
