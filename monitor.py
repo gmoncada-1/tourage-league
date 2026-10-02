@@ -418,7 +418,7 @@ def _apply_autosubs(starting, bench, live_stats_by_element, classic_elements_by_
     return result, subs_made
 
 
-dseason_ranks(classic_elements_by_id):
+def _season_ranks(classic_elements_by_id):
     """Season rank by total FPL points, overall and within each position (GK/DEF/MID/FWD).
     Standard competition ranking: players level on points share a rank (1, 2, 2, 4).
     Returns {element_id: (overall_rank, position_rank)} plus counts for context."""
@@ -443,9 +443,9 @@ dseason_ranks(classic_elements_by_id):
     return {eid: (overall[eid], by_pos.get(eid)) for eid in overall}, len(players), pos_counts
 
 
-def _ef _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elements_by_id, teams_by_id, difficulty_index):
-    """Returns (team_scores, any_fixture_live, fast_poll_needed, match_events)
-    season_ranks, total_players, pos_counts = _season_ranks(classic_elements_by_id)."""
+def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elements_by_id, teams_by_id, difficulty_index):
+    """Returns (team_scores, any_fixture_live, fast_poll_needed, match_events)."""
+    season_ranks, total_players, pos_counts = _season_ranks(classic_elements_by_id)
     fx = fpl_api.fixtures(gw)
     match_events = _build_match_events(fx, classic_elements_by_id, teams_by_id)
     try:
@@ -565,12 +565,12 @@ def _ef _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_
             "bps": stats.get("bps", 0),
             "bonus_points": bonus_points,
             "auto_sub": eid in subbed_in_ids,
-            "difficulty": difficulty_index.get(team_id),
+            "difficulty": difficulty_index.get(team_id, {}),
             "season_points": el.get("total_points"),
             "season_rank": season_ranks.get(eid, (None, None))[0],
             "season_pos_rank": season_ranks.get(eid, (None, None))[1],
             "season_rank_of": total_players,
-            "season_pos_rank_of": pos_counts.get(position, {}),
+            "season_pos_rank_of": pos_counts.get(position),
         }
         return row, player_total
 
