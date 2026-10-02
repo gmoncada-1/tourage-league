@@ -219,7 +219,7 @@
   .seg button { font: 600 13px/1 var(--font-text); color: var(--muted); background: transparent; border: 0; border-radius: 999px; padding: 7px 12px; cursor: pointer; }
   .seg button:hover { color: var(--ink); }
   .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-  .cmp-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-bottom: 6px; }
+  .cmp-summary { display: block; }
   .cmp-summary .side.b { text-align: right; }
   .cmp-summary .cmp-empty { grid-column: 1 / -1; }
   .cmp-summary .big { font: 800 44px/1 var(--font-display); }
@@ -350,6 +350,27 @@
   .mins3 .bars i { width: 5px; border-radius: 1px; background: var(--muted); }
   .mins3 .bars i.full { background: var(--good); }
   .mins3 .bars i.zero { background: var(--red); opacity: 0.7; }
+  .stats-table tr.mine td { background: var(--surface-2); }
+  .stats-table tr.mine td:first-child { box-shadow: inset 3px 0 0 var(--card); }
+  .mine-tag { color: var(--card-ink); font-weight: 700; }
+  #fa-body tr { cursor: pointer; }
+  #fa-body tr:hover td { background: var(--surface-2); }
+  #fa-body tr.picked td { background: var(--surface-2); }
+  #fa-body tr.picked td:first-child { box-shadow: inset 4px 0 0 var(--ink); }
+  .fa-hint { color: var(--muted); font-size: 13px; margin: 0 0 8px; }
+  .pc-card { border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 14px 16px; margin: 0 0 14px; background: var(--surface-2); }
+  .pc-head { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: start; padding-bottom: 10px; border-bottom: 1px solid var(--line-strong); }
+  .pc-who.b { text-align: right; }
+  .pc-name { font: 800 26px/1 var(--font-display); }
+  .pc-sub { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+  .pc-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .pc-grid > div { padding: 7px 0; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+  .pc-l { color: var(--muted); font-size: 12.5px; text-align: center; padding-inline: 12px !important; white-space: nowrap; }
+  .pc-v { color: var(--muted); }
+  .pc-v.a { text-align: left; } .pc-v.b { text-align: right; }
+  .pc-v.b .fx-run, .pc-v.b .mins3 { justify-content: flex-end; }
+  .pc-v.hi { color: var(--ink); font-weight: 700; }
+  .pc-fit { color: var(--good); font-weight: 600; }
   .fa-foot { display: flex; align-items: center; gap: 14px; margin-top: 12px; color: var(--muted); font-size: 13px; }
   .pstats-team { font-size: 16px; font-weight: 700; margin: 18px 0 6px; }
   .pstats-team:first-child { margin-top: 4px; }
@@ -360,6 +381,49 @@
     #cmp-body .stats-table th:nth-child(7) { width: 12%; }
   }
   .stats-table tr.grp td { font-size: 12.5px; font-weight: 700; color: var(--muted); padding-top: 14px; text-align: left; }
+  /* ---------- Compare: scoreboard and mirrored tables ---------- */
+  #compare-panel .cmp-controls { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto; gap: 8px 10px; align-items: center; margin-bottom: 4px; }
+  .cmp-swap { font-size: 16px; }
+  .seg-metric { margin: 10px 0 0; overflow-x: auto; max-width: 100%; }
+  .seg-metric button { white-space: nowrap; }
+  .cmp-board { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 16px; padding: 18px 0 16px; border-bottom: 1px solid var(--line-strong); }
+  .cmp-board .side.b { text-align: right; }
+  .cmp-board .tn { font-weight: 600; font-size: 15px; line-height: 1.25; overflow-wrap: anywhere; }
+  .cmp-board .big { font: 800 56px/0.95 var(--font-display); margin-top: 6px; }
+  .cmp-board .sub { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; color: var(--muted); font-size: 13px; }
+  .cmp-board .side.behind .big, .cmp-board .side.behind .tn { color: var(--muted); }
+  .cmp-board .fav { color: var(--card-ink); font-weight: 700; }
+  .cmp-board .vs { color: var(--muted); font-size: 13px; font-weight: 600; padding-bottom: 30px; text-align: center; }
+  .cmp-board .cmp-empty { grid-column: 1 / -1; }
+  .vs-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .vs-table th { font-size: 12px; font-weight: 600; color: var(--muted); padding: 10px 6px 8px; border-bottom: 1px solid var(--line-strong); text-align: center; white-space: nowrap; }
+  .vs-table th.pl.a { text-align: left; } .vs-table th.pl.b { text-align: right; }
+  .vs-table td { padding: 9px 6px; border-bottom: 1px solid var(--line); text-align: center; vertical-align: middle; font-variant-numeric: tabular-nums; }
+  .vs-table td.pl { width: 30%; max-width: 0; }
+  .vs-table td.pl.a { text-align: left; } .vs-table td.pl.b { text-align: right; }
+  .vs-table .n { display: flex; align-items: baseline; min-width: 0; font-weight: 600; }
+  .vs-table .pl.b .n { justify-content: flex-end; }
+  .vs-table .nn { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+  .vs-table .n .avail { flex: none; }
+  .vs-table .meta { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 12px; color: var(--muted); white-space: nowrap; overflow: hidden; }
+  .vs-table .pl.b .meta { justify-content: flex-end; }
+  .vs-table td.v { color: var(--muted); }
+  .vs-table td.v.hi { color: var(--ink); font-weight: 700; }
+  .vs-table td.gw { font: 800 21px/1 var(--font-display); }
+  .vs-table td.gw.hi { color: var(--ink); }
+  .vs-table .mid { border-left: 1px solid var(--line-strong); }
+  .vs-table tr.grp td { text-align: left; font-size: 12px; font-weight: 700; color: var(--muted); padding: 16px 6px 6px; border-bottom-color: var(--line-strong); }
+  .vs-table tr.grp td.v { text-align: center; color: var(--ink); font-weight: 700; font-size: 13px; }
+  .vs-table tr.grp td.v.lo { color: var(--muted); font-weight: 500; }
+  .vs-table tr.bench td { opacity: 0.55; }
+  .vs-table .mins3 { justify-content: center; }
+  @media (max-width: 999px) {
+    .cmp-stats td.m, .cmp-stats th.m { display: none; }
+    .cmp-stats[data-metric="form"] .m-form, .cmp-stats[data-metric="pts"] .m-pts, .cmp-stats[data-metric="ppg"] .m-ppg,
+    .cmp-stats[data-metric="starts"] .m-starts, .cmp-stats[data-metric="last3"] .m-last3, .cmp-stats[data-metric="xgi"] .m-xgi,
+    .cmp-stats[data-metric="dc"] .m-dc { display: table-cell; }
+  }
+  @media (min-width: 1000px) { .seg-metric { display: none !important; } }
   .cmp-note { color: var(--muted); font-size: 12.5px; margin: 10px 0 0; }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
@@ -485,9 +549,17 @@
     .fx-run { flex-wrap: wrap; row-gap: 3px; }
     .fdr.fdr-sm { font-size: 9.5px; padding: 1px 3px; margin-right: 2px; }
     .fx-sep { margin: 0 3px 0 1px; }
-    .cmp-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-    .cmp-vs { display: none; }
-    .seg { grid-column: 1 / -1; justify-self: start; }
+    #compare-panel .cmp-controls { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+    #compare-panel .cmp-controls .seg { grid-column: 1 / -1; justify-self: start; }
+    .cmp-board { gap: 10px; }
+    .cmp-board .big { font-size: 44px; }
+    .cmp-board .tn { font-size: 14px; }
+    .vs-table { font-size: 13px; }
+    .vs-table th, .vs-table td { padding-inline: 3px; }
+    .vs-table td.pl { width: 34%; }
+    .vs-table td.gw { font-size: 18px; }
+    .vs-table .meta { font-size: 11px; gap: 4px; }
+    .vs-table .rk-inline { display: none; }
     .mr-name { font-size: 14px; }
     .match-row .mr-score { font-size: 26px; }
     th, td { padding: 10px 6px; }
@@ -635,14 +707,14 @@
     </div>
     <div class="cmp-controls">
       <select id="cmp-a" aria-label="First team"></select>
-      <span class="cmp-vs">vs</span>
+      <button type="button" class="btn icon-btn cmp-swap" id="cmp-swap" title="Swap sides" aria-label="Swap sides">⇄</button>
       <select id="cmp-b" aria-label="Second team"></select>
       <div class="seg" id="cmp-mode" role="group" aria-label="What to compare">
-        <button type="button" data-mode="gw" aria-pressed="true">This gameweek</button>
-        <button type="button" data-mode="season" aria-pressed="false">Season</button>
+        <button type="button" data-mode="match" aria-pressed="true">Matchup</button>
         <button type="button" data-mode="stats" aria-pressed="false">Stats</button>
       </div>
     </div>
+    <div class="seg seg-metric" id="cmp-metric" role="group" aria-label="Stat to show" hidden></div>
     <div id="cmp-summary" class="cmp-summary"></div>
     <div id="cmp-chart-wrap" hidden>
       <div class="chart-filter-row">
@@ -686,9 +758,12 @@
         <option value="1-10">Top 10 clubs</option>
         <option value="11-20">Bottom 10 clubs</option>
       </select>
+      <select id="fa-mine" aria-label="Show my squad alongside the free agents"><option value="">My squad: hidden</option></select>
       <input type="search" id="fa-search" placeholder="Search player" aria-label="Search free agents">
       <label class="fa-check"><input type="checkbox" id="fa-fit"> Hide injured and doubtful</label>
     </div>
+    <div id="pc-card" class="pc-card" hidden></div>
+    <p class="fa-hint" id="fa-hint">Tap two players, say one of yours and a free agent, to compare them in detail.</p>
     <div class="table-wrap">
     <table id="fa-table" class="stats-table">
       <thead>
@@ -1164,6 +1239,10 @@ function renderNextGameweek(state) {
 }
 
 // Free agents: unowned players who have played, filterable and sortable for waiver calls.
+// "My squad" mixes your own players into the free-agent table (remembered per device).
+let faMine = null;
+try { faMine = Number(localStorage.getItem("fpl-my-team")) || null; } catch (e) {}
+let faPick = []; // up to two players picked for the detailed comparison
 let faPos = "", faClub = "", faTier = "", faQuery = "", faFitOnly = false, faSortKey = "form", faSortBest = true, faLimit = 10;
 function faFixtureAvg(r) {
   const d = (r.fixtures || []).map(f => f.difficulty).filter(Boolean);
@@ -1176,10 +1255,12 @@ function statsRowHtml(r, gws, when) {
   const flag = availChip({ status: r.status, chance_next: r.chance, news: r.news });
   const bits = [`${r.club}${r.club_pos ? ` (${ordinal(r.club_pos)})` : ""} ${r.pos}`];
   if (r.pens === 1) bits.push('<span class="pens" title="First-choice penalty taker">Pens</span>');
+  if (r.mine) bits.unshift('<span class="mine-tag">Your squad</span>');
   if (r.on_waivers) bits.push("On waivers");
   if (r.dropped_by && when) bits.push(`Dropped by ${r.dropped_by}${r.dropped_at ? ` ${when(r.dropped_at)}` : ""}`);
   const run = (r.fixtures || []).length ? `<span class="fx-run">${r.fixtures.map(f => fxChip(f, false)).join("")}</span>` : '<span class="fdr-none">–</span>';
-  return `<tr>
+  const key = `${r.mine ? "m" : "f"}${r.id}`;
+  return `<tr class="${r.mine ? "mine" : ""}${faPick.includes(key) ? " picked" : ""}" data-key="${key}">
     <td><span class="fa-name">${r.name}</span>${flag}<span class="fa-meta">${bits.join(", ")}</span></td>
     <td>${run}</td>
     <td class="fa-form">${(r.form || 0).toFixed(1)}</td>
@@ -1191,10 +1272,66 @@ function statsRowHtml(r, gws, when) {
     <td>${r.dc ?? 0}</td>
   </tr>`;
 }
+// Two players in detail, side by side: the better value in each row is highlighted.
+const PC_ROWS = [
+  ["Form", r => r.form || 0, v => v.toFixed(1)],
+  ["Season points", r => r.pts || 0, v => v],
+  ["Points per match", r => r.ppg || 0, v => v.toFixed(1)],
+  ["Starts", r => r.starts || 0, v => v],
+  ["Minutes", r => r.mins || 0, v => v],
+  ["Last 3 gameweeks (min)", r => (r.recent_minutes || []).reduce((a, b) => a + b, 0), null],
+  ["Goals", r => r.goals || 0, v => v],
+  ["Assists", r => r.assists || 0, v => v],
+  ["xG", r => r.xg || 0, v => v.toFixed(2)],
+  ["xA", r => r.xa || 0, v => v.toFixed(2)],
+  ["xGI", r => r.xgi || 0, v => v.toFixed(2)],
+  ["Clean sheets", r => r.cs || 0, v => v],
+  ["Bonus", r => r.bonus || 0, v => v],
+  ["Defensive contributions", r => r.dc || 0, v => v],
+];
+function renderPlayerCompare(state, all) {
+  const card = document.getElementById("pc-card");
+  const byKey = new Map(all.map(r => [`${r.mine ? "m" : "f"}${r.id}`, r]));
+  faPick = faPick.filter(k => byKey.has(k));
+  document.getElementById("fa-hint").textContent = faPick.length === 1
+    ? "Now tap a second player to compare with."
+    : "Tap two players, say one of yours and a free agent, to compare them in detail.";
+  if (faPick.length < 2) { card.hidden = true; card.innerHTML = ""; return; }
+  const [a, b] = faPick.map(k => byKey.get(k));
+  const gws = state.recent_gws || [];
+  const gw = state.gameweek || 0;
+  const next5 = r => {
+    const sched = (state.club_fixtures || {})[r.club] || [];
+    const fx = sched.filter(f => f[0] > gw).slice(0, 5).map(f => ({ event: f[0], opponent: f[1], is_home: !!f[2], difficulty: f[3] }));
+    return fx.length ? `<span class="fx-run">${fx.map(f => fxChip(f, false)).join("")}</span>` : "–";
+  };
+  const avail = r => availChip({ status: r.status, chance_next: r.chance, news: r.news }) || '<span class="pc-fit">Available</span>';
+  const who = r => `<div class="pc-name">${r.name}</div><div class="pc-sub">${r.mine ? '<span class="mine-tag">Your squad</span> ' : "Free agent "}${r.club}${r.club_pos ? ` (${ordinal(r.club_pos)})` : ""} ${r.pos}</div>`;
+  const cls = (x, y) => x > y ? "hi" : x < y ? "lo" : "";
+  const rows = PC_ROWS.map(([label, get, fmt]) => {
+    const va = get(a), vb = get(b);
+    const show = (r, v) => fmt ? fmt(v) : recentMinutesHtml(r, gws);
+    return `<div class="pc-v a ${cls(va, vb)}">${show(a, va)}</div><div class="pc-l">${label}</div><div class="pc-v b ${cls(vb, va)}">${show(b, vb)}</div>`;
+  }).join("");
+  const text = (label, fa, fb) => `<div class="pc-v a">${fa}</div><div class="pc-l">${label}</div><div class="pc-v b">${fb}</div>`;
+  card.hidden = false;
+  card.innerHTML = `<div class="pc-head"><div class="pc-who a">${who(a)}</div><button type="button" class="btn icon-btn" id="pc-close" title="Close" aria-label="Close comparison">×</button><div class="pc-who b">${who(b)}</div></div>
+    <div class="pc-grid">
+      ${text("Availability", avail(a), avail(b))}
+      ${text("Next 5 fixtures", next5(a), next5(b))}
+      ${rows}
+      ${text("Penalties", a.pens === 1 ? "First choice" : a.pens ? `#${a.pens} in line` : "–", b.pens === 1 ? "First choice" : b.pens ? `#${b.pens} in line` : "–")}
+      ${text("Dropped by", a.dropped_by || "–", b.dropped_by || "–")}
+    </div>`;
+  document.getElementById("pc-close").addEventListener("click", () => { faPick = []; renderFreeAgents(lastState); });
+}
+
 // A squad player in the same shape as a free-agent row.
 function squadPlayerAsStats(p, clubPos) {
   return {
-    name: p.name, pos: p.position, club: p.club || "", club_pos: clubPos.get(p.club),
+    id: p.element, name: p.name, pos: p.position, club: p.club || "", club_pos: clubPos.get(p.club),
+    mins: p.season_minutes, goals: p.season_goals, assists: p.season_assists, cs: p.season_cs,
+    bonus: p.season_bonus, xg: p.xg, xa: p.xa,
     form: p.form, pts: p.season_points, ppg: p.ppg, starts: p.starts, xgi: p.xgi, dc: p.dc_total,
     pens: p.pens, status: p.status, chance: p.chance_next, news: p.news,
     fixtures: upcomingFixtures(p.difficulty), recent_minutes: p.recent_minutes || [],
@@ -1223,7 +1360,16 @@ function recentMinutesHtml(r, gws) {
 }
 function renderFreeAgents(state) {
   const panel = document.getElementById("fa-panel");
-  const all = state.free_agents || [];
+  const mineSel = document.getElementById("fa-mine");
+  const managers = state.managers || [];
+  if (mineSel.options.length !== managers.length + 1) {
+    mineSel.innerHTML = '<option value="">My squad: hidden</option>' + managers.map(m => `<option value="${m.entry_id}">My squad: ${m.name}</option>`).join("");
+  }
+  const myTeam = managers.find(m => m.entry_id === faMine);
+  mineSel.value = myTeam ? String(faMine) : "";
+  const clubPosMap = new Map((state.pl_table || []).map(r => [r.club, r.pos]));
+  const mineRows = myTeam ? (myTeam.players || []).map(p => ({ ...squadPlayerAsStats(p, clubPosMap), mine: true })) : [];
+  const all = [...(state.free_agents || []), ...mineRows];
   panel.hidden = !all.length;
   if (!all.length) return;
   // Club picker, ordered by Premier League position.
@@ -1254,15 +1400,18 @@ function renderFreeAgents(state) {
     th.querySelector(".sort-caret").textContent = active ? (faSortBest ? " ▾" : " ▴") : "";
   });
   document.querySelectorAll("#fa-pos button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.pos === faPos)));
-  const shown = rows.slice(0, faLimit);
+  // Your own players always show, wherever they rank.
+  const shown = rows.filter((r, i) => i < faLimit || r.mine);
   const when = iso => iso ? new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short" }) : "";
   const gws = state.recent_gws || [];
   if (gws.length) document.getElementById("fa-recent-h").title = `Minutes in GW${gws.join(", GW")}, oldest first. Sorts by the total.`;
   document.getElementById("fa-body").innerHTML = shown.length ? shown.map(r => statsRowHtml(r, gws, when)).join("")
     : '<tr><td colspan="9" class="empty">No free agents match.</td></tr>';
   const more = document.getElementById("fa-more");
-  more.hidden = rows.length <= faLimit;
-  document.getElementById("fa-count").textContent = `Showing ${shown.length} of ${rows.length}`;
+  more.hidden = rows.filter(r => !r.mine).length <= faLimit;
+  renderPlayerCompare(state, all);
+  const mineShown = shown.filter(r => r.mine).length;
+  document.getElementById("fa-count").textContent = `Showing ${shown.length} of ${rows.length}` + (mineShown ? `, including ${mineShown} of yours` : "");
 }
 
 // Compare: two squads side by side. Players are paired best-against-best within each
@@ -1321,11 +1470,35 @@ function cmpPlayerMeta(p) {
   if (p.subbed_off) return "Subbed off";
   return { pending: "To play", live: "Playing", benched: "Didn't play" }[p.club_status] || "Played";
 }
+// Compare: a scoreboard, then one mirrored table. Matchup pairs the squads best against
+// best by position with season and this gameweek's points meeting in the middle; Stats
+// does the same with the free-agent numbers, Form innermost.
+const CMP_STATS = [
+  ["form", "Form", p => p.form || 0, v => v.toFixed(1)],
+  ["pts", "Pts", p => p.season_points || 0, v => v],
+  ["ppg", "PPG", p => p.ppg || 0, v => v.toFixed(1)],
+  ["starts", "Starts", p => p.starts || 0, v => v],
+  ["last3", "Last 3", p => (p.recent_minutes || []).reduce((a, b) => a + b, 0), null],
+  ["xgi", "xGI", p => p.xgi || 0, v => v.toFixed(2)],
+  ["dc", "DC", p => p.dc_total || 0, v => v],
+];
+let cmpStat = "form";
+function cmpStatus(p) {
+  if (p.auto_sub) return "Auto-sub";
+  if (p.subbed_off) return "Subbed off";
+  if (p.is_bench) return "Bench";
+  return { pending: "To play", live: "Playing", benched: "Didn't play" }[p.club_status] || "Played";
+}
+function cmpNameCell(p, side, meta) {
+  if (!p) return `<td class="pl ${side}"></td>`;
+  return `<td class="pl ${side}"><span class="n"><span class="nn">${p.name}</span>${availChip(p)}</span><span class="meta">${meta}</span></td>`;
+}
 function renderCompare(state) {
   const managers = state.managers || [];
   const byId = new Map(managers.map(m => [m.entry_id, m]));
   if (cmpA && !byId.has(cmpA)) cmpA = null;
   if (cmpB && !byId.has(cmpB)) cmpB = null;
+  if (!["match", "stats"].includes(cmpMode)) cmpMode = "match";
   for (const [id, val] of [["cmp-a", cmpA], ["cmp-b", cmpB]]) {
     const sel = document.getElementById(id);
     if (sel.options.length !== managers.length + 1) {
@@ -1334,45 +1507,40 @@ function renderCompare(state) {
     sel.value = val ? String(val) : "";
   }
   document.querySelectorAll("#cmp-mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === cmpMode)));
+  const metricEl = document.getElementById("cmp-metric");
+  const note = document.querySelector(".cmp-note");
   const A = byId.get(cmpA), B = byId.get(cmpB);
   if (!A || !B || cmpA === cmpB) {
     document.getElementById("cmp-summary").innerHTML = '<p class="empty cmp-empty">Pick two teams above, or tap a matchup, to see them side by side.</p>';
     document.getElementById("cmp-chart-wrap").hidden = true;
     document.getElementById("cmp-body").innerHTML = "";
-    document.querySelector(".cmp-note").hidden = true;
+    metricEl.hidden = true;
+    note.hidden = true;
     return;
   }
-  document.querySelector(".cmp-note").hidden = false;
-  document.querySelector(".cmp-note").textContent = `Fixtures: GW${state.gameweek}'s match, then GW${compareGw()}'s. Capitals are home games, lower case away, coloured by FPL difficulty; a struck-through grey chip has already been played. A % next to a name is FPL's chance of him playing; hover it for the news.`;
+  note.hidden = false;
+  const gw = state.gameweek;
   const live = !!state.gameweek_live;
   const mu = (state.current_matchups || []).find(m =>
     (m.team1.entry_id === cmpA && m.team2.entry_id === cmpB) || (m.team1.entry_id === cmpB && m.team2.entry_id === cmpA));
 
-  // Summary: the two numbers that matter for the chosen view.
-  let sa, sb, la, lb, aBehind, bBehind;
-  if (cmpMode === "gw") {
-    sa = A.live_score ?? 0; sb = B.live_score ?? 0;
-    la = lb = mu ? (live ? "Live score" : "Gameweek score") : "Gameweek score, different opponents";
-    if (mu && live) {
-      const probA = Math.round((mu.team1.entry_id === cmpA ? mu.team1_win_prob : mu.team2_win_prob) * 100);
-      la = `<span class="${probA >= 50 ? "fav-line" : ""}">${probA}% to win</span>`;
-      lb = `<span class="${probA < 50 ? "fav-line" : ""}">${100 - probA}% to win</span>`;
-    }
-    aBehind = sa < sb; bBehind = sb < sa;
-  } else {
-    // Season and Stats both lead with squad rank.
-    const ranks = computeSquadRanks(state);
-    const ra = ranks.findIndex(t => t.m.entry_id === cmpA), rb = ranks.findIndex(t => t.m.entry_id === cmpB);
-    sa = ordinal(ra + 1); sb = ordinal(rb + 1);
-    la = lb = "Squad rank";
-    aBehind = ra > rb; bBehind = rb > ra;
-  }
-  document.getElementById("cmp-summary").innerHTML = `
-    <div class="side a${aBehind ? " behind" : ""}"><div class="big">${sa}</div><span class="lbl">${la}</span></div>
-    <div class="side b${bBehind ? " behind" : ""}"><div class="big">${sb}</div><span class="lbl">${lb}</span></div>`;
+  // Scoreboard: this gameweek's scores, the live chance to win when they are playing
+  // each other, and squad rank.
+  const ranks = computeSquadRanks(state);
+  const rankOf = id => ranks.findIndex(t => t.m.entry_id === id) + 1;
+  const sa = A.live_score ?? 0, sb = B.live_score ?? 0;
+  let probA = null;
+  if (mu && live) probA = Math.round((mu.team1.entry_id === cmpA ? mu.team1_win_prob : mu.team2_win_prob) * 100);
+  const sub = (id, prob) => (prob != null ? `<span class="${prob >= 50 ? "fav" : ""}">${prob}% to win</span>` : "")
+    + `<span>Squad rank ${ordinal(rankOf(id))}</span>`;
+  document.getElementById("cmp-summary").innerHTML = `<div class="cmp-board">
+    <div class="side a${sa < sb ? " behind" : ""}"><div class="tn">${A.name}</div><div class="big">${sa}</div><div class="sub">${sub(cmpA, probA)}</div></div>
+    <div class="vs">${mu ? `GW${gw}` : `GW${gw}<br>scores`}</div>
+    <div class="side b${sb < sa ? " behind" : ""}"><div class="tn">${B.name}</div><div class="big">${sb}</div><div class="sub">${sub(cmpB, probA == null ? null : 100 - probA)}</div></div>
+  </div>`;
 
-  // Live odds chart, only for a pairing that is actually playing each other right now.
-  const showChart = live && !!mu && cmpMode === "gw";
+  // Live odds chart, only while the two teams are actually playing each other.
+  const showChart = live && !!mu && cmpMode === "match";
   document.getElementById("cmp-chart-wrap").hidden = !showChart;
   if (showChart) {
     let hist = state.probability_history || [];
@@ -1383,45 +1551,72 @@ function renderCompare(state) {
     renderProbabilityChart(document.getElementById("score-chart"), hist, String(cmpA), String(cmpB), A.name, B.name);
   }
 
-  // Stats: both squads in the free-agent table layout, one after the other.
+  const cls = (x, y) => x > y ? "hi" : x < y ? "lo" : "";
+  const byPos = (m, pos, key) => (m.players || []).filter(p => p.position === pos)
+    .sort((x, y) => (!!x.is_bench - !!y.is_bench) || key(y) - key(x));
+
   if (cmpMode === "stats") {
-    document.getElementById("cmp-body").innerHTML = squadStatsTable(state, A) + squadStatsTable(state, B);
-    document.querySelector(".cmp-note").textContent = "Same columns as Free agents, so you can weigh a player against a pickup: next three fixtures, FPL form, season points, points per match, starts, minutes in the last three gameweeks, expected goal involvements and defensive contributions. Sorted by form within each position.";
+    // Stats: Form innermost, the rest fanning outwards on each side.
+    metricEl.hidden = false;
+    metricEl.innerHTML = CMP_STATS.map(([k, label]) => `<button type="button" data-metric="${k}" aria-pressed="${k === cmpStat}">${label}</button>`).join("");
+    const gws = state.recent_gws || [];
+    const outer = [...CMP_STATS].reverse();
+    const cell = (p, def, other) => {
+      const [k, , get, fmt] = def;
+      if (!p) return `<td class="m m-${k}"></td>`;
+      const v = get(p), c = other ? cls(v, get(other)) : "";
+      return `<td class="v m m-${k} ${c}">${fmt ? fmt(v) : recentMinutesHtml(p, gws)}</td>`;
+    };
+    const head = `<tr><th class="pl a">${A.name}</th>${outer.map(([k, l]) => `<th class="m m-${k}">${l}</th>`).join("")}`
+      + CMP_STATS.map(([k, l], i) => `<th class="m m-${k}${i === 0 ? " mid" : ""}">${l}</th>`).join("") + `<th class="pl b">${B.name}</th></tr>`;
+    const formKey = p => p.form || 0;
+    let rows = "";
+    for (const pos of POSITION_ORDER) {
+      const a = byPos(A, pos, formKey).sort((x, y) => formKey(y) - formKey(x));
+      const b = byPos(B, pos, formKey).sort((x, y) => formKey(y) - formKey(x));
+      if (!a.length && !b.length) continue;
+      rows += `<tr class="grp"><td colspan="${2 + CMP_STATS.length * 2}">${pos}</td></tr>`;
+      for (let i = 0; i < Math.max(a.length, b.length); i++) {
+        const pa = a[i], pb = b[i];
+        const fx = p => `<span class="fx-run">${upcomingFixtures(p.difficulty).map(f => fxChip(f, false)).join("")}</span>`;
+        rows += `<tr>${cmpNameCell(pa, "a", pa ? fx(pa) : "")}${outer.map(d => cell(pa, d, pb)).join("")}`
+          + CMP_STATS.map((d, k) => cell(pb, d, pa).replace('<td class="', k === 0 ? '<td class="mid ' : '<td class="')).join("")
+          + `${cmpNameCell(pb, "b", pb ? fx(pb) : "")}</tr>`;
+      }
+    }
+    document.getElementById("cmp-body").innerHTML = `<div class="table-wrap"><table class="vs-table cmp-stats" data-metric="${cmpStat}" aria-label="Player stats: ${A.name} against ${B.name}"><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
+    note.textContent = "The free-agent numbers for both squads, paired best against best by form: FPL form, season points, points per match, starts, minutes in the last three gameweeks, expected goal involvements and defensive contributions, with each player's next three fixtures. The better of each pair is in bold.";
     return;
   }
-  const value = p => cmpMode === "gw" ? (p.points ?? 0) : (p.season_points ?? 0);
-  const pick = (m, pos, bench) => (m.players || [])
-    .filter(p => (pos ? p.position === pos : true) && (cmpMode === "season" ? true : !!p.is_bench === bench))
-    .sort((x, y) => value(y) - value(x));
-  const groups = POSITION_ORDER.map(pos => ({ label: pos, a: pick(A, pos, false), b: pick(B, pos, false) }));
-  if (cmpMode === "gw") groups.push({ label: "Bench (doesn't count)", a: pick(A, null, true), b: pick(B, null, true), bench: true });
 
-  const cls = (x, y) => x > y ? "hi" : x < y ? "lo" : "";
-  const sum = list => list.reduce((t, p) => t + value(p), 0);
+  // Matchup: season points on the outside, this gameweek's points meeting in the middle.
+  metricEl.hidden = true;
+  const seasonKey = p => p.season_points || 0;
+  const counts = p => !p.is_bench; // bench points don't count
+  const head = `<tr><th class="pl a">${A.name}</th><th>Season</th><th>GW${gw}</th><th class="mid">GW${gw}</th><th>Season</th><th class="pl b">${B.name}</th></tr>`;
   let rows = "";
-  for (const g of groups) {
-    const ta = sum(g.a), tb = sum(g.b);
-    rows += `<tr class="grp${g.bench ? " bench" : ""}"><td>${g.label}</td><td class="val ${cls(ta, tb)}">${ta}</td><td class="val ${cls(tb, ta)}">${tb}</td><td></td></tr>`;
-    for (let i = 0; i < Math.max(g.a.length, g.b.length); i++) {
-      const pa = g.a[i], pb = g.b[i];
-      const va = pa ? value(pa) : null, vb = pb ? value(pb) : null;
-      const cell = (p, side) => {
-        if (!p) return `<td class="nm ${side}"></td>`;
-        if (cmpMode === "season") {
-          const rankTitle = p.season_rank ? `${ordinal(p.season_pos_rank)} of ${p.season_pos_rank_of} ${p.position}s, #${p.season_rank} of all players` : "";
-          return `<td class="nm ${side}"><span class="n"><span class="nn">${p.name}</span>${availChip(p)}<span class="rk-inline" title="${rankTitle}">${cmpPlayerMeta(p)}</span></span><span class="meta">${fixtureRun(p)}</span></td>`;
-        }
-        return `<td class="nm ${side}"><span class="n"><span class="nn">${p.name}</span>${availChip(p)}</span><span class="meta">${fixtureRun(p)} ${cmpPlayerMeta(p)}</span></td>`;
-      };
-      rows += `<tr class="${g.bench ? "bench" : ""}">${cell(pa, "a")}
-        <td class="val ${pa && pb ? cls(va, vb) : ""}">${pa ? va : ""}</td>
-        <td class="val ${pa && pb ? cls(vb, va) : ""}">${pb ? vb : ""}</td>${cell(pb, "b")}</tr>`;
+  for (const pos of POSITION_ORDER) {
+    const a = byPos(A, pos, seasonKey), b = byPos(B, pos, seasonKey);
+    if (!a.length && !b.length) continue;
+    const gwSum = l => l.filter(counts).reduce((t, p) => t + (p.points || 0), 0);
+    const sSum = l => l.reduce((t, p) => t + seasonKey(p), 0);
+    const [ga, gb, xa, xb] = [gwSum(a), gwSum(b), sSum(a), sSum(b)];
+    rows += `<tr class="grp"><td>${pos}</td><td class="v ${cls(xa, xb)}">${xa}</td><td class="v ${cls(ga, gb)}">${ga}</td><td class="v mid ${cls(gb, ga)}">${gb}</td><td class="v ${cls(xb, xa)}">${xb}</td><td></td></tr>`;
+    for (let i = 0; i < Math.max(a.length, b.length); i++) {
+      const pa = a[i], pb = b[i];
+      const meta = p => `${fixtureRun(p)}<span>${cmpStatus(p)}</span>${p.season_rank ? `<span class="rk-inline">${ordinal(p.season_pos_rank)} ${p.position}</span>` : ""}`;
+      const both = pa && pb;
+      const benchRow = (!pa || pa.is_bench) && (!pb || pb.is_bench);
+      rows += `<tr class="${benchRow ? "bench" : ""}">${cmpNameCell(pa, "a", pa ? meta(pa) : "")}
+        <td class="v ${both ? cls(seasonKey(pa), seasonKey(pb)) : ""}">${pa ? seasonKey(pa) : ""}</td>
+        <td class="v gw ${both ? cls(pa.points || 0, pb.points || 0) : ""}">${pa ? (pa.points ?? 0) : ""}</td>
+        <td class="v gw mid ${both ? cls(pb.points || 0, pa.points || 0) : ""}">${pb ? (pb.points ?? 0) : ""}</td>
+        <td class="v ${both ? cls(seasonKey(pb), seasonKey(pa)) : ""}">${pb ? seasonKey(pb) : ""}</td>
+        ${cmpNameCell(pb, "b", pb ? meta(pb) : "")}</tr>`;
     }
   }
-  const unit = cmpMode === "gw" ? "Points this gameweek" : "Season points";
-  document.getElementById("cmp-body").innerHTML = `<table class="cmp-table" aria-label="${unit}: ${A.name} against ${B.name}">
-    <colgroup><col><col class="v"><col class="v"><col></colgroup>
-    <tbody>${rows}</tbody></table>`;
+  document.getElementById("cmp-body").innerHTML = `<div class="table-wrap"><table class="vs-table" aria-label="${A.name} against ${B.name}"><thead>${head}</thead><tbody>${rows}</tbody></table></div>`;
+  note.textContent = `Players paired best against best by season points; bench players are dimmed and their points don't count. Fixtures: GW${gw}'s match, then GW${compareGw()}'s. Capitals are home games, lower case away, coloured by FPL difficulty; a struck-through grey chip has been played. A % next to a name is FPL's chance of him playing; hover it for the news.`;
 }
 
 // Squad rank, scored like a rotisserie (category) league: per position, sum the season
@@ -1708,7 +1903,7 @@ function render(state) {
 let lastState = null;
 let currentLeagueId = null;
 let chartRangeMinutes = null; // null = all history
-let cmpA = null, cmpB = null, cmpMode = "gw"; // Compare: the two teams (none until chosen) and which view
+let cmpA = null, cmpB = null, cmpMode = "match"; // Compare: the two teams (none until chosen) and which view
 
 // ---------- Views ----------
 // Four views behind one menu. The page opens on Live while a gameweek is under way
@@ -1793,8 +1988,7 @@ function openCompare(row, mode) {
   cmpA = Number(row.dataset.a); cmpB = Number(row.dataset.b);
   const ev = Number(row.dataset.gw) || null, cur = lastState.gameweek;
   cmpGw = ev && ev !== cur ? ev : null;
-  // This gameweek's points only exist for the current gameweek; otherwise compare the season.
-  cmpMode = ev && ev !== cur ? "season" : mode;
+  if (!["match", "stats"].includes(cmpMode)) cmpMode = "match";
   showView("matchups", { push: currentView !== "matchups", scroll: false });
   render(lastState);
   const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1836,6 +2030,19 @@ document.getElementById("fa-tier").addEventListener("change", (e) => {
   faTier = e.target.value; faLimit = 10;
   if (lastState) renderFreeAgents(lastState);
 });
+document.getElementById("fa-mine").addEventListener("change", (e) => {
+  faMine = Number(e.target.value) || null;
+  try { if (faMine) localStorage.setItem("fpl-my-team", String(faMine)); else localStorage.removeItem("fpl-my-team"); } catch (err) {}
+  if (lastState) renderFreeAgents(lastState);
+});
+document.getElementById("fa-body").addEventListener("click", (e) => {
+  const tr = e.target.closest("tr[data-key]");
+  if (!tr || !lastState) return;
+  const k = tr.dataset.key;
+  faPick = faPick.includes(k) ? faPick.filter(x => x !== k) : [...faPick, k].slice(-2);
+  renderFreeAgents(lastState);
+  if (faPick.length === 2) document.getElementById("pc-card").scrollIntoView({ behavior: "smooth", block: "nearest" });
+});
 document.getElementById("fa-search").addEventListener("input", (e) => {
   faQuery = e.target.value; faLimit = 10;
   if (lastState) renderFreeAgents(lastState);
@@ -1855,6 +2062,16 @@ document.querySelectorAll("#fa-table th.sortable").forEach(th => {
     faSortKey = key;
     if (lastState) renderFreeAgents(lastState);
   });
+});
+document.getElementById("cmp-swap").addEventListener("click", () => {
+  [cmpA, cmpB] = [cmpB, cmpA];
+  if (lastState) render(lastState);
+});
+document.getElementById("cmp-metric").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-metric]");
+  if (!b) return;
+  cmpStat = b.dataset.metric;
+  if (lastState) renderCompare(lastState);
 });
 document.getElementById("cmp-mode").addEventListener("click", (e) => {
   const b = e.target.closest("button[data-mode]");
