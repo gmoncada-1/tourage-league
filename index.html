@@ -203,7 +203,10 @@
   .cmp-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
   .cmp-table col.v { width: 54px; }
   .cmp-table td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
-  .cmp-table .nm .n { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+  .cmp-table .nm .n { display: flex; align-items: baseline; min-width: 0; font-weight: 500; white-space: nowrap; }
+  .cmp-table .nm.b .n { justify-content: flex-end; }
+  .cmp-table .nm .nn { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+  .cmp-table .nm .avail, .cmp-table .nm .rk-inline { flex: none; }
   .cmp-table .nm.b { text-align: right; }
   .cmp-table .meta { display: block; font-size: 12px; color: var(--muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .cmp-table .val { text-align: center; font-weight: 700; font-size: 16px; }
@@ -301,6 +304,10 @@
   .fx-sep { width: 1px; height: 12px; background: var(--line-strong); margin: 0 5px 0 1px; }
   .cmp-table .nm.b .fx-run { justify-content: flex-end; }
   .rk-inline { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 3px; }
+  .avail { display: inline-block; font-size: 10.5px; font-weight: 700; line-height: 1; padding: 2px 4px; border-radius: 3px; margin-left: 5px; vertical-align: 1px; }
+  .avail-y { background: #f4c430; color: #1d1700; }
+  .avail-o { background: #f08a24; color: #1d1000; }
+  .avail-r { background: #d8302b; color: #ffffff; }
   .cmp-note { color: var(--muted); font-size: 12.5px; margin: 10px 0 0; }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
@@ -548,7 +555,7 @@
       </details>
     </div>
     <div id="cmp-body"></div>
-    <p class="cmp-note">Fixtures: this gameweek's match, then next gameweek's. Capitals are home games, lower case away, coloured by FPL difficulty; a struck-through grey chip has already been played.</p>
+    <p class="cmp-note">Fixtures: this gameweek's match, then next gameweek's. Capitals are home games, lower case away, coloured by FPL difficulty; a struck-through grey chip has already been played. A % next to a name is FPL's chance of him playing; hover it for the news.</p>
   </section>
 
   <section class="panel" aria-labelledby="squad-rank-title">
@@ -967,6 +974,17 @@ function fixtureRun(p) {
   const nxt = next.length ? next.map(f => fxChip(f, false)).join("") : '<span class="fdr fdr-sm fdr-blank" title="No fixture next gameweek">–</span>';
   return `<span class="fx-run">${cur}<span class="fx-sep" aria-hidden="true"></span>${nxt}</span>`;
 }
+// FPL availability flag: chance of playing next round, coloured as FPL does
+// (yellow 75%, orange 50/25%, red when out). Hover shows FPL's own news line.
+function availChip(p) {
+  if (!p.status || p.status === "a") return "";
+  const chance = p.chance_next;
+  const label = p.status === "d" && chance != null ? `${chance}%`
+    : { d: "Doubt", i: "Injured", s: "Suspended", u: "Unavailable", n: "Unavailable" }[p.status] || "Flagged";
+  const level = p.status === "d" ? (chance >= 75 ? "y" : "o") : "r";
+  const title = (p.news || label).replace(/"/g, "&quot;");
+  return `<span class="avail avail-${level}" title="${title}">${label}</span>`;
+}
 function cmpPlayerMeta(p) {
   if (cmpMode === "season") return p.season_rank ? `${ordinal(p.season_pos_rank)} ${p.position}` : "Unranked";
   if (p.auto_sub) return "Auto-sub";
@@ -1048,9 +1066,9 @@ function renderCompare(state) {
         if (!p) return `<td class="nm ${side}"></td>`;
         if (cmpMode === "season") {
           const rankTitle = p.season_rank ? `${ordinal(p.season_pos_rank)} of ${p.season_pos_rank_of} ${p.position}s, #${p.season_rank} of all players` : "";
-          return `<td class="nm ${side}"><span class="n">${p.name} <span class="rk-inline" title="${rankTitle}">${cmpPlayerMeta(p)}</span></span><span class="meta">${fixtureRun(p)}</span></td>`;
+          return `<td class="nm ${side}"><span class="n"><span class="nn">${p.name}</span>${availChip(p)}<span class="rk-inline" title="${rankTitle}">${cmpPlayerMeta(p)}</span></span><span class="meta">${fixtureRun(p)}</span></td>`;
         }
-        return `<td class="nm ${side}"><span class="n">${p.name}</span><span class="meta">${fixtureRun(p)} ${cmpPlayerMeta(p)}</span></td>`;
+        return `<td class="nm ${side}"><span class="n"><span class="nn">${p.name}</span>${availChip(p)}</span><span class="meta">${fixtureRun(p)} ${cmpPlayerMeta(p)}</span></td>`;
       };
       rows += `<tr class="${g.bench ? "bench" : ""}">${cell(pa, "a")}
         <td class="val ${pa && pb ? cls(va, vb) : ""}">${pa ? va : ""}</td>
