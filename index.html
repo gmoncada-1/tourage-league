@@ -286,7 +286,15 @@
   .pnl { font-weight: 700; }
   .pnl.up { color: var(--good); }
   .pnl.down { color: var(--red); }
-  .fdr.fdr-sm { min-width: 0; padding: 1px 4px; font-size: 10px; margin-right: 5px; vertical-align: 1px; }
+  .fdr.fdr-sm { min-width: 0; padding: 1px 4px; font-size: 10px; margin-right: 4px; vertical-align: 1px; }
+  .fdr.fdr-played { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line-strong); text-decoration: line-through; text-decoration-color: var(--line-strong); }
+  .fdr.fdr-live { box-shadow: 0 0 0 1.5px var(--card); }
+  .fdr.fdr-blank { background: transparent; color: var(--muted); }
+  .fx-run { display: inline-flex; align-items: center; flex-wrap: nowrap; }
+  .fx-sep { width: 1px; height: 12px; background: var(--line-strong); margin: 0 5px 0 1px; }
+  .cmp-table .nm.b .fx-run { justify-content: flex-end; }
+  .rk-inline { font-size: 12px; font-weight: 500; color: var(--muted); margin-left: 3px; }
+  .cmp-note { color: var(--muted); font-size: 12.5px; margin: 10px 0 0; }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
   .table-footnote p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 72ch; }
@@ -395,6 +403,12 @@
     h1 { margin: 8px 0 6px; }
     .purpose { font-size: 14.5px; margin-bottom: 8px; }
     .cmp-table .meta { font-size: 11.5px; }
+    .cmp-table col.v { width: 40px; }
+    .cmp-table td { padding-inline: 4px; }
+    .cmp-table .rk-inline { display: none; }
+    .fx-run { flex-wrap: wrap; row-gap: 3px; }
+    .fdr.fdr-sm { font-size: 9.5px; padding: 1px 3px; margin-right: 2px; }
+    .fx-sep { margin: 0 3px 0 1px; }
     .cmp-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
     .cmp-vs { display: none; }
     .seg { grid-column: 1 / -1; justify-self: start; }
@@ -516,6 +530,7 @@
       </details>
     </div>
     <div id="cmp-body"></div>
+    <p class="cmp-note">Fixtures: capitals are home games, lower case away, coloured by FPL difficulty. A struck-through grey chip is this gameweek's match, already played.</p>
   </section>
 
   <section class="panel" aria-labelledby="squad-rank-title">
@@ -623,8 +638,14 @@ function rankTitle(p) {
 }
 
 // Next three fixtures as FPL-style difficulty chips (opponent, then H for home or A for away).
+// Fixtures after the current gameweek, at most three: the run still to come.
+function upcomingFixtures(difficulty) {
+  const gw = (lastState && lastState.gameweek) || 0;
+  return ((difficulty && difficulty.fixtures) || []).filter(f => f.event > gw).slice(0, 3);
+}
+
 function fdrRun(difficulty) {
-  const fx = (difficulty && difficulty.fixtures) || [];
+  const fx = upcomingFixtures(difficulty);
   if (!fx.length) return '<span class="fdr-none">–</span>';
   return '<span class="fdr-run">' + fx.map(f => {
     const d = f.difficulty || 3;
@@ -859,16 +880,29 @@ function renderMatchList(state, matchups) {
 
 // Compare: two squads side by side. Players are paired best-against-best within each
 // position: by this gameweek's points (starters, then the bench) or by season points.
-// The player's next fixture as a small FPL difficulty chip, e.g. "CRY A" in FDR colours.
-function nextFixtureChip(p) {
-  const f = p.difficulty && p.difficulty.fixtures && p.difficulty.fixtures[0];
-  if (!f) return "";
-  return `<span class="fdr fdr-${f.difficulty || 3} fdr-sm" title="Next: GW${f.event}, ${f.is_home ? "home to" : "away at"} ${f.opponent}, difficulty ${f.difficulty} of 5">${f.opponent}<small>${f.is_home ? "H" : "A"}</small></span>`;
+// Compact fixture chips for Compare, FPL style: capitals for home, lower case for away.
+// This gameweek's match turns grey once it has been played.
+function fxChip(f, current, pts) {
+  const opp = f.is_home ? f.opponent.toUpperCase() : f.opponent.toLowerCase();
+  const where = `${f.is_home ? "home to" : "away at"} ${f.opponent}`;
+  if (current) {
+    const played = f.status === "finished" || f.status === "finished_provisional";
+    const live = f.status === "started";
+    const title = played ? `GW${f.event}: played, ${where}${pts != null ? `, ${pts} pts` : ""}`
+      : live ? `GW${f.event}: playing now, ${where}` : `GW${f.event}: ${where}, difficulty ${f.difficulty} of 5`;
+    return `<span class="fdr fdr-sm ${played ? "fdr-played" : `fdr-${f.difficulty || 3}`}${live ? " fdr-live" : ""}" title="${title}">${opp}</span>`;
+  }
+  return `<span class="fdr fdr-sm fdr-${f.difficulty || 3}" title="GW${f.event}: ${where}, difficulty ${f.difficulty} of 5">${opp}</span>`;
+}
+function currentFixtureChips(p) {
+  return (p.current_fixtures || []).map(f => fxChip(f, true, p.points)).join("");
+}
+function fixtureRun(p) {
+  const cur = currentFixtureChips(p) || '<span class="fdr fdr-sm fdr-blank" title="No fixture this gameweek">–</span>';
+  return `<span class="fx-run">${cur}<span class="fx-sep" aria-hidden="true"></span>${upcomingFixtures(p.difficulty).map(f => fxChip(f, false)).join("")}</span>`;
 }
 function cmpPlayerMeta(p) {
-  if (cmpMode === "season") {
-    return p.season_rank ? `${ordinal(p.season_pos_rank)} ${p.position}, #${p.season_rank}` : "Unranked";
-  }
+  if (cmpMode === "season") return p.season_rank ? `${ordinal(p.season_pos_rank)} ${p.position}` : "Unranked";
   if (p.auto_sub) return "Auto-sub";
   if (p.subbed_off) return "Subbed off";
   return { pending: "To play", live: "Playing", benched: "Didn't play" }[p.club_status] || "Played";
@@ -946,8 +980,11 @@ function renderCompare(state) {
       const va = pa ? value(pa) : null, vb = pb ? value(pb) : null;
       const cell = (p, side) => {
         if (!p) return `<td class="nm ${side}"></td>`;
-        const meta = `${nextFixtureChip(p)}${cmpPlayerMeta(p)}`;
-        return `<td class="nm ${side}"><span class="n">${p.name}</span><span class="meta">${meta}</span></td>`;
+        if (cmpMode === "season") {
+          const rankTitle = p.season_rank ? `${ordinal(p.season_pos_rank)} of ${p.season_pos_rank_of} ${p.position}s, #${p.season_rank} of all players` : "";
+          return `<td class="nm ${side}"><span class="n">${p.name} <span class="rk-inline" title="${rankTitle}">${cmpPlayerMeta(p)}</span></span><span class="meta">${fixtureRun(p)}</span></td>`;
+        }
+        return `<td class="nm ${side}"><span class="n">${p.name}</span><span class="meta">${currentFixtureChips(p)}${cmpPlayerMeta(p)}</span></td>`;
       };
       rows += `<tr class="${g.bench ? "bench" : ""}">${cell(pa, "a")}
         <td class="val ${pa && pb ? cls(va, vb) : ""}">${pa ? va : ""}</td>
@@ -978,7 +1015,7 @@ function computeSquadRanks(state) {
       .sort((a, b) => (b.season_points || 0) - (a.season_points || 0)).slice(0, SQUAD_SHAPE[pos]));
     const hasForm = xiPlayers.some(p => p.form !== undefined);
     const form = hasForm ? xiPlayers.reduce((t, p) => t + (p.form || 0), 0) : null;
-    const fdrs = xiPlayers.flatMap(p => ((p.difficulty && p.difficulty.fixtures) || []).map(f => f.difficulty)).filter(Boolean);
+    const fdrs = xiPlayers.flatMap(p => upcomingFixtures(p.difficulty).map(f => f.difficulty)).filter(Boolean);
     const fixtures = fdrs.length ? fdrs.reduce((a, b) => a + b, 0) / fdrs.length : null;
     const flaggedPlayers = (m.players || []).filter(p => p.status && p.status !== "a");
     const flagged = (m.players || []).some(p => p.status !== undefined) ? flaggedPlayers.length : null;

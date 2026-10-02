@@ -106,7 +106,7 @@ def _get_all_fixtures():
     return _fixtures_cache["data"]
 
 
-UPCOMING_DIFFICULTY_WINDOW = 3  # next three fixtures each player's club still has to play
+UPCOMING_DIFFICULTY_WINDOW = 4  # unplayed fixtures kept per club: enough for three after the current gameweek
 
 
 def _build_team_difficulty_index(all_fixtures, gw, teams_by_id):
@@ -460,6 +460,21 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
 
     fixture_status_by_team = {}
     fixture_minutes_by_team = {}
+    # This gameweek's fixture(s) per club, kept even once played (the upcoming-difficulty
+    # index drops finished matches), so the page can show it greyed out.
+    current_fixtures_by_team = {}
+    for f in fx:
+        for team_key, diff_key, opp_key, is_home in (
+            ("team_h", "team_h_difficulty", "team_a", True),
+            ("team_a", "team_a_difficulty", "team_h", False),
+        ):
+            current_fixtures_by_team.setdefault(f[team_key], []).append({
+                "event": gw,
+                "opponent": teams_by_id.get(f.get(opp_key), {}).get("short_name", "?"),
+                "is_home": is_home,
+                "difficulty": f.get(diff_key),
+                "status": _fixture_status(f),
+            })
     for f in fx:
         status = _fixture_status(f)
         fixture_status_by_team[f["team_h"]] = status
@@ -566,6 +581,7 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "bonus_points": bonus_points,
             "auto_sub": eid in subbed_in_ids,
             "difficulty": difficulty_index.get(team_id, {}),
+            "current_fixtures": current_fixtures_by_team.get(team_id, []),
             "season_points": el.get("total_points"),
             "season_rank": season_ranks.get(eid, (None, None))[0],
             "season_pos_rank": season_ranks.get(eid, (None, None))[1],
