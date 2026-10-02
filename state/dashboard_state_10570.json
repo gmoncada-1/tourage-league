@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T02:53:31.529312+00:00",
+  "generated_at": "2026-10-02T03:14:45.300590+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
@@ -1564,9 +1564,9 @@
       "live_score": 28,
       "players": [
         {
-          "element": 566,
-          "name": "Silva",
-          "position": "DEF",
+          "element": 567,
+          "name": "Horn\u00ed\u010dek",
+          "position": "GK",
           "is_bench": false,
           "bonus_provisional": false,
           "points": 3,
@@ -1577,41 +1577,41 @@
           "assists": 0,
           "goals_points": 0,
           "assists_points": 0,
-          "defensive_contribution": 15,
-          "defcon_points": 2,
+          "defensive_contribution": 0,
+          "defcon_points": 0,
           "clean_sheets": 0,
           "clean_sheet_points": 0,
-          "bps": 8,
+          "bps": 14,
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 4,
+            "avg": 3,
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "CHE",
+                "opponent": "COV",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 2
               },
               {
                 "event": 7,
-                "opponent": "SUN",
+                "opponent": "AVL",
                 "is_home": true,
                 "difficulty": 3
               },
               {
                 "event": 8,
-                "opponent": "MUN",
+                "opponent": "CRY",
                 "is_home": false,
-                "difficulty": 4
+                "difficulty": 3
               }
             ]
           },
-          "season_points": 13,
-          "season_rank": 139,
-          "season_pos_rank": 49,
+          "season_points": 14,
+          "season_rank": 121,
+          "season_pos_rank": 13,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 73
         },
         {
           "element": 31,
@@ -1664,12 +1664,12 @@
           "season_pos_rank_of": 217
         },
         {
-          "element": 580,
-          "name": "Charles",
-          "position": "MID",
+          "element": 579,
+          "name": "Araujo",
+          "position": "DEF",
           "is_bench": false,
           "bonus_provisional": false,
-          "points": 4,
+          "points": 7,
           "fixture_status": "finished",
           "club_status": "finished",
           "minutes": 90,
@@ -1677,41 +1677,41 @@
           "assists": 0,
           "goals_points": 0,
           "assists_points": 0,
-          "defensive_contribution": 13,
-          "defcon_points": 2,
-          "clean_sheets": 0,
-          "clean_sheet_points": 0,
-          "bps": 16,
-          "bonus_points": 0,
+          "defensive_contribution": 5,
+          "defcon_points": 0,
+          "clean_sheets": 1,
+          "clean_sheet_points": 4,
+          "bps": 28,
+          "bonus_points": 1,
           "auto_sub": false,
           "difficulty": {
-            "avg": 2,
+            "avg": 3,
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "IPS",
-                "is_home": false,
-                "difficulty": 2
+                "opponent": "MCI",
+                "is_home": true,
+                "difficulty": 4
               },
               {
                 "event": 7,
-                "opponent": "HUL",
-                "is_home": true,
-                "difficulty": 2
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               },
               {
                 "event": 8,
-                "opponent": "COV",
-                "is_home": false,
-                "difficulty": 2
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
-          "season_points": 13,
-          "season_rank": 139,
-          "season_pos_rank": 63,
+          "season_points": 22,
+          "season_rank": 59,
+          "season_pos_rank": 26,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 217
         },
         {
           "element": 8,
@@ -2324,11 +2324,11 @@
         "pending": 0,
         "goals_points": 4,
         "assists_points": 0,
-        "defensive_contribution": 72,
-        "defcon_points": 4,
-        "clean_sheet_points": 1,
-        "bps": 114,
-        "bonus_points": 0
+        "defensive_contribution": 49,
+        "defcon_points": 0,
+        "clean_sheet_points": 5,
+        "bps": 132,
+        "bonus_points": 1
       }
     },
     {
@@ -3514,54 +3514,54 @@
           "season_pos_rank_of": 298
         },
         {
-          "element": 112,
-          "name": "Van Hecke",
-          "position": "DEF",
+          "element": 627,
+          "name": "Barcola",
+          "position": "MID",
           "is_bench": false,
           "bonus_provisional": false,
-          "points": 6,
+          "points": 3,
           "fixture_status": "finished",
           "club_status": "finished",
-          "minutes": 90,
-          "goals_scored": 1,
+          "minutes": 71,
+          "goals_scored": 0,
           "assists": 0,
-          "goals_points": 6,
+          "goals_points": 0,
           "assists_points": 0,
-          "defensive_contribution": 9,
+          "defensive_contribution": 3,
           "defcon_points": 0,
-          "clean_sheets": 0,
-          "clean_sheet_points": 0,
-          "bps": 17,
+          "clean_sheets": 1,
+          "clean_sheet_points": 1,
+          "bps": 8,
           "bonus_points": 0,
-          "auto_sub": true,
+          "auto_sub": false,
           "difficulty": {
             "avg": 3,
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "MUN",
-                "is_home": false,
+                "opponent": "MCI",
+                "is_home": true,
                 "difficulty": 4
               },
               {
                 "event": 7,
-                "opponent": "COV",
-                "is_home": true,
-                "difficulty": 2
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               },
               {
                 "event": 8,
-                "opponent": "CHE",
-                "is_home": false,
-                "difficulty": 4
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
-          "season_points": 24,
-          "season_rank": 48,
-          "season_pos_rank": 19,
+          "season_points": 7,
+          "season_rank": 233,
+          "season_pos_rank": 109,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 298
         },
         {
           "element": 552,
@@ -3764,6 +3764,56 @@
           "season_pos_rank_of": 217
         },
         {
+          "element": 112,
+          "name": "Van Hecke",
+          "position": "DEF",
+          "is_bench": true,
+          "bonus_provisional": false,
+          "points": 6,
+          "fixture_status": "finished",
+          "club_status": "finished",
+          "minutes": 90,
+          "goals_scored": 1,
+          "assists": 0,
+          "goals_points": 6,
+          "assists_points": 0,
+          "defensive_contribution": 9,
+          "defcon_points": 0,
+          "clean_sheets": 0,
+          "clean_sheet_points": 0,
+          "bps": 17,
+          "bonus_points": 0,
+          "auto_sub": false,
+          "difficulty": {
+            "avg": 3,
+            "fixtures": [
+              {
+                "event": 6,
+                "opponent": "MUN",
+                "is_home": false,
+                "difficulty": 4
+              },
+              {
+                "event": 7,
+                "opponent": "COV",
+                "is_home": true,
+                "difficulty": 2
+              },
+              {
+                "event": 8,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
+              }
+            ]
+          },
+          "season_points": 24,
+          "season_rank": 48,
+          "season_pos_rank": 19,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 217
+        },
+        {
           "element": 125,
           "name": "Georginio",
           "position": "FWD",
@@ -3814,12 +3864,7 @@
           "season_pos_rank_of": 79
         }
       ],
-      "subs_made": [
-        {
-          "out": "Allan",
-          "in": "Van Hecke"
-        }
-      ],
+      "subs_made": [],
       "score_finalized": true,
       "summary": {
         "fantasy_starters": 11,
@@ -3827,12 +3872,12 @@
         "live_now": 0,
         "club_benched": 0,
         "pending": 0,
-        "goals_points": 22,
+        "goals_points": 16,
         "assists_points": 0,
-        "defensive_contribution": 61,
+        "defensive_contribution": 55,
         "defcon_points": 4,
-        "clean_sheet_points": 8,
-        "bps": 249,
+        "clean_sheet_points": 9,
+        "bps": 240,
         "bonus_points": 5
       }
     },
@@ -4394,15 +4439,15 @@
           "season_pos_rank_of": 79
         },
         {
-          "element": 571,
-          "name": "Florentino",
-          "position": "MID",
+          "element": 572,
+          "name": "Tzolakis",
+          "position": "GK",
           "is_bench": true,
           "bonus_provisional": false,
-          "points": 1,
+          "points": 6,
           "fixture_status": "finished",
           "club_status": "finished",
-          "minutes": 17,
+          "minutes": 90,
           "goals_scored": 0,
           "assists": 0,
           "goals_points": 0,
@@ -4411,7 +4456,7 @@
           "defcon_points": 0,
           "clean_sheets": 0,
           "clean_sheet_points": 0,
-          "bps": 1,
+          "bps": 16,
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
@@ -4419,29 +4464,29 @@
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "FUL",
+                "opponent": "EVE",
                 "is_home": true,
-                "difficulty": 2
+                "difficulty": 3
               },
               {
                 "event": 7,
-                "opponent": "MCI",
+                "opponent": "FUL",
                 "is_home": false,
-                "difficulty": 5
+                "difficulty": 3
               },
               {
                 "event": 8,
-                "opponent": "NFO",
+                "opponent": "BRE",
                 "is_home": true,
                 "difficulty": 3
               }
             ]
           },
-          "season_points": 2,
-          "season_rank": 338,
-          "season_pos_rank": 159,
+          "season_points": 34,
+          "season_rank": 8,
+          "season_pos_rank": 1,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 73
         },
         {
           "element": 316,
@@ -4769,54 +4814,54 @@
           "season_pos_rank_of": 217
         },
         {
-          "element": 637,
-          "name": "Vaz",
-          "position": "FWD",
+          "element": 649,
+          "name": "Maitland-Niles",
+          "position": "DEF",
           "is_bench": false,
           "bonus_provisional": false,
-          "points": 1,
+          "points": 8,
           "fixture_status": "finished",
           "club_status": "finished",
-          "minutes": 12,
+          "minutes": 90,
           "goals_scored": 0,
           "assists": 0,
           "goals_points": 0,
           "assists_points": 0,
-          "defensive_contribution": 1,
+          "defensive_contribution": 8,
           "defcon_points": 0,
-          "clean_sheets": 0,
-          "clean_sheet_points": 0,
-          "bps": 5,
-          "bonus_points": 0,
+          "clean_sheets": 1,
+          "clean_sheet_points": 4,
+          "bps": 39,
+          "bonus_points": 2,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "EVE",
-                "is_home": true,
-                "difficulty": 3
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               },
               {
                 "event": 7,
-                "opponent": "FUL",
-                "is_home": false,
-                "difficulty": 3
+                "opponent": "CHE",
+                "is_home": true,
+                "difficulty": 4
               },
               {
                 "event": 8,
-                "opponent": "BRE",
-                "is_home": true,
-                "difficulty": 3
+                "opponent": "ARS",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           },
-          "season_points": 2,
-          "season_rank": 338,
-          "season_pos_rank": 40,
+          "season_points": 21,
+          "season_rank": 67,
+          "season_pos_rank": 28,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 217
         },
         {
           "element": 366,
@@ -4919,24 +4964,24 @@
           "season_pos_rank_of": 298
         },
         {
-          "element": 554,
-          "name": "Van Oevelen",
-          "position": "GK",
+          "element": 557,
+          "name": "Tzolis",
+          "position": "MID",
           "is_bench": false,
           "bonus_provisional": false,
-          "points": 0,
+          "points": 2,
           "fixture_status": "finished",
-          "club_status": "benched",
-          "minutes": 0,
+          "club_status": "finished",
+          "minutes": 72,
           "goals_scored": 0,
           "assists": 0,
           "goals_points": 0,
           "assists_points": 0,
-          "defensive_contribution": 0,
+          "defensive_contribution": 3,
           "defcon_points": 0,
           "clean_sheets": 0,
           "clean_sheet_points": 0,
-          "bps": 0,
+          "bps": 9,
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
@@ -4944,29 +4989,29 @@
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "FUL",
+                "opponent": "LEE",
                 "is_home": true,
-                "difficulty": 2
+                "difficulty": 3
               },
               {
                 "event": 7,
-                "opponent": "MCI",
+                "opponent": "NFO",
                 "is_home": false,
-                "difficulty": 5
+                "difficulty": 3
               },
               {
                 "event": 8,
-                "opponent": "NFO",
+                "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
               }
             ]
           },
-          "season_points": 0,
-          "season_rank": 420,
-          "season_pos_rank": 25,
+          "season_points": 16,
+          "season_rank": 99,
+          "season_pos_rank": 41,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 298
         },
         {
           "element": 94,
@@ -5373,17 +5418,17 @@
       "score_finalized": true,
       "summary": {
         "fantasy_starters": 11,
-        "played": 10,
+        "played": 11,
         "live_now": 0,
-        "club_benched": 1,
+        "club_benched": 0,
         "pending": 0,
         "goals_points": 8,
         "assists_points": 9,
-        "defensive_contribution": 34,
+        "defensive_contribution": 44,
         "defcon_points": 0,
-        "clean_sheet_points": 3,
-        "bps": 143,
-        "bonus_points": 1
+        "clean_sheet_points": 7,
+        "bps": 186,
+        "bonus_points": 3
       }
     },
     {
@@ -5544,15 +5589,15 @@
           "season_pos_rank_of": 217
         },
         {
-          "element": 25,
-          "name": "Gy\u00f6keres",
-          "position": "FWD",
+          "element": 357,
+          "name": "Frimpong",
+          "position": "DEF",
           "is_bench": false,
           "bonus_provisional": false,
-          "points": 1,
+          "points": 0,
           "fixture_status": "finished",
-          "club_status": "finished",
-          "minutes": 17,
+          "club_status": "benched",
+          "minutes": 0,
           "goals_scored": 0,
           "assists": 0,
           "goals_points": 0,
@@ -5561,27 +5606,27 @@
           "defcon_points": 0,
           "clean_sheets": 0,
           "clean_sheet_points": 0,
-          "bps": 5,
+          "bps": 0,
           "bonus_points": 0,
-          "auto_sub": true,
+          "auto_sub": false,
           "difficulty": {
             "avg": 3,
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "LEE",
+                "opponent": "MCI",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 4
               },
               {
                 "event": 7,
-                "opponent": "NFO",
+                "opponent": "BRE",
                 "is_home": false,
                 "difficulty": 3
               },
               {
                 "event": 8,
-                "opponent": "EVE",
+                "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
               }
@@ -5589,9 +5634,9 @@
           },
           "season_points": 2,
           "season_rank": 338,
-          "season_pos_rank": 40,
+          "season_pos_rank": 120,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 217
         },
         {
           "element": 237,
@@ -5794,20 +5839,20 @@
           "season_pos_rank_of": 298
         },
         {
-          "element": 556,
-          "name": "Targett",
-          "position": "DEF",
+          "element": 565,
+          "name": "M.Sangar\u00e9",
+          "position": "MID",
           "is_bench": false,
           "bonus_provisional": false,
           "points": 0,
           "fixture_status": "finished",
-          "club_status": "benched",
-          "minutes": 0,
+          "club_status": "finished",
+          "minutes": 21,
           "goals_scored": 0,
           "assists": 0,
           "goals_points": 0,
           "assists_points": 0,
-          "defensive_contribution": 0,
+          "defensive_contribution": 3,
           "defcon_points": 0,
           "clean_sheets": 0,
           "clean_sheet_points": 0,
@@ -5819,29 +5864,29 @@
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "EVE",
-                "is_home": true,
-                "difficulty": 3
-              },
-              {
-                "event": 7,
-                "opponent": "FUL",
+                "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
               },
               {
-                "event": 8,
-                "opponent": "BRE",
+                "event": 7,
+                "opponent": "LIV",
                 "is_home": true,
-                "difficulty": 3
+                "difficulty": 4
+              },
+              {
+                "event": 8,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           },
-          "season_points": 1,
-          "season_rank": 374,
-          "season_pos_rank": 129,
+          "season_points": 22,
+          "season_rank": 59,
+          "season_pos_rank": 22,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 298
         },
         {
           "element": 295,
@@ -5994,6 +6039,56 @@
           "season_pos_rank_of": 73
         },
         {
+          "element": 25,
+          "name": "Gy\u00f6keres",
+          "position": "FWD",
+          "is_bench": true,
+          "bonus_provisional": false,
+          "points": 1,
+          "fixture_status": "finished",
+          "club_status": "finished",
+          "minutes": 17,
+          "goals_scored": 0,
+          "assists": 0,
+          "goals_points": 0,
+          "assists_points": 0,
+          "defensive_contribution": 0,
+          "defcon_points": 0,
+          "clean_sheets": 0,
+          "clean_sheet_points": 0,
+          "bps": 5,
+          "bonus_points": 0,
+          "auto_sub": false,
+          "difficulty": {
+            "avg": 3,
+            "fixtures": [
+              {
+                "event": 6,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
+              },
+              {
+                "event": 7,
+                "opponent": "NFO",
+                "is_home": false,
+                "difficulty": 3
+              },
+              {
+                "event": 8,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
+              }
+            ]
+          },
+          "season_points": 2,
+          "season_rank": 338,
+          "season_pos_rank": 40,
+          "season_rank_of": 667,
+          "season_pos_rank_of": 79
+        },
+        {
           "element": 498,
           "name": "Senesi",
           "position": "DEF",
@@ -6044,9 +6139,9 @@
           "season_pos_rank_of": 217
         },
         {
-          "element": 595,
-          "name": "Gozo",
-          "position": "MID",
+          "element": 593,
+          "name": "Dedi\u0107",
+          "position": "DEF",
           "is_bench": true,
           "bonus_provisional": false,
           "points": 0,
@@ -6069,37 +6164,32 @@
             "fixtures": [
               {
                 "event": 6,
-                "opponent": "NFO",
+                "opponent": "COV",
+                "is_home": false,
+                "difficulty": 2
+              },
+              {
+                "event": 7,
+                "opponent": "AVL",
                 "is_home": true,
                 "difficulty": 3
               },
               {
-                "event": 7,
-                "opponent": "BHA",
-                "is_home": false,
-                "difficulty": 4
-              },
-              {
                 "event": 8,
-                "opponent": "NEW",
-                "is_home": true,
+                "opponent": "CRY",
+                "is_home": false,
                 "difficulty": 3
               }
             ]
           },
-          "season_points": 2,
-          "season_rank": 338,
-          "season_pos_rank": 159,
+          "season_points": 13,
+          "season_rank": 139,
+          "season_pos_rank": 49,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 217
         }
       ],
-      "subs_made": [
-        {
-          "out": "Frimpong",
-          "in": "Gy\u00f6keres"
-        }
-      ],
+      "subs_made": [],
       "score_finalized": true,
       "summary": {
         "fantasy_starters": 11,
@@ -6109,10 +6199,10 @@
         "pending": 0,
         "goals_points": 0,
         "assists_points": 6,
-        "defensive_contribution": 35,
+        "defensive_contribution": 38,
         "defcon_points": 0,
         "clean_sheet_points": 1,
-        "bps": 124,
+        "bps": 119,
         "bonus_points": 0
       }
     }
@@ -8684,7 +8774,7 @@
       "status": "accepted",
       "status_label": "Accepted",
       "element_in": "Doku",
-      "element_out": "Jebbison"
+      "element_out": "Yalcouy\u00e9"
     },
     {
       "time": "2026-09-18T01:39:11.588680Z",
@@ -8705,7 +8795,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Vaz",
+      "element_in": "Maitland-Niles",
       "element_out": "Botman"
     },
     {
@@ -8992,7 +9082,7 @@
       "status": "declined",
       "status_label": "Declined \u2014 drop no longer available",
       "element_in": "Mykolenko",
-      "element_out": "Matthews"
+      "element_out": "Silva"
     },
     {
       "time": "2026-09-15T14:44:24.882216Z",
@@ -9036,7 +9126,7 @@
       "status": "declined",
       "status_label": "Declined \u2014 drop no longer available",
       "element_in": "Thiaw",
-      "element_out": "Matthews"
+      "element_out": "Silva"
     },
     {
       "time": "2026-09-15T14:44:24.882146Z",
@@ -9047,7 +9137,7 @@
       "status": "declined",
       "status_label": "Declined \u2014 player already claimed",
       "element_in": "Botman",
-      "element_out": "Matthews"
+      "element_out": "Silva"
     },
     {
       "time": "2026-09-15T14:44:24.882129Z",
@@ -9091,7 +9181,7 @@
       "status": "declined",
       "status_label": "Declined \u2014 drop no longer available",
       "element_in": "Diomande",
-      "element_out": "Matthews"
+      "element_out": "Silva"
     },
     {
       "time": "2026-09-15T14:44:24.882042Z",
@@ -9102,7 +9192,7 @@
       "status": "accepted",
       "status_label": "Accepted",
       "element_in": "Aina",
-      "element_out": "Matthews"
+      "element_out": "Silva"
     },
     {
       "time": "2026-09-15T14:44:24.882021Z",
@@ -9134,7 +9224,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Matthews",
+      "element_in": "Silva",
       "element_out": "Justin"
     },
     {
@@ -9145,7 +9235,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Jebbison",
+      "element_in": "Yalcouy\u00e9",
       "element_out": "Enciso"
     },
     {
@@ -9178,7 +9268,7 @@
       "result": "di",
       "status": "declined",
       "status_label": "Declined \u2014 player already claimed",
-      "element_in": "Charles",
+      "element_in": "Araujo",
       "element_out": "Matheus N."
     },
     {
@@ -9189,7 +9279,7 @@
       "result": "do",
       "status": "declined",
       "status_label": "Declined \u2014 drop no longer available",
-      "element_in": "Maitland-Niles",
+      "element_in": "Fernandez-Pardo",
       "element_out": "Kostoulas"
     },
     {
@@ -9266,7 +9356,7 @@
       "result": "di",
       "status": "declined",
       "status_label": "Declined \u2014 player already claimed",
-      "element_in": "Charles",
+      "element_in": "Araujo",
       "element_out": "Colwill"
     },
     {
@@ -9288,7 +9378,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Charles",
+      "element_in": "Araujo",
       "element_out": "Mosquera"
     },
     {
@@ -9442,7 +9532,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Allan",
+      "element_in": "Barcola",
       "element_out": "N.Angulo"
     },
     {
@@ -9464,7 +9554,7 @@
       "result": "di",
       "status": "declined",
       "status_label": "Declined \u2014 player already claimed",
-      "element_in": "Allan",
+      "element_in": "Barcola",
       "element_out": "Ngumoha"
     },
     {
@@ -9475,7 +9565,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Targett",
+      "element_in": "M.Sangar\u00e9",
       "element_out": "Ngumoha"
     },
     {
@@ -9552,7 +9642,7 @@
       "result": "di",
       "status": "declined",
       "status_label": "Declined \u2014 player already claimed",
-      "element_in": "Allan",
+      "element_in": "Barcola",
       "element_out": "Wilson"
     },
     {
@@ -9574,7 +9664,7 @@
       "result": "di",
       "status": "declined",
       "status_label": "Declined \u2014 player already claimed",
-      "element_in": "Allan",
+      "element_in": "Barcola",
       "element_out": "Munoz"
     },
     {
@@ -9596,7 +9686,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Silva",
+      "element_in": "Horn\u00ed\u010dek",
       "element_out": "S\u00e1nchez"
     },
     {
@@ -9607,7 +9697,7 @@
       "result": "do",
       "status": "declined",
       "status_label": "Declined \u2014 drop no longer available",
-      "element_in": "Jebbison",
+      "element_in": "Yalcouy\u00e9",
       "element_out": "Gravenberch"
     },
     {
@@ -9629,7 +9719,7 @@
       "result": "di",
       "status": "declined",
       "status_label": "Declined \u2014 player already claimed",
-      "element_in": "Allan",
+      "element_in": "Barcola",
       "element_out": "Gravenberch"
     },
     {
@@ -9685,7 +9775,7 @@
       "status": "accepted",
       "status_label": "Accepted",
       "element_in": "Enciso",
-      "element_out": "Targett"
+      "element_out": "M.Sangar\u00e9"
     },
     {
       "time": "2026-08-28T15:58:04.221349Z",
@@ -9773,7 +9863,7 @@
       "status": "accepted",
       "status_label": "Accepted",
       "element_in": "Justin",
-      "element_out": "Charles"
+      "element_out": "Araujo"
     },
     {
       "time": "2026-08-27T17:48:49.659130Z",
@@ -9794,7 +9884,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Gozo",
+      "element_in": "Dedi\u0107",
       "element_out": "Greaves"
     },
     {
@@ -9915,7 +10005,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Targett",
+      "element_in": "M.Sangar\u00e9",
       "element_out": "Caicedo"
     },
     {
@@ -10135,7 +10225,7 @@
       "result": "a",
       "status": "accepted",
       "status_label": "Accepted",
-      "element_in": "Florentino",
+      "element_in": "Tzolakis",
       "element_out": "Pope"
     },
     {
@@ -10668,7 +10758,24 @@
     }
   ],
   "new_moves_count": 0,
-  "lineup_changes": [],
+  "lineup_changes": [
+    {
+      "entry_id": 51947,
+      "gw": 5
+    },
+    {
+      "entry_id": 51949,
+      "gw": 5
+    },
+    {
+      "entry_id": 51951,
+      "gw": 5
+    },
+    {
+      "entry_id": 51952,
+      "gw": 5
+    }
+  ],
   "global_context": {
     "gw": 5,
     "average_entry_score": 48,
