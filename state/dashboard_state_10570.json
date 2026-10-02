@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T04:47:24.013789+00:00",
+  "generated_at": "2026-10-02T04:55:04.204260+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
@@ -55,9 +55,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 14,
           "season_rank": 121,
           "season_pos_rank": 13,
@@ -109,9 +124,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 19,
           "season_rank": 83,
           "season_pos_rank": 34,
@@ -163,9 +193,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 1,
           "season_rank": 374,
           "season_pos_rank": 129,
@@ -217,9 +262,24 @@
                 "opponent": "SUN",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BOU",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CRY",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 27,
           "season_rank": 32,
           "season_pos_rank": 9,
@@ -271,9 +331,24 @@
                 "opponent": "BOU",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "FUL",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 25,
           "season_rank": 42,
           "season_pos_rank": 19,
@@ -325,9 +400,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 20,
           "season_rank": 75,
           "season_pos_rank": 31,
@@ -379,9 +469,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 15,
           "season_rank": 107,
           "season_pos_rank": 46,
@@ -433,9 +538,24 @@
                 "opponent": "MUN",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "LIV",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 31,
           "season_rank": 16,
           "season_pos_rank": 7,
@@ -468,7 +588,7 @@
           "bonus_points": 3,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -487,9 +607,24 @@
                 "opponent": "LIV",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "MCI",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "ARS",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 47,
           "season_rank": 1,
           "season_pos_rank": 1,
@@ -541,9 +676,24 @@
                 "opponent": "SUN",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BOU",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CRY",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 22,
           "season_rank": 59,
           "season_pos_rank": 7,
@@ -595,9 +745,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 9,
           "season_rank": 194,
           "season_pos_rank": 19,
@@ -649,9 +814,24 @@
                 "opponent": "HUL",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CHE",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 20,
           "season_rank": 75,
           "season_pos_rank": 7,
@@ -703,9 +883,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 33,
           "season_rank": 10,
           "season_pos_rank": 2,
@@ -757,9 +952,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 13,
           "season_rank": 139,
           "season_pos_rank": 49,
@@ -811,9 +1021,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 27,
           "season_rank": 32,
           "season_pos_rank": 9,
@@ -891,9 +1116,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 30,
           "season_rank": 20,
           "season_pos_rank": 2,
@@ -945,9 +1185,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 37,
           "season_rank": 7,
           "season_pos_rank": 4,
@@ -999,9 +1254,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 16,
           "season_rank": 99,
           "season_pos_rank": 39,
@@ -1053,9 +1323,24 @@
                 "opponent": "SUN",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BOU",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CRY",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 42,
           "season_rank": 3,
           "season_pos_rank": 2,
@@ -1107,9 +1392,24 @@
                 "opponent": "CRY",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "HUL",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 31,
           "season_rank": 16,
           "season_pos_rank": 6,
@@ -1161,9 +1461,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 32,
           "season_rank": 13,
           "season_pos_rank": 5,
@@ -1215,9 +1530,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 33,
           "season_rank": 10,
           "season_pos_rank": 4,
@@ -1269,9 +1599,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 20,
           "season_rank": 75,
           "season_pos_rank": 31,
@@ -1304,7 +1649,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -1323,9 +1668,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 15,
           "season_rank": 107,
           "season_pos_rank": 46,
@@ -1377,9 +1737,24 @@
                 "opponent": "COV",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "MUN",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 14,
           "season_rank": 121,
           "season_pos_rank": 13,
@@ -1431,9 +1806,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 4,
           "season_rank": 279,
           "season_pos_rank": 29,
@@ -1485,9 +1875,24 @@
                 "opponent": "SUN",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BOU",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CRY",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 28,
           "season_rank": 26,
           "season_pos_rank": 3,
@@ -1539,9 +1944,24 @@
                 "opponent": "BOU",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "FUL",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 8,
           "season_rank": 215,
           "season_pos_rank": 21,
@@ -1574,7 +1994,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -1593,9 +2013,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 13,
           "season_rank": 139,
           "season_pos_rank": 49,
@@ -1647,9 +2082,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 19,
           "season_rank": 83,
           "season_pos_rank": 35,
@@ -1727,9 +2177,24 @@
                 "opponent": "CRY",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "HUL",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 14,
           "season_rank": 121,
           "season_pos_rank": 13,
@@ -1781,9 +2246,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 12,
           "season_rank": 152,
           "season_pos_rank": 56,
@@ -1816,7 +2296,7 @@
           "bonus_points": 1,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -1835,9 +2315,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 22,
           "season_rank": 59,
           "season_pos_rank": 26,
@@ -1889,9 +2384,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 29,
           "season_rank": 23,
           "season_pos_rank": 8,
@@ -1943,9 +2453,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 11,
           "season_rank": 167,
           "season_pos_rank": 64,
@@ -1997,9 +2522,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 14,
           "season_rank": 121,
           "season_pos_rank": 56,
@@ -2032,7 +2572,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -2051,9 +2591,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 20,
           "season_rank": 75,
           "season_pos_rank": 31,
@@ -2105,9 +2660,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 29,
           "season_rank": 23,
           "season_pos_rank": 11,
@@ -2159,9 +2729,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 8,
           "season_rank": 215,
           "season_pos_rank": 101,
@@ -2213,9 +2798,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 8,
           "season_rank": 215,
           "season_pos_rank": 21,
@@ -2267,9 +2867,24 @@
                 "opponent": "HUL",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CHE",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 10,
           "season_rank": 179,
           "season_pos_rank": 17,
@@ -2321,9 +2936,24 @@
                 "opponent": "MCI",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "FUL",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "TOT",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 16,
           "season_rank": 99,
           "season_pos_rank": 11,
@@ -2375,9 +3005,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 1,
           "season_rank": 374,
           "season_pos_rank": 177,
@@ -2410,7 +3055,7 @@
           "bonus_points": 2,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -2429,9 +3074,24 @@
                 "opponent": "LIV",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "MCI",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "ARS",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 28,
           "season_rank": 26,
           "season_pos_rank": 4,
@@ -2483,9 +3143,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 8,
           "season_rank": 215,
           "season_pos_rank": 77,
@@ -2563,9 +3238,24 @@
                 "opponent": "BOU",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "FUL",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 11,
           "season_rank": 167,
           "season_pos_rank": 15,
@@ -2617,9 +3307,24 @@
                 "opponent": "NFO",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "EVE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 25,
           "season_rank": 42,
           "season_pos_rank": 15,
@@ -2671,9 +3376,24 @@
                 "opponent": "MUN",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "LIV",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 10,
           "season_rank": 179,
           "season_pos_rank": 66,
@@ -2706,7 +3426,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -2725,9 +3445,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 24,
           "season_rank": 48,
           "season_pos_rank": 19,
@@ -2779,9 +3514,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 34,
           "season_rank": 8,
           "season_pos_rank": 3,
@@ -2833,9 +3583,24 @@
                 "opponent": "HUL",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CHE",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 7,
           "season_rank": 233,
           "season_pos_rank": 109,
@@ -2887,9 +3652,24 @@
                 "opponent": "MUN",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "LIV",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 10,
           "season_rank": 179,
           "season_pos_rank": 82,
@@ -2941,9 +3721,24 @@
                 "opponent": "HUL",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CHE",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 22,
           "season_rank": 59,
           "season_pos_rank": 22,
@@ -2976,7 +3771,7 @@
           "bonus_points": 3,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -2995,9 +3790,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 33,
           "season_rank": 10,
           "season_pos_rank": 2,
@@ -3049,9 +3859,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 19,
           "season_rank": 83,
           "season_pos_rank": 9,
@@ -3103,9 +3928,24 @@
                 "opponent": "MUN",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "LIV",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 18,
           "season_rank": 89,
           "season_pos_rank": 10,
@@ -3157,9 +3997,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 9,
           "season_rank": 194,
           "season_pos_rank": 17,
@@ -3211,9 +4066,24 @@
                 "opponent": "SUN",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BOU",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CRY",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 18,
           "season_rank": 89,
           "season_pos_rank": 36,
@@ -3265,9 +4135,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 3,
           "season_rank": 301,
           "season_pos_rank": 107,
@@ -3300,7 +4185,7 @@
           "bonus_points": 1,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -3319,9 +4204,24 @@
                 "opponent": "LIV",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "MCI",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "ARS",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 38,
           "season_rank": 6,
           "season_pos_rank": 3,
@@ -3380,7 +4280,7 @@
           "bonus_points": 2,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -3399,9 +4299,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 27,
           "season_rank": 32,
           "season_pos_rank": 4,
@@ -3453,9 +4368,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 25,
           "season_rank": 42,
           "season_pos_rank": 15,
@@ -3488,7 +4418,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -3507,9 +4437,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 25,
           "season_rank": 42,
           "season_pos_rank": 15,
@@ -3561,9 +4506,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 23,
           "season_rank": 56,
           "season_pos_rank": 24,
@@ -3615,9 +4575,24 @@
                 "opponent": "MCI",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "FUL",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "TOT",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 2,
           "season_rank": 338,
           "season_pos_rank": 159,
@@ -3669,9 +4644,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 29,
           "season_rank": 23,
           "season_pos_rank": 11,
@@ -3723,9 +4713,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 9,
           "season_rank": 194,
           "season_pos_rank": 88,
@@ -3777,9 +4782,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 4,
           "season_rank": 279,
           "season_pos_rank": 129,
@@ -3812,7 +4832,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -3831,9 +4851,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 7,
           "season_rank": 233,
           "season_pos_rank": 109,
@@ -3885,9 +4920,24 @@
                 "opponent": "LEE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "COV",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "MCI",
+              "is_home": false,
+              "difficulty": 5,
+              "status": "finished"
+            }
+          ],
           "season_points": 24,
           "season_rank": 48,
           "season_pos_rank": 6,
@@ -3939,9 +4989,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 20,
           "season_rank": 75,
           "season_pos_rank": 8,
@@ -3993,9 +5058,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 18,
           "season_rank": 89,
           "season_pos_rank": 9,
@@ -4047,9 +5127,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 4,
           "season_rank": 279,
           "season_pos_rank": 102,
@@ -4101,9 +5196,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 24,
           "season_rank": 48,
           "season_pos_rank": 19,
@@ -4136,7 +5246,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -4155,9 +5265,24 @@
                 "opponent": "LIV",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "MCI",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "ARS",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 6,
           "season_rank": 250,
           "season_pos_rank": 27,
@@ -4235,9 +5360,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 25,
           "season_rank": 42,
           "season_pos_rank": 5,
@@ -4289,9 +5429,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 43,
           "season_rank": 2,
           "season_pos_rank": 1,
@@ -4343,9 +5498,24 @@
                 "opponent": "MUN",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "LEE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "LIV",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 12,
           "season_rank": 152,
           "season_pos_rank": 56,
@@ -4397,9 +5567,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 17,
           "season_rank": 96,
           "season_pos_rank": 37,
@@ -4451,9 +5636,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 27,
           "season_rank": 32,
           "season_pos_rank": 9,
@@ -4505,9 +5705,24 @@
                 "opponent": "BOU",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "FUL",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 10,
           "season_rank": 179,
           "season_pos_rank": 66,
@@ -4559,9 +5774,24 @@
                 "opponent": "CRY",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "HUL",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 28,
           "season_rank": 26,
           "season_pos_rank": 13,
@@ -4613,9 +5843,24 @@
                 "opponent": "BOU",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "FUL",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 31,
           "season_rank": 16,
           "season_pos_rank": 7,
@@ -4667,9 +5912,24 @@
                 "opponent": "BOU",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "CHE",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "FUL",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 26,
           "season_rank": 38,
           "season_pos_rank": 18,
@@ -4721,9 +5981,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 13,
           "season_rank": 139,
           "season_pos_rank": 63,
@@ -4775,9 +6050,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 12,
           "season_rank": 152,
           "season_pos_rank": 16,
@@ -4829,9 +6119,24 @@
                 "opponent": "BRE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "IPS",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "NEW",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 34,
           "season_rank": 8,
           "season_pos_rank": 1,
@@ -4883,9 +6188,24 @@
                 "opponent": "NFO",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "HUL",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "EVE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 26,
           "season_rank": 38,
           "season_pos_rank": 5,
@@ -4937,9 +6257,24 @@
                 "opponent": "NEW",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "TOT",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "LEE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 2,
           "season_rank": 338,
           "season_pos_rank": 40,
@@ -4991,9 +6326,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 9,
           "season_rank": 194,
           "season_pos_rank": 88,
@@ -5071,9 +6421,24 @@
                 "opponent": "COV",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "MUN",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 18,
           "season_rank": 89,
           "season_pos_rank": 9,
@@ -5125,9 +6490,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 17,
           "season_rank": 96,
           "season_pos_rank": 37,
@@ -5179,9 +6559,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 6,
           "season_rank": 250,
           "season_pos_rank": 89,
@@ -5233,9 +6628,24 @@
                 "opponent": "ARS",
                 "is_home": false,
                 "difficulty": 5
+              },
+              {
+                "event": 9,
+                "opponent": "NEW",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "IPS",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 21,
           "season_rank": 67,
           "season_pos_rank": 28,
@@ -5268,7 +6678,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -5287,9 +6697,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 18,
           "season_rank": 89,
           "season_pos_rank": 36,
@@ -5322,7 +6747,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -5341,9 +6766,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 32,
           "season_rank": 13,
           "season_pos_rank": 5,
@@ -5395,9 +6835,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 16,
           "season_rank": 99,
           "season_pos_rank": 41,
@@ -5449,9 +6904,24 @@
                 "opponent": "HUL",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CHE",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 39,
           "season_rank": 4,
           "season_pos_rank": 2,
@@ -5503,9 +6973,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 15,
           "season_rank": 107,
           "season_pos_rank": 46,
@@ -5557,9 +7042,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 39,
           "season_rank": 4,
           "season_pos_rank": 1,
@@ -5611,9 +7111,24 @@
                 "opponent": "MCI",
                 "is_home": true,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "FUL",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "TOT",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 10,
           "season_rank": 179,
           "season_pos_rank": 17,
@@ -5665,9 +7180,24 @@
                 "opponent": "LEE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "COV",
+                "is_home": false,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "MCI",
+              "is_home": false,
+              "difficulty": 5,
+              "status": "finished"
+            }
+          ],
           "season_points": 11,
           "season_rank": 167,
           "season_pos_rank": 15,
@@ -5719,9 +7249,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 7,
           "season_rank": 233,
           "season_pos_rank": 24,
@@ -5773,9 +7318,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 8,
           "season_rank": 215,
           "season_pos_rank": 77,
@@ -5827,9 +7387,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 0,
           "season_rank": 420,
           "season_pos_rank": 147,
@@ -5907,9 +7482,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 19,
           "season_rank": 83,
           "season_pos_rank": 8,
@@ -5961,9 +7551,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 30,
           "season_rank": 20,
           "season_pos_rank": 7,
@@ -6015,9 +7620,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 5,
           "season_rank": 265,
           "season_pos_rank": 96,
@@ -6050,7 +7670,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -6069,9 +7689,24 @@
                 "opponent": "BHA",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "ARS",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BOU",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 2,
           "season_rank": 338,
           "season_pos_rank": 120,
@@ -6123,9 +7758,24 @@
                 "opponent": "AVL",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "BHA",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "SUN",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 22,
           "season_rank": 59,
           "season_pos_rank": 22,
@@ -6177,9 +7827,24 @@
                 "opponent": "COV",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "AVL",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "MUN",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 24,
           "season_rank": 48,
           "season_pos_rank": 20,
@@ -6231,9 +7896,24 @@
                 "opponent": "TOT",
                 "is_home": true,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "MUN",
+                "is_home": true,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BRE",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 28,
           "season_rank": 26,
           "season_pos_rank": 13,
@@ -6285,9 +7965,24 @@
                 "opponent": "IPS",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "BRE",
+                "is_home": false,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "COV",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 28,
           "season_rank": 26,
           "season_pos_rank": 13,
@@ -6339,9 +8034,24 @@
                 "opponent": "HUL",
                 "is_home": false,
                 "difficulty": 2
+              },
+              {
+                "event": 9,
+                "opponent": "NFO",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "CHE",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 22,
           "season_rank": 59,
           "season_pos_rank": 22,
@@ -6393,9 +8103,24 @@
                 "opponent": "BRE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "IPS",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "NEW",
+              "is_home": false,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 13,
           "season_rank": 139,
           "season_pos_rank": 15,
@@ -6447,9 +8172,24 @@
                 "opponent": "CRY",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "HUL",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 15,
           "season_rank": 107,
           "season_pos_rank": 11,
@@ -6482,7 +8222,7 @@
           "bonus_points": 0,
           "auto_sub": false,
           "difficulty": {
-            "avg": 3,
+            "avg": 4,
             "fixtures": [
               {
                 "event": 6,
@@ -6501,9 +8241,24 @@
                 "opponent": "LIV",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "MCI",
+                "is_home": false,
+                "difficulty": 5
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "ARS",
+              "is_home": true,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 23,
           "season_rank": 56,
           "season_pos_rank": 6,
@@ -6555,9 +8310,24 @@
                 "opponent": "EVE",
                 "is_home": true,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "LIV",
+                "is_home": false,
+                "difficulty": 4
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "BHA",
+              "is_home": false,
+              "difficulty": 4,
+              "status": "finished"
+            }
+          ],
           "season_points": 2,
           "season_rank": 338,
           "season_pos_rank": 40,
@@ -6609,9 +8379,24 @@
                 "opponent": "CHE",
                 "is_home": false,
                 "difficulty": 4
+              },
+              {
+                "event": 9,
+                "opponent": "CRY",
+                "is_home": true,
+                "difficulty": 2
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "AVL",
+              "is_home": true,
+              "difficulty": 3,
+              "status": "finished"
+            }
+          ],
           "season_points": 3,
           "season_rank": 301,
           "season_pos_rank": 107,
@@ -6663,9 +8448,24 @@
                 "opponent": "CRY",
                 "is_home": false,
                 "difficulty": 3
+              },
+              {
+                "event": 9,
+                "opponent": "EVE",
+                "is_home": true,
+                "difficulty": 3
               }
             ]
           },
+          "current_fixtures": [
+            {
+              "event": 5,
+              "opponent": "HUL",
+              "is_home": true,
+              "difficulty": 2,
+              "status": "finished"
+            }
+          ],
           "season_points": 13,
           "season_rank": 139,
           "season_pos_rank": 49,
