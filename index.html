@@ -508,7 +508,7 @@
       <summary>How the table works</summary>
       <p>Teams are ranked by league points: 3 for a win and 1 for a draw. Ties are broken by total FPL points scored this season, the same rule FPL Draft uses. While a gameweek is in progress, points and "This GW" are worked out from the live scores, so the table moves as the matches do.</p>
       <p>Bonus points only become official when FPL marks a match finished. Until then, "This GW" includes FPL's own live bonus estimate, based on each player's current BPS ranking in his match.</p>
-      <p>Prize shows what each position pays if the season ended now. The pool is 0.201 BTC, valued at the live BTC price. First takes the pool minus $300, second takes $300, and third collects $150: $100 from last place and $50 from seventh.</p>
+      <p>Prize shows what each position pays if the season ended now. The pool is 0.0201 BTC, valued at the live BTC price. First takes the pool minus $300, second takes $300, and third collects $150: $100 from last place and $50 from seventh.</p>
       <p><span class="key-swatch" style="background:var(--card)"></span>Top of the table <span class="key-swatch" style="background:var(--red); margin-left:14px"></span>Bottom of the table</p>
     </details>
   </section>
@@ -983,9 +983,9 @@ function renderSquadRanks(state) {
   }).join("");
 }
 
-// Prize pool: 0.201 BTC, valued live. 1st takes the pool minus $300, 2nd takes $300;
+// Prize pool: 0.0201 BTC, valued live. 1st takes the pool minus $300, 2nd takes $300;
 // 3rd collects $100 from last place and $50 from 7th.
-const POOL_BTC = 0.201;
+const POOL_BTC = 0.0201;
 let btcUsd = null, btcAt = null;
 const usd = n => (n < 0 ? "−" : "") + "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
 function payoutFor(rank, nTeams) {
