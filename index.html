@@ -2,565 +2,538 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="theme-color" content="#0d2c21">
+<meta name="description" content="Live scores, win odds, table and transfers for the Tourage Invitational FPL Draft league.">
+<meta property="og:title" content="FPL Fantasy Live Monitor">
+<meta property="og:description" content="Live scores, win odds, table and transfers for the Tourage Invitational FPL Draft league.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FPL Fantasy Live Monitor</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Layout: one 1120px column; the gameweek scoreboard leads, the table follows,
+     feeds pair up in two columns on desktop and stack on phones.
+     Look: a floodlit pitch at night (dark) or a daytime pitch (light); chalk-line
+     borders; stadium-signage numerals; yellow-card yellow marks who is ahead. */
   :root {
-    --bg: #060911;
-    --bg-elevated: #0a0f1a;
-    --panel: rgba(15, 21, 36, 0.72);
-    --panel-solid: #0f1524;
-    --border: #1e293f;
-    --border-bright: #2c3c5c;
-    --text: #eaf0fb;
-    --muted: #7488a8;
-    --accent: #2ee6a8;
-    --accent-dim: rgba(46, 230, 168, 0.14);
-    --accent2: #4d9fff;
-    --accent2-dim: rgba(77, 159, 255, 0.14);
-    --danger: #ff4f6a;
-    --danger-dim: rgba(255, 79, 106, 0.14);
-    --warn: #ffb545;
-    --warn-dim: rgba(255, 181, 69, 0.14);
-    --brand: #9b7bff;
-    --brand2: #4d9fff;
-    --series-1: #3987e5;
-    --series-2: #c98500;
-    --chart-grid: #1e293f;
-    --font-display: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    --shadow-panel: 0 1px 2px rgba(0,0,0,0.4), 0 12px 32px -16px rgba(0,0,0,0.6);
-    --grid-line: rgba(120, 150, 210, 0.05);
+    --bg: #0d2c21;          /* pitch */
+    --surface: #123628;     /* turf */
+    --surface-2: #174131;   /* mown stripe */
+    --line: #2a5c47;        /* chalk line, faint */
+    --line-strong: #3d7660;
+    --ink: #f1efe4;         /* chalk */
+    --muted: #9dbbab;
+    --card: #f4c430;        /* yellow card: leading / favoured */
+    --card-ink: #f4c430;    /* yellow used as text on this ground */
+    --on-card: #1d1700;
+    --red: #ff6b66;         /* red card: losses, bottom of table, declined */
+    --good: #73d49c;
+    --series-2: #c9d8cf;
+    --font-display: "Big Shoulders Display", "Barlow Condensed", "Arial Narrow", sans-serif;
+    --font-text: "Barlow", "Helvetica Neue", Arial, sans-serif;
+    --radius: 10px;
+    --radius-sm: 6px;
+    color-scheme: dark;
   }
-  html[data-theme="light"] {
-    --bg: #eef1f8;
-    --bg-elevated: #f7f9fd;
-    --panel: rgba(255, 255, 255, 0.85);
-    --panel-solid: #ffffff;
-    --border: #dbe2f0;
-    --border-bright: #c2ceE4;
-    --text: #0d1526;
-    --muted: #5b6b85;
-    --accent: #059669;
-    --accent-dim: rgba(5, 150, 105, 0.10);
-    --accent2: #2563eb;
-    --accent2-dim: rgba(37, 99, 235, 0.10);
-    --danger: #dc2626;
-    --danger-dim: rgba(220, 38, 38, 0.10);
-    --warn: #c2760a;
-    --warn-dim: rgba(194, 118, 10, 0.12);
-    --brand: #6d28d9;
-    --brand2: #2563eb;
-    --series-1: #2a78d6;
-    --series-2: #eda100;
-    --chart-grid: #dbe2f0;
-    --shadow-panel: 0 1px 2px rgba(20,30,60,0.06), 0 12px 28px -18px rgba(20,30,60,0.18);
-    --grid-line: rgba(60, 90, 160, 0.05);
+  :root[data-theme="light"] {
+    --bg: #e7eee8;
+    --surface: #ffffff;
+    --surface-2: #f2f6f2;
+    --line: #cbdacf;
+    --line-strong: #a9c2b2;
+    --ink: #10291f;
+    --muted: #587366;
+    --card: #f4c430;
+    --card-ink: #8a6400;
+    --on-card: #1d1700;
+    --red: #c4302b;
+    --good: #1d8a4e;
+    --series-2: #10291f;
+    color-scheme: light;
   }
-  * { box-sizing: border-box; }
-  ::selection { background: var(--accent2-dim); color: var(--text); }
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 6px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
-    background:
-      radial-gradient(1200px 600px at 15% -10%, rgba(155, 123, 255, 0.10), transparent 60%),
-      radial-gradient(900px 500px at 100% 0%, rgba(77, 159, 255, 0.08), transparent 55%),
-      linear-gradient(var(--grid-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
-      var(--bg);
-    background-size: auto, auto, 40px 40px, 40px 40px, auto;
-    background-attachment: fixed;
-    color: var(--text);
-    font-family: var(--font-display);
-    font-size: 14px;
-    padding: 28px clamp(16px, 4vw, 40px) 0;
-    transition: background-color 0.2s, color 0.2s;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-text);
+    font-size: 15px;
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+    padding-inline: clamp(16px, 4vw, 40px);
+    padding-block: 28px 0;
     -webkit-font-smoothing: antialiased;
   }
-  .header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
-  .header-controls { display: flex; align-items: center; gap: 10px; }
-  .brand-row { display: flex; align-items: center; gap: 9px; margin-bottom: 6px; }
+  .page { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  ::selection { background: var(--card); color: var(--on-card); }
+  :focus-visible { outline: 2px solid var(--card); outline-offset: 2px; border-radius: 4px; }
+
+  /* ---------- Header ---------- */
+  .header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+  .header-main { min-width: 0; }
+  .brand-row { display: flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 600; font-size: 14px; }
   .brand-mark {
-    width: 22px; height: 22px; border-radius: 6px; flex: none;
-    background: linear-gradient(135deg, var(--brand), var(--brand2));
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 0 0 1px rgba(155,123,255,0.3), 0 4px 14px -4px rgba(155,123,255,0.55);
+    width: 24px; height: 24px; border-radius: 6px; flex: none;
+    background: var(--card); color: var(--on-card);
+    display: grid; place-items: center;
   }
-  .brand-mark svg { width: 13px; height: 13px; }
-  .brand {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    background: linear-gradient(90deg, var(--brand), var(--brand2));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    text-transform: uppercase;
-  }
+  .brand-mark svg { width: 14px; height: 14px; }
   h1 {
-    font-size: 22px; font-weight: 700; margin: 0 0 6px; letter-spacing: -0.01em;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 7vw, 68px);
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    margin: 10px 0 10px;
+    text-wrap: balance;
   }
-  .subtitle { color: var(--muted); font-size: 12.5px; margin-bottom: 22px; font-family: var(--font-mono); }
-  .subtitle strong { color: var(--text); font-weight: 600; }
-  .site-footer {
-    text-align: center;
-    color: var(--muted);
-    font-size: 10.5px;
-    font-family: var(--font-mono);
-    padding: 32px 0 20px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
-  select, #theme-toggle, #refresh-btn {
-    background: var(--panel-solid);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 7px 12px;
-    font-size: 12.5px;
-    font-family: var(--font-mono);
-    font-weight: 500;
+  .subtitle { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; color: var(--muted); font-size: 14px; }
+  .subtitle .gw { color: var(--ink); font-weight: 600; }
+  .header-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .btn, select {
+    font: 600 14px/1 var(--font-text);
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 9px 12px;
     cursor: pointer;
-    transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    display: inline-flex; align-items: center; gap: 7px;
   }
-  #theme-toggle:hover, select:hover, #refresh-btn:hover {
-    border-color: var(--accent2);
-    box-shadow: 0 0 0 3px var(--accent2-dim);
-  }
-  #refresh-btn:active, #theme-toggle:active { transform: scale(0.96); }
-  #refresh-btn:disabled { opacity: 0.55; cursor: default; box-shadow: none; }
-  #refresh-btn.spinning .refresh-icon { display: inline-block; animation: spin 0.7s linear infinite; }
-  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  .btn:hover, select:hover { border-color: var(--line-strong); }
+  .btn svg { width: 15px; height: 15px; flex: none; }
+  .btn:disabled { opacity: 0.55; cursor: default; }
+  #refresh-btn.spinning .refresh-icon { animation: spin 0.7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #league-switcher[hidden] { display: none; }
 
+  /* ---------- Panels ---------- */
   .panel {
-    background: var(--panel);
-    backdrop-filter: blur(16px) saturate(1.4);
-    -webkit-backdrop-filter: blur(16px) saturate(1.4);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 18px 16px;
-    margin-bottom: 20px;
-    box-shadow: var(--shadow-panel);
-    position: relative;
-    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px 20px;
+    min-width: 0;
   }
-  .panel::before {
-    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
-  }
-  .panel h2 {
-    font-size: 13px;
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--text);
-    font-weight: 700;
-    margin: 0 0 16px;
-    padding-left: 13px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .panel h2::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    border-radius: 2px;
-    background: linear-gradient(180deg, var(--accent2), var(--brand));
-  }
-  .empty { color: var(--muted); font-size: 13px; padding: 10px 2px; font-family: var(--font-mono); }
+  .panel-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; margin-bottom: 14px; }
+  .panel-head h2 { font-size: 19px; font-weight: 700; margin: 0; letter-spacing: -0.005em; line-height: 1.2; }
+  .panel-note { color: var(--muted); font-size: 13.5px; margin: 3px 0 0; }
+  .panel-head select { padding: 7px 10px; font-size: 13.5px; }
+  .empty { color: var(--muted); font-size: 14px; padding: 6px 0; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
 
-  /* Unified badge/chip system */
+  /* ---------- Chips ---------- */
   .badge {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px 7px;
-    border-radius: 5px;
-    letter-spacing: 0.02em;
-    vertical-align: middle;
-    border: 1px solid transparent;
+    display: inline-flex; align-items: center; gap: 4px;
+    font: 600 12px/1 var(--font-text);
+    padding: 4px 7px; border-radius: 4px; vertical-align: middle;
+    border: 1px solid currentColor; background: transparent;
+    white-space: nowrap;
   }
-  .badge-good { background: var(--accent-dim); color: var(--accent); border-color: rgba(46,230,168,0.25); }
-  .badge-bad { background: var(--danger-dim); color: var(--danger); border-color: rgba(255,79,106,0.25); }
-  .badge-warn { background: var(--warn-dim); color: var(--warn); border-color: rgba(255,181,69,0.25); }
-  .badge-live {
-    background: var(--danger); color: #fff; margin-left: 8px; border-color: transparent;
-    box-shadow: 0 0 12px -2px rgba(255,79,106,0.7);
-    animation: livePulse 1.6s ease-in-out infinite;
-  }
+  .badge-good { color: var(--good); }
+  .badge-bad { color: var(--red); }
+  .badge-warn { color: var(--card-ink); }
+  .badge-live { color: var(--on-card); background: var(--card); border-color: var(--card); }
+  .badge-live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--on-card); animation: livePulse 1.4s ease-in-out infinite; }
+  .live-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--card); margin-right: 5px; vertical-align: 1px; animation: livePulse 1.4s ease-in-out infinite; }
+  @keyframes livePulse { 50% { opacity: 0.35; } }
+  .tag { font-size: 11.5px; font-weight: 600; color: var(--muted); border: 1px solid var(--line-strong); border-radius: 3px; padding: 1px 4px; margin-left: 6px; vertical-align: 1px; }
 
-  /* Score change flash */
-  @keyframes flashBg {
-    0% { background-color: rgba(46, 230, 168, 0.32); box-shadow: 0 0 0 3px rgba(46,230,168,0.18); }
-    100% { background-color: transparent; box-shadow: 0 0 0 0 transparent; }
-  }
-  .flash { animation: flashBg 1.6s ease-out; border-radius: 5px; }
+  @keyframes flashBg { 0% { background-color: var(--card); color: var(--on-card); } 100% { background-color: transparent; } }
+  .flash { animation: flashBg 1.6s ease-out; border-radius: 4px; }
 
-  /* Hero: My Matchup */
-  .hero {
-    position: relative;
-    background: var(--panel);
-    backdrop-filter: blur(16px) saturate(1.4);
-    -webkit-backdrop-filter: blur(16px) saturate(1.4);
-    border: 1px solid var(--border-bright);
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 22px;
-    box-shadow: var(--shadow-panel), 0 0 0 1px rgba(155,123,255,0.06);
-    overflow: hidden;
-  }
-  .hero::before {
-    content: ""; position: absolute; inset: 0; border-radius: 16px; padding: 1px;
-    background: linear-gradient(120deg, var(--brand), transparent 30%, transparent 70%, var(--accent2));
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude;
-    opacity: 0.55; pointer-events: none;
-  }
-  .hero .label {
-    text-transform: uppercase; letter-spacing: 0.1em; font-size: 11px; font-family: var(--font-mono);
-    font-weight: 600; color: var(--muted);
-    margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;
-  }
-  .matchup-toggle { display: flex; align-items: center; gap: 8px; text-transform: none; letter-spacing: normal; }
-  .matchup-toggle-btn {
-    background: none; border: 1px solid var(--border); color: var(--text);
-    width: 22px; height: 22px; border-radius: 6px; font-size: 13px; line-height: 1;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono); transition: border-color 0.15s, color 0.15s;
-  }
-  .matchup-toggle-btn:hover { border-color: var(--accent2); color: var(--accent2); }
-  .matchup-position { font-size: 11px; color: var(--muted); font-family: var(--font-mono); min-width: 42px; text-align: center; }
-  .hero-teams { display: flex; align-items: center; gap: 20px; }
-  .hero-team { flex: 1; min-width: 0; }
-  .hero-team.right { text-align: right; }
-  .hero-name { font-size: 14.5px; font-weight: 600; margin-bottom: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .hero-score { font-family: var(--font-mono); font-size: 40px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -0.02em; }
-  .hero-pct { font-size: 12.5px; color: var(--muted); margin-top: 6px; font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
-  .hero-pct.favored { color: var(--accent); font-weight: 600; }
-  .hero-vs {
-    font-size: 11px; color: var(--muted); padding: 0 6px; font-family: var(--font-mono);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-  }
-  .hero-vs .flip-btn {
-    background: none; border: 1px solid var(--border); color: var(--muted);
-    width: 22px; height: 22px; border-radius: 6px; font-size: 12px; line-height: 1;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono); transition: border-color 0.15s, color 0.15s;
-  }
-  .hero-vs .flip-btn:hover { border-color: var(--accent2); color: var(--accent2); }
-  .win-prob-explainer { margin-top: 14px; }
-  .win-prob-explainer summary { color: var(--accent2); font-size: 11.5px; font-family: var(--font-mono); cursor: pointer; }
-  .win-prob-explainer p { font-size: 12px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; }
-  .win-prob-explainer strong { color: var(--text); }
-  .hero-bar {
-    display: flex;
-    height: 6px;
-    border-radius: 4px;
-    overflow: hidden;
-    background: var(--border);
-    margin-top: 18px;
-  }
-  .hero-bar .a { background: linear-gradient(90deg, var(--accent2), var(--brand)); transition: width 0.3s; }
-  .hero-bar .b { background: var(--warn); transition: width 0.3s; }
-
-  /* Score progression chart */
-  .odds-readout { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; }
-  .odds-readout-value {
-    font-family: var(--font-mono); font-size: 36px; font-weight: 700; color: var(--series-1);
-    line-height: 1; letter-spacing: -0.02em;
-  }
-  .odds-readout-label {
-    font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--muted);
-    margin-left: 8px; text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  .chart-filter-row { display: flex; gap: 6px; margin-bottom: 14px; }
-  .chart-filter-btn {
-    background: transparent; color: var(--muted); border: 1px solid var(--border);
-    border-radius: 6px; padding: 4px 10px; font-size: 11px; font-family: var(--font-mono);
-    font-weight: 500; cursor: pointer; transition: all 0.15s;
-  }
-  .chart-filter-btn:hover { border-color: var(--accent2); color: var(--text); }
-  .chart-filter-btn.active { background: var(--accent2-dim); border-color: var(--accent2); color: var(--accent2); }
-  .chart-legend { display: flex; gap: 16px; margin-bottom: 10px; }
-  .chart-legend-item { font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; font-family: var(--font-mono); }
-  .chart-legend-swatch { width: 12px; height: 2px; border-radius: 1px; display: inline-block; }
-  .chart-wrap { position: relative; }
-  .score-chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
-  .chart-grid { stroke: var(--chart-grid); stroke-width: 1; }
-  .chart-axis-label { font-size: 9px; fill: var(--muted); font-family: var(--font-mono); }
-  .chart-end-label { font-size: 11px; font-weight: 600; font-family: var(--font-mono); dominant-baseline: middle; }
-  .chart-crosshair { stroke: var(--border-bright); stroke-width: 1; pointer-events: none; }
-  .chart-hit-area { fill: transparent; }
-  .chart-tooltip {
-    position: absolute; top: 8px; pointer-events: none; background: var(--panel-solid);
-    border: 1px solid var(--border-bright); border-radius: 8px; padding: 8px 10px;
-    font-size: 11px; box-shadow: var(--shadow-panel); white-space: nowrap; transform: translateX(-50%);
-    z-index: 5;
-  }
-  .chart-tooltip .tt-time { color: var(--muted); font-family: var(--font-mono); margin-bottom: 4px; }
-  .chart-tooltip .tt-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
-  .chart-tooltip .tt-key { width: 10px; height: 2px; display: inline-block; }
-  .chart-tooltip .tt-value { font-family: var(--font-mono); font-weight: 700; color: var(--text); }
-  .chart-tooltip .tt-name { color: var(--muted); font-family: var(--font-mono); }
-  .chart-table-toggle { margin-top: 10px; }
-  .chart-table-toggle summary { color: var(--muted); }
-  .chart-data-table { width: 100%; font-size: 11px; margin-top: 8px; border-collapse: collapse; font-family: var(--font-mono); }
-  .chart-data-table th, .chart-data-table td { padding: 4px 6px; border-bottom: 1px solid var(--border); text-align: left; }
-
-  /* Live match events */
-  .match-block { padding: 11px 0; border-bottom: 1px solid var(--border); }
-  .match-block:last-child { border-bottom: none; }
-  .match-scoreline {
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 13.5px; font-weight: 600; margin-bottom: 7px;
-  }
-  .match-scoreline .score { font-size: 16px; font-family: var(--font-mono); }
-  .match-minutes { font-size: 10.5px; color: var(--muted); font-weight: 500; font-family: var(--font-mono); }
-  .match-event-row { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; padding: 3px 0; }
-  .match-event-row .player { color: var(--text); font-weight: 500; }
-
-  /* Live Odds Board — compact sparkline-chart cards for every matchup; tap one to
-     expand it into the full detailed chart (below, reusing #score-chart). Flexbox
-     (not CSS grid auto-fill, which Safari collapses to a single column at this
-     container width) so multi-column wrapping is predictable across browsers. */
-  .odds-board { display: flex; flex-wrap: wrap; gap: 12px; }
+  /* ---------- Scoreboard (odds board) ---------- */
+  #odds-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
   .odds-board-card {
     position: relative;
-    flex: 1 1 240px;
-    min-width: 240px;
-    border: 1px solid var(--border-bright);
-    border-radius: 10px;
-    /* Extra right padding reserves a gutter for the flip button so it never overlaps
-       the win-% text, which otherwise sits flush against the card's own edge. */
-    padding: 12px 32px 12px 14px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
     cursor: pointer;
-    background: var(--panel-solid);
-    box-shadow: var(--shadow-panel);
-    transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s;
+    display: flex; flex-direction: column; gap: 6px;
+    transition: border-color 0.15s;
   }
-  .odds-board-card:hover { border-color: var(--accent2); transform: translateY(-1px); }
+  .odds-board-card:hover { border-color: var(--line-strong); }
+  .odds-board-row { display: grid; grid-template-columns: minmax(0, 1fr) auto 52px; align-items: center; gap: 10px; }
+  .odds-board-row .team-name { font-weight: 600; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .odds-board-row .team-score { font: 800 34px/1 var(--font-display); }
+  .odds-board-row .team-pct {
+    justify-self: end; font-weight: 600; font-size: 13px; color: var(--muted);
+    padding: 3px 6px; border-radius: 4px; min-width: 46px; text-align: center;
+  }
+  .odds-board-row.favored .team-pct { background: var(--card); color: var(--on-card); }
+  .odds-board-row:not(.favored) .team-name, .odds-board-row:not(.favored) .team-score { color: var(--muted); }
   .odds-board-flip {
-    position: absolute; top: 50%; right: 8px; transform: translateY(-50%);
-    background: var(--bg-elevated); border: 1px solid var(--border); color: var(--muted);
-    width: 20px; height: 20px; border-radius: 5px; font-size: 11px; line-height: 1;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-mono); transition: border-color 0.15s, color 0.15s; z-index: 1;
+    position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--surface-2); border: 1px solid var(--line-strong); color: var(--muted);
+    display: grid; place-items: center; cursor: pointer; font-size: 13px; line-height: 1; z-index: 1;
   }
-  .odds-board-flip:hover { border-color: var(--accent2); color: var(--accent2); }
-  .odds-board-row { display: flex; align-items: center; justify-content: space-between; padding: 2px 0; gap: 8px; }
-  .odds-board-row .team-name {
-    font-size: 12.5px; font-weight: 600; display: flex; align-items: center; gap: 6px;
-    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0;
-  }
-  .odds-board-row .team-score { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); flex: none; }
-  .odds-board-row .team-pct { font-family: var(--font-mono); font-size: 16px; font-weight: 700; min-width: 44px; text-align: right; flex: none; }
-  .odds-board-row.favored .team-pct { color: var(--accent); }
-  .odds-board-spark { margin: 3px 0; border-top: 1px dashed var(--border); border-bottom: 1px dashed var(--border); }
-  .spark-svg { width: 100%; height: 34px; display: block; overflow: visible; }
-  .spark-area { fill: var(--series-1); opacity: 0.12; }
-  .spark-path { fill: none; stroke: var(--series-1); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
-  .spark-mid { stroke: var(--chart-grid); stroke-width: 1; stroke-dasharray: 2,2; }
-  .spark-empty { font-size: 10px; color: var(--muted); font-family: var(--font-mono); text-align: center; padding: 10px 0; }
+  .odds-board-flip:hover { color: var(--ink); border-color: var(--ink); }
+  .odds-board-spark { margin-right: 36px; }
+  .spark-svg { width: 100%; height: 30px; display: block; overflow: visible; }
+  .spark-area { fill: var(--card); opacity: 0.14; }
+  .spark-path { fill: none; stroke: var(--card); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+  .spark-mid { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 3; vector-effect: non-scaling-stroke; }
+  .spark-empty { height: 1px; background: var(--line); margin: 6px 0; font-size: 0; }
 
-  /* Standings table */
-  .table-wrap { overflow-x: auto; margin: 0 -4px; padding: 0 4px; }
-  .table-footnote { font-size: 11px; color: var(--muted); margin-top: 12px; line-height: 1.6; font-family: var(--font-mono); }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); }
-  th {
-    color: var(--muted); font-weight: 600; font-size: 10.5px; white-space: nowrap;
-    font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em;
+  .chart-filter-row { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .chart-filter-btn {
+    font: 600 13px/1 var(--font-text); color: var(--muted); background: transparent;
+    border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer;
   }
-  tbody tr:not([class]):hover { background: rgba(120,150,210,0.04); }
+  .chart-filter-btn:hover { color: var(--ink); border-color: var(--line-strong); }
+  .chart-filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* Expanded win-probability chart */
+  .odds-readout { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 10px; }
+  .odds-readout-value { font: 800 48px/1 var(--font-display); color: var(--card-ink); }
+  .odds-readout-label { font: 600 15px var(--font-text); color: var(--muted); margin-left: 8px; }
+  .chart-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+  .chart-legend-item { font-size: 13.5px; display: flex; align-items: center; gap: 7px; }
+  .chart-legend-swatch { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+  .chart-wrap { position: relative; }
+  .score-chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .chart-grid { stroke: var(--line); stroke-width: 1; }
+  .chart-axis-label { font: 500 10px var(--font-text); fill: var(--muted); }
+  .chart-end-label { font: 700 12px var(--font-text); dominant-baseline: middle; }
+  .chart-crosshair { stroke: var(--line-strong); stroke-width: 1; pointer-events: none; }
+  .chart-hit-area { fill: transparent; }
+  .chart-tooltip {
+    position: absolute; top: 8px; pointer-events: none; background: var(--surface);
+    border: 1px solid var(--line-strong); border-radius: var(--radius-sm); padding: 8px 10px;
+    font-size: 12.5px; white-space: nowrap; transform: translateX(-50%); z-index: 5;
+  }
+  .chart-tooltip .tt-time { color: var(--muted); margin-bottom: 4px; }
+  .chart-tooltip .tt-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
+  .chart-tooltip .tt-key { width: 10px; height: 3px; display: inline-block; }
+  .chart-tooltip .tt-value { font-weight: 700; }
+  .chart-tooltip .tt-name { color: var(--muted); }
+  .chart-table-toggle { margin-top: 10px; }
+  .chart-data-table { width: 100%; font-size: 13px; margin-top: 8px; border-collapse: collapse; }
+  .chart-data-table th, .chart-data-table td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: left; }
+
+  /* ---------- Spotlight ---------- */
+  .hero {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 18px 20px 20px;
+  }
+  .hero .label { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+  .hero .label > span:first-child { font-size: 19px; font-weight: 700; }
+  .matchup-toggle { display: flex; align-items: center; gap: 6px; }
+  .matchup-toggle-btn {
+    width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+    background: transparent; border: 1px solid var(--line); color: var(--ink);
+    font-size: 18px; line-height: 1; cursor: pointer;
+  }
+  .matchup-toggle-btn:hover { border-color: var(--line-strong); }
+  .matchup-position { font-size: 13.5px; color: var(--muted); min-width: 44px; text-align: center; }
+  .hero-teams { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 16px; }
+  .hero-team { min-width: 0; }
+  .hero-team.right { text-align: right; }
+  .hero-name { font-size: 17px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .hero-score { font: 800 clamp(64px, 11vw, 112px)/0.9 var(--font-display); margin-top: 4px; display: inline-block; padding: 0 2px; }
+  .hero-pct { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .hero-pct.favored { color: var(--card-ink); font-weight: 700; }
+  .hero-vs { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-bottom: 30px; color: var(--muted); font-size: 13px; }
+  .hero-vs .flip-btn {
+    width: 54px; height: 54px; border-radius: 50%;
+    border: 1.5px solid var(--line-strong); background: transparent; color: var(--muted);
+    display: grid; place-items: center; font-size: 16px; cursor: pointer;
+  }
+  .hero-vs .flip-btn:hover { color: var(--ink); border-color: var(--ink); }
+  .hero-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--line); margin-top: 18px; gap: 2px; }
+  .hero-bar > div { background: var(--line-strong); transition: width 0.4s; }
+  .hero-bar > div.fav { background: var(--card); }
+  .hero-team.trailing .hero-score, .hero-team.trailing .hero-name { color: var(--muted); }
+  .win-prob-explainer { margin-top: 14px; }
+  .win-prob-explainer p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 68ch; }
+  .win-prob-explainer strong { color: var(--ink); }
+
+  details > summary { cursor: pointer; color: var(--ink); font-weight: 600; font-size: 13.5px; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; list-style-position: inside; }
+  details > summary:hover { text-decoration-color: var(--ink); }
+
+  /* ---------- Standings ---------- */
+  .table-wrap { overflow-x: auto; margin: 0 -6px; padding: 0 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 11px 10px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; font-size: 13px; white-space: nowrap; border-bottom-color: var(--line-strong); }
+  th.sortable { cursor: pointer; user-select: none; }
+  th.sortable:hover, th.sortable.active { color: var(--ink); }
+  .sort-caret { font-size: 10px; }
+  #standings-table td:first-child { width: 36px; color: var(--muted); font-weight: 600; box-shadow: inset 3px 0 0 transparent; }
+  #standings-table tr.pos-top td:first-child { box-shadow: inset 3px 0 0 var(--card); color: var(--ink); }
+  #standings-table tr.pos-bottom td:first-child { box-shadow: inset 3px 0 0 var(--red); }
+
   .team-cell { font-weight: 600; }
-  .score { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 700; font-size: 15px; }
-  .h2h-pts { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; color: var(--text); }
-  th.sortable { cursor: pointer; user-select: none; transition: color 0.15s; }
-  th.sortable:hover { color: var(--text); }
-  th.sortable.active { color: var(--accent2); }
-  .sort-caret { font-size: 9px; }
-  /* Squad & Point Breakdown sub-table — columns mirror the outer standings table
-     (Pts/Goals/Assists/CS/DEFCON/Bonus), grouped by position with a BN section. */
-  .squad-table { width: 100%; border-collapse: collapse; font-size: 11.5px; font-family: var(--font-mono); margin-top: 4px; }
-  .squad-table th {
-    text-align: right; color: var(--muted); font-weight: 600; font-size: 9.5px;
-    text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 6px; border-bottom: 1px solid var(--border-bright);
-  }
-  .squad-table th:first-child, .squad-table th:nth-child(2) { text-align: left; }
-  .squad-table td { padding: 4px 6px; text-align: right; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
-  .squad-table td.squad-player, .squad-table td.squad-pos { text-align: left; }
-  .squad-table td.squad-player { font-weight: 500; }
-  .squad-table td.squad-pos { color: var(--muted); }
-  .squad-table td.squad-pts { font-weight: 700; color: var(--text); }
-  .squad-table tr.club-benched td.squad-player { color: var(--danger); }
-  .squad-table tr.club-live td.squad-player { color: var(--accent); font-weight: 600; }
-  .squad-table tr.squad-bench { opacity: 0.55; }
-  .squad-table tr.squad-group-row td {
-    text-align: left; font-size: 9.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
-    font-weight: 700; padding: 8px 6px 3px; border-bottom: none;
-  }
-  .squad-bn-note { font-weight: 400; text-transform: none; letter-spacing: normal; }
-  .live-dot {
-    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
-    background: var(--danger); vertical-align: middle; margin-bottom: 1px;
-    animation: livePulse 1.4s ease-in-out infinite;
-  }
-  @keyframes livePulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 79, 106, 0.5); }
-    50% { opacity: 0.6; box-shadow: 0 0 0 4px rgba(255, 79, 106, 0); }
-  }
-  .live-count-tag {
-    font-size: 10px; color: var(--danger); font-weight: 600; margin-left: 5px; font-family: var(--font-mono);
-  }
-  .final-badge {
-    font-size: 10px; color: var(--accent); font-weight: 600; margin-left: 6px;
-    vertical-align: middle; font-family: var(--font-mono);
-  }
-  .bonus-tag { color: var(--accent); font-size: 10px; }
-  .roster-summary { font-size: 11px; color: var(--muted); margin-bottom: 8px; font-family: var(--font-mono); }
-  details summary { cursor: pointer; color: var(--accent2); font-size: 11.5px; font-family: var(--font-mono); font-weight: 500; }
+  .team-toggle { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+  .team-toggle .chev { width: 9px; height: 9px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(-45deg); transition: transform 0.15s; flex: none; }
+  .team-toggle[aria-expanded="true"] .chev { transform: rotate(45deg); }
+  .team-toggle:hover .chev { border-color: var(--ink); }
+  .team-toggle:focus-visible { outline: 2px solid var(--card); outline-offset: 3px; border-radius: 3px; }
+  #standings-table tr.team-row.is-open td { border-bottom-color: transparent; }
+  #standings-table tr.detail-row td { background: var(--surface-2); padding: 4px 14px 14px; }
+  .h2h-pts { font: 800 24px/1 var(--font-display); }
+  .score { font-weight: 700; }
+  td.score { white-space: nowrap; }
+  .final-badge { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+  .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
+  .table-footnote { margin-top: 14px; }
+  .table-footnote p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 72ch; }
+  .key-swatch { display: inline-block; width: 3px; height: 13px; vertical-align: -2px; margin-right: 6px; }
 
-  /* Latest moves */
-  .feed-item { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
-  .feed-item:last-child { border-bottom: none; }
-  .feed-item .time { color: var(--muted); font-size: 10.5px; font-family: var(--font-mono); }
-  .feed-item.declined { opacity: 0.5; }
-  .kind-w { color: var(--accent2); }
-  .kind-f { color: var(--accent); }
-  .kind-t { color: var(--warn); }
-  .add-item {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12.5px;
-  }
+  .roster-summary { font-size: 13.5px; color: var(--muted); margin: 10px 0 6px; }
+  .roster-summary strong { color: var(--ink); }
+  .squad-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 6px; }
+  .squad-table th { text-align: right; font-size: 12px; padding: 6px 6px; }
+  .squad-table th:first-child, .squad-table th:nth-child(2) { text-align: left; }
+  .squad-table th:last-child { text-align: left; }
+  .squad-table td { padding: 6px 6px; text-align: right; border-bottom: 1px solid var(--line); }
+  .squad-table td.squad-player, .squad-table td.squad-pos { text-align: left; }
+  .squad-table td.squad-player { font-weight: 500; white-space: nowrap; width: 38%; }
+  /* Fixture difficulty: FPL's own 1-5 colour scale, so it reads the same as the official app */
+  .squad-table td.squad-next { text-align: left; white-space: nowrap; }
+  .fdr-run { display: inline-flex; gap: 3px; }
+  .fdr { display: inline-flex; align-items: baseline; justify-content: center; gap: 2px; min-width: 50px; padding: 3px 5px; border-radius: 3px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.02em; }
+  .fdr small { font-size: 9.5px; font-weight: 600; opacity: 0.8; }
+  .fdr-1 { background: #375523; color: #ffffff; }
+  .fdr-2 { background: #01fc7a; color: #0b2b19; }
+  .fdr-3 { background: #e7e7e7; color: #1b1b1b; }
+  .fdr-4 { background: #ff1751; color: #ffffff; }
+  .fdr-5 { background: #80072d; color: #ffffff; }
+  .fdr-none { color: var(--muted); font-size: 12px; }
+  .squad-table td.squad-pos { color: var(--muted); }
+  .squad-table td.squad-pts { font-weight: 700; }
+  .squad-table tr.club-benched td.squad-player { color: var(--red); }
+  .squad-table tr.club-live td.squad-player { font-weight: 700; }
+  .squad-table tr.squad-bench { opacity: 0.55; }
+  .squad-table tr.squad-group-row td { text-align: left; font-size: 12px; color: var(--muted); font-weight: 700; padding: 12px 6px 4px; border-bottom: none; }
+  .squad-bn-note { font-weight: 400; }
+
+  /* ---------- Premier League matches ---------- */
+  .match-block { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .match-block:first-child { padding-top: 2px; }
+  .match-block:last-child { border-bottom: none; padding-bottom: 0; }
+  .match-scoreline { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) 34px; align-items: center; gap: 14px; font-weight: 600; }
+  .match-scoreline .home { text-align: right; }
+  .match-scoreline .scores { font: 800 24px/1 var(--font-display); letter-spacing: 0.02em; }
+  .match-minutes { font-size: 12.5px; color: var(--muted); font-weight: 600; min-width: 34px; text-align: right; }
+  .match-minutes.is-live { color: var(--card-ink); }
+  .match-events { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 28px; margin-top: 8px; padding-right: 44px; }
+  .match-events .side { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .match-events .side-h { align-items: flex-end; text-align: right; }
+  .match-event-row { font-size: 13.5px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .match-event-row .player { color: var(--ink); font-weight: 500; }
+  .ev-card { display: inline-block; width: 8px; height: 11px; border-radius: 1.5px; flex: none; }
+  .ev-card.y { background: var(--card); }
+  .ev-card.r { background: var(--red); }
+  .ev-word { font-size: 12px; font-weight: 600; color: var(--muted); }
+
+  /* ---------- Pickups, moves, transfers ---------- */
+  .add-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .add-item:first-child { padding-top: 0; }
   .add-item:last-child { border-bottom: none; }
-  .add-player { font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .add-meta { color: var(--muted); font-size: 11.5px; flex: none; font-family: var(--font-mono); }
-  .add-time { color: var(--muted); font-size: 10.5px; font-family: var(--font-mono); flex: none; }
-  .transfer-move-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; font-size: 12.5px; }
+  .add-player { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .add-meta { grid-column: 1; color: var(--muted); font-size: 13.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .add-time { grid-column: 2; grid-row: 1; color: var(--muted); font-size: 13px; text-align: right; }
+  .kind-w, .kind-f, .kind-t { font-weight: 600; }
+  .kind-w { color: var(--ink); }
+  .kind-f { color: var(--good); }
+  .kind-t { color: var(--card-ink); }
+
+  .team-group { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .team-group:first-child { padding-top: 0; }
+  .team-group:last-child { border-bottom: none; padding-bottom: 0; }
+  .team-group-header { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  #moves-feed { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); column-gap: 28px; }
+  #moves-feed .team-group:first-child, #moves-feed .team-group { padding-top: 12px; }
+  .feed-item { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 10px; padding: 5px 0; font-size: 14px; align-items: baseline; }
+  .feed-item .time { color: var(--muted); font-size: 12.5px; white-space: nowrap; }
+  .more-btn { margin-top: 6px; font: 600 13.5px var(--font-text); color: var(--ink); background: none; border: 0; padding: 4px 0; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+  .more-btn:hover { text-decoration-color: var(--ink); }
+  .feed-item .what { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+  .feed-item .in { font-weight: 600; }
+  .feed-item .out { color: var(--muted); }
+  .feed-item.declined .what > :not(.badge) { opacity: 0.55; }
+  .feed-item .badge { font-size: 11px; padding: 3px 6px; }
+
+  #transfer-deadline-moves { columns: 4 200px; column-gap: 28px; }
+  #transfer-deadline-moves .team-group { padding-top: 0; border-bottom: none; padding-bottom: 14px; }
+  #transfer-deadline-moves .team-group-header { break-after: avoid; }
+  .transfer-move-row { break-inside: avoid; }
+  .transfer-move-row { display: flex; align-items: baseline; gap: 6px; padding: 2px 0; font-size: 14px; flex-wrap: wrap; }
   .transfer-player { font-weight: 600; }
-  .transfer-arrow { color: var(--muted); font-size: 11px; }
-  .transfer-team { color: var(--muted); font-family: var(--font-mono); font-size: 11.5px; }
-  .team-group { margin-bottom: 16px; }
-  .team-group-header {
-    font-size: 12px; font-weight: 600; color: var(--text); padding: 5px 0; border-bottom: 1px solid var(--border-bright);
-    margin-bottom: 5px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.03em;
-  }
+  .transfer-arrow { color: var(--muted); font-size: 13px; }
+  .transfer-team { color: var(--muted); }
+
+  .gc-stats { display: flex; gap: 22px; text-align: right; }
+  .gc-stat { display: flex; flex-direction: column; gap: 3px; }
+  .gc-stat .v { font: 800 30px/1 var(--font-display); }
+  .gc-stat .k { color: var(--muted); font-size: 12.5px; }
+
+  .site-footer { color: var(--muted); font-size: 13px; padding: 12px 0 28px; text-align: left; }
+
+  .badge-good + .badge, .badge-bad + .badge { margin-left: 4px; }
 
   @media (max-width: 860px) {
-    body { padding: 16px 14px 0; background-size: auto, auto, 28px 28px, 28px 28px, auto; }
-    .hero { padding: 18px; }
-    .hero-teams { gap: 10px; }
-    .hero-score { font-size: 27px; }
-    .hero-name { font-size: 12px; }
-    table { font-size: 12px; }
-    th, td { padding: 7px 6px; }
+    .grid-2 { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 640px) {
+    body { padding-block-start: 18px; font-size: 14.5px; }
+    .panel, .hero { padding: 16px 14px 16px; }
+    .header-controls { width: 100%; }
+    .header-controls .btn { flex: 1; justify-content: center; }
+    .hero-teams { gap: 8px; }
+    .hero-name { font-size: 14.5px; white-space: normal; }
+    .hero-vs { padding-bottom: 26px; }
+    .hero-vs .flip-btn { width: 40px; height: 40px; }
+    th, td { padding: 10px 6px; }
+    #standings-table tr > :nth-child(5), #standings-table tr > :nth-child(6) { display: none; }
+    #standings-table tr.detail-row > td { display: table-cell; }
+    .squad-table { font-size: 12.5px; }
+    .final-badge { display: none; }
+    .gc-stats { text-align: left; }
+    .squad-table th:nth-child(n+4), .squad-table td:nth-child(n+4) { padding-inline: 3px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
   }
 </style>
 </head>
 <body>
-  <div class="header-row">
-    <div>
+<div class="page">
+  <header class="header-row">
+    <div class="header-main">
       <div class="brand-row">
-        <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18L10 6L14 14L20 4" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="brand">FPL Fantasy Live Monitor</div>
+        <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 18L10 6L14 14L20 4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <span class="brand">FPL Fantasy Live Monitor</span>
       </div>
       <h1 id="league-name">FPL Draft Dashboard</h1>
       <div class="subtitle" id="subtitle">Loading…</div>
     </div>
     <div class="header-controls">
-      <select id="league-switcher"></select>
-      <button id="refresh-btn" type="button" title="Fetch the latest data right now"><span class="refresh-icon">🔄</span> Refresh</button>
-      <button id="theme-toggle" type="button">☀️ Light mode</button>
+      <select id="league-switcher" aria-label="League" hidden></select>
+      <button id="refresh-btn" class="btn" type="button" title="Load the latest data"><svg class="refresh-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Refresh</button>
+      <button id="theme-toggle" class="btn" type="button">Light mode</button>
     </div>
-  </div>
+  </header>
 
-  <div class="panel odds-board-panel">
-    <h2>Live Odds Board <select id="team-jump-select"><option value="">Jump to team…</option></select></h2>
+  <section class="panel odds-board-panel" aria-labelledby="board-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="board-title">This gameweek</h2>
+        <p class="panel-note">Live scores and each team's chance to win. Tap a match for its odds chart.</p>
+      </div>
+      <select id="team-jump-select" aria-label="Open a team's match"><option value="">Find a team…</option></select>
+    </div>
     <div class="chart-filter-row" id="board-control-row" style="display:none;">
-      <button type="button" class="chart-filter-btn active" data-range="all">All</button>
-      <button type="button" class="chart-filter-btn" data-range="60">Last 1h</button>
-      <button type="button" class="chart-filter-btn" data-range="180">Last 3h</button>
-      <button type="button" class="chart-filter-btn" id="board-flip-btn" style="margin-left:auto;" title="Flip which team shows first">⇄ Flip</button>
-      <button type="button" class="chart-filter-btn" id="board-back-btn">‹ All matchups</button>
+      <button type="button" class="chart-filter-btn" id="board-back-btn">‹ All matches</button>
+      <button type="button" class="chart-filter-btn active" data-range="all">Whole gameweek</button>
+      <button type="button" class="chart-filter-btn" data-range="60">Last hour</button>
+      <button type="button" class="chart-filter-btn" data-range="180">Last 3 hours</button>
+      <button type="button" class="chart-filter-btn" id="board-flip-btn" style="margin-left:auto;" title="Swap which team is shown first">⇄ Swap sides</button>
     </div>
     <div id="odds-board"></div>
     <div id="score-chart"></div>
-  </div>
+  </section>
 
-  <div class="hero" id="hero-matchup">
+  <section class="hero" id="hero-matchup" aria-label="Match spotlight">
     <div class="label">
-      <span>Matchup Spotlight</span>
+      <span>Spotlight</span>
       <div class="matchup-toggle">
-        <button class="matchup-toggle-btn" id="matchup-prev-btn" type="button" title="Previous matchup">‹</button>
+        <button class="matchup-toggle-btn" id="matchup-prev-btn" type="button" title="Previous match" aria-label="Previous match">‹</button>
         <span class="matchup-position" id="matchup-position"></span>
-        <button class="matchup-toggle-btn" id="matchup-next-btn" type="button" title="Next matchup">›</button>
+        <button class="matchup-toggle-btn" id="matchup-next-btn" type="button" title="Next match" aria-label="Next match">›</button>
       </div>
     </div>
     <div id="hero-content" class="empty">Loading…</div>
-  </div>
+  </section>
 
-  <div class="panel">
-    <h2>Standings</h2>
+  <section class="panel" aria-labelledby="table-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="table-title">League table</h2>
+        <p class="panel-note">Tap a column to sort. Open a team to see its squad and where the points came from.</p>
+      </div>
+      <div id="global-context" class="gc-stats"></div>
+    </div>
     <div class="table-wrap">
     <table id="standings-table">
       <thead>
         <tr>
           <th>#</th>
           <th>Team</th>
-          <th class="sortable" data-sort="league_points" title="League points: 3 for a win, 1 for a draw, 0 for a loss. For the gameweek in progress, this projects the result from the current live score. Click to sort.">Pts<span class="sort-caret"></span></th>
-          <th class="sortable" data-sort="played" title="Head-to-head matches played this season. Click to sort.">Pld<span class="sort-caret"></span></th>
-          <th class="sortable" data-sort="won" title="Click to sort by wins">W<span class="sort-caret"></span></th>
-          <th class="sortable" data-sort="drawn" title="Click to sort by draws">D<span class="sort-caret"></span></th>
-          <th class="sortable" data-sort="lost" title="Click to sort by losses">L<span class="sort-caret"></span></th>
-          <th class="sortable" data-sort="points_for" title="Total FPL points accumulated across all H2H matches this season — FPL Draft's own tiebreaker whenever Pts is level. Click to sort.">Total Pts<span class="sort-caret"></span></th>
-          <th class="sortable" data-sort="live_score" title="Includes FPL's own live bonus estimate for players still in a match — see the * note below the table. Click to sort.">GW Score*<span class="sort-caret"></span></th>
+          <th class="sortable" data-sort="league_points" title="League points: 3 for a win, 1 for a draw. This gameweek counts from the live score.">Pts<span class="sort-caret"></span></th>
+          <th class="sortable" data-sort="won" title="Wins">W<span class="sort-caret"></span></th>
+          <th class="sortable" data-sort="drawn" title="Draws">D<span class="sort-caret"></span></th>
+          <th class="sortable" data-sort="lost" title="Losses">L<span class="sort-caret"></span></th>
+          <th class="sortable" data-sort="points_for" title="Total FPL points scored this season. Breaks ties on league points.">Total<span class="sort-caret"></span></th>
+          <th class="sortable" data-sort="live_score" title="This gameweek's score, including FPL's live bonus estimate">This GW<span class="sort-caret"></span></th>
         </tr>
       </thead>
       <tbody id="standings-body"></tbody>
     </table>
     </div>
-    <div class="table-footnote">Click any column header to pivot the table by it (Pts, Pld, W, D, L, Total Pts, or this week's live score) — click again to flip direction. Default is H2H league points (3 win / 1 draw / 0 loss); ties there are broken by Total Pts (points accumulated across all matches), FPL Draft's own tiebreak rule. For the gameweek in progress, Pts/GW Score project off the current live score, so the table moves live as matches do. * Bonus points (the top-3 rule FPL uses per match) aren't official until FPL marks a match finished. For players still playing, FPL exposes its own live estimate from that player's <em>current</em> in-match BPS ranking — so this week's score updates live instead of waiting for full time.</div>
+    <details class="table-footnote">
+      <summary>How the table works</summary>
+      <p>Teams are ranked by league points: 3 for a win and 1 for a draw. Ties are broken by total FPL points scored this season, the same rule FPL Draft uses. While a gameweek is in progress, points and "This GW" are worked out from the live scores, so the table moves as the matches do.</p>
+      <p>Bonus points only become official when FPL marks a match finished. Until then, "This GW" includes FPL's own live bonus estimate, based on each player's current BPS ranking in his match.</p>
+      <p><span class="key-swatch" style="background:var(--card)"></span>Top of the table <span class="key-swatch" style="background:var(--red); margin-left:14px"></span>Bottom of the table</p>
+    </details>
+  </section>
+
+  <div class="grid-2">
+    <section class="panel" aria-labelledby="events-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="events-title">Premier League matches</h2>
+          <p class="panel-note">Goals and cards often appear here a minute before the fantasy points update.</p>
+        </div>
+      </div>
+      <div id="match-events"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="adds-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="adds-title">Recent pickups</h2>
+          <p class="panel-note">Accepted waiver and free-agent signings, newest first.</p>
+        </div>
+      </div>
+      <div id="recent-adds"></div>
+    </section>
   </div>
 
-  <div class="panel">
-    <h2>Live Match Events <span style="font-weight:400; font-size:11px; color:var(--muted);">fastest feed — goals/cards can briefly outrun fantasy points above</span></h2>
-    <div id="match-events"></div>
-  </div>
-
-  <div class="panel">
-    <h2>Recently Added Players <span style="font-weight:400; font-size:11px; color:var(--muted);">accepted waiver &amp; free agent pickups, most recent first</span></h2>
-    <div id="recent-adds"></div>
-  </div>
-
-  <div class="panel">
-    <h2>Transfer Deadline Moves <span style="font-weight:400; font-size:11px; color:var(--muted);">real-world club transfers, not fantasy pickups</span></h2>
-    <div id="transfer-deadline-moves"></div>
-  </div>
-
-  <div class="panel">
-    <h2>Latest Moves <select id="team-filter"><option value="">All Teams</option></select></h2>
+  <section class="panel" aria-labelledby="moves-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="moves-title">Every waiver, signing and trade</h2>
+        <p class="panel-note">Grouped by team, including claims that were turned down.</p>
+      </div>
+      <select id="team-filter" aria-label="Show one team"><option value="">All teams</option></select>
+    </div>
     <div id="moves-feed"></div>
-  </div>
+  </section>
 
-  <div class="panel">
-    <h2>Global Context</h2>
-    <div id="global-context" class="empty">No data yet.</div>
-  </div>
+  <section class="panel" aria-labelledby="deadline-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="deadline-title">Deadline-day transfers</h2>
+        <p class="panel-note">Real Premier League moves from the summer window, not fantasy pickups.</p>
+      </div>
+    </div>
+    <div id="transfer-deadline-moves"></div>
+  </section>
 
-  <div class="site-footer">FPL Fantasy Live Monitor · est. 2026</div>
+  <footer class="site-footer">FPL Fantasy Live Monitor, est. 2026. Data from the official FPL Draft site, refreshed every few minutes.</footer>
+</div>
 
 <script>
 function fmtTime(iso) {
@@ -583,7 +556,7 @@ function renderRecentAdds(state) {
     .filter(mv => mv.status === "accepted" && mv.element_in && (mv.kind === "w" || mv.kind === "f"))
     .slice(0, 15);
   if (!adds.length) {
-    el.innerHTML = '<div class="empty">No adds yet.</div>';
+    el.innerHTML = '<div class="empty">No players picked up yet.</div>';
     return;
   }
   el.innerHTML = "";
@@ -592,7 +565,7 @@ function renderRecentAdds(state) {
     row.className = "add-item";
     row.innerHTML = `
       <span class="add-player">${mv.element_in}</span>
-      <span class="add-meta"><span class="kind-${mv.kind}">${kindLabel(mv.kind)}</span> &middot; ${mv.manager}</span>
+      <span class="add-meta">${mv.manager}, <span class="kind-${mv.kind}">${kindLabel(mv.kind).toLowerCase()}</span></span>
       <span class="add-time">${fmtTime(mv.time)}</span>
     `;
     el.appendChild(row);
@@ -637,6 +610,17 @@ function renderTransferDeadlineMoves(state) {
 
 const DIFFICULTY_BADGE_CLASS = { 1: "badge-good", 2: "badge-good", 3: "badge-warn", 4: "badge-bad", 5: "badge-bad" };
 
+// Next three fixtures as FPL-style difficulty chips (opponent, then H for home or A for away).
+function fdrRun(difficulty) {
+  const fx = (difficulty && difficulty.fixtures) || [];
+  if (!fx.length) return '<span class="fdr-none">–</span>';
+  return '<span class="fdr-run">' + fx.map(f => {
+    const d = f.difficulty || 3;
+    const opp = f.opponent;
+    return `<span class="fdr fdr-${d}" title="GW${f.event}: ${f.is_home ? "home to" : "away at"} ${f.opponent}, difficulty ${d} of 5">${opp}<small>${f.is_home ? "H" : "A"}</small></span>`;
+  }).join("") + "</span>";
+}
+
 function difficultyBadge(difficulty) {
   if (!difficulty || !difficulty.avg || !(difficulty.fixtures || []).length) return "";
   const cls = DIFFICULTY_BADGE_CLASS[difficulty.avg] || "badge-warn";
@@ -660,7 +644,7 @@ function renderProbabilityChart(container, points, meId, oppId, meLabel, oppLabe
     }));
 
   if (series.length < 2) {
-    container.innerHTML = '<div class="empty">Not enough odds history yet — this builds up as the gameweek progresses.</div>';
+    container.innerHTML = '<div class="empty">The odds chart fills in once matches are under way. Check back during the gameweek.</div>';
     return;
   }
 
@@ -700,28 +684,28 @@ function renderProbabilityChart(container, points, meId, oppId, meLabel, oppLabe
 
   container.innerHTML = `
     <div class="odds-readout">
-      <div class="odds-readout-value">${last.me}%<span class="odds-readout-label">to win</span></div>
-      <span class="badge ${deltaCls}">${deltaArrow} ${Math.abs(delta)}pt${Math.abs(delta) === 1 ? "" : "s"} this window</span>
+      <div class="odds-readout-value">${last.me}%<span class="odds-readout-label">chance to win</span></div>
+      <span class="badge ${deltaCls}">${deltaArrow} ${Math.abs(delta)} pts over this period</span>
     </div>
     <div class="chart-legend">
-      <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:var(--series-1)"></span><span id="chart-legend-me"></span></span>
+      <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:var(--card)"></span><span id="chart-legend-me"></span></span>
       <span class="chart-legend-item"><span class="chart-legend-swatch" style="background:var(--series-2)"></span><span id="chart-legend-opp"></span></span>
     </div>
     <div class="chart-wrap">
       <svg viewBox="0 0 ${W} ${H}" class="score-chart-svg" preserveAspectRatio="none">
         ${gridHtml}
         <path d="${oppPath}" fill="none" stroke="var(--series-2)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-        <path d="${mePath}" fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-        <circle cx="${oppEndX}" cy="${oppEndY}" r="4" fill="var(--series-2)" stroke="var(--panel-solid)" stroke-width="2"/>
-        <circle cx="${meEndX}" cy="${meEndY}" r="4" fill="var(--series-1)" stroke="var(--panel-solid)" stroke-width="2"/>
-        <text x="${(parseFloat(meEndX) + 7).toFixed(1)}" y="${meEndY}" class="chart-end-label" fill="var(--text)">${last.me}%</text>
-        <text x="${(parseFloat(oppEndX) + 7).toFixed(1)}" y="${oppEndY}" class="chart-end-label" fill="var(--text)">${last.opp}%</text>
+        <path d="${mePath}" fill="none" stroke="var(--card)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="${oppEndX}" cy="${oppEndY}" r="4" fill="var(--series-2)" stroke="var(--surface)" stroke-width="2"/>
+        <circle cx="${meEndX}" cy="${meEndY}" r="4" fill="var(--card)" stroke="var(--surface)" stroke-width="2"/>
+        <text x="${(parseFloat(meEndX) + 7).toFixed(1)}" y="${meEndY}" class="chart-end-label" fill="var(--ink)">${last.me}%</text>
+        <text x="${(parseFloat(oppEndX) + 7).toFixed(1)}" y="${oppEndY}" class="chart-end-label" fill="var(--ink)">${last.opp}%</text>
         <line class="chart-crosshair" id="score-chart-crosshair" x1="0" x2="0" y1="${PAD_T}" y2="${H - PAD_B}" style="display:none;"/>
         <rect class="chart-hit-area" id="score-chart-hitarea" x="${PAD_L}" y="0" width="${W - PAD_L - PAD_R}" height="${H}"/>
       </svg>
       <div id="score-chart-tooltip" class="chart-tooltip" style="display:none;"></div>
     </div>
-    <details class="chart-table-toggle"><summary>View as table</summary>
+    <details class="chart-table-toggle"><summary>Show as a table</summary>
       <table class="chart-data-table">
         <thead><tr><th>Time</th><th id="chart-table-me-header"></th><th id="chart-table-opp-header"></th></tr></thead>
         <tbody>${tableRows}</tbody>
@@ -759,7 +743,7 @@ function renderProbabilityChart(container, points, meId, oppId, meLabel, oppLabe
     timeDiv.className = "tt-time";
     timeDiv.textContent = new Date(nearest.t).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
     tooltip.appendChild(timeDiv);
-    for (const [label, value, color] of [[meLabel, nearest.me, "var(--series-1)"], [oppLabel, nearest.opp, "var(--series-2)"]]) {
+    for (const [label, value, color] of [[meLabel, nearest.me, "var(--card)"], [oppLabel, nearest.opp, "var(--series-2)"]]) {
       const row = document.createElement("div");
       row.className = "tt-row";
       const key = document.createElement("span");
@@ -794,17 +778,22 @@ function scoreFlashClass(key, value) {
 
 const POSITION_ORDER = ["GK", "DEF", "MID", "FWD"];
 const CLUB_STATUS_ICON = {
-  live: '<span class="live-dot" title="Currently on the pitch — this fixture is live"></span> ',
-  finished: "", benched: "🪑 ", pending: "⏳ ",
+  live: '<span class="live-dot" title="On the pitch now"></span>',
+  finished: "", benched: "", pending: "",
+};
+const CLUB_STATUS_TAG = {
+  benched: '<span class="tag" title="His club has played and he did not feature">Didn\'t play</span>',
+  pending: '<span class="tag" title="His club hasn\'t played yet">To play</span>',
 };
 const CLUB_STATUS_CLASS = { benched: "club-benched", live: "club-live" };
 
 // One row of the Squad & Point Breakdown sub-table — same column set as the outer
 // standings table (Pts/Goals/Assists/CS/DEFCON/Bonus), so the numbers line up exactly.
 function playerRowHtml(p) {
-  const icon = p.auto_sub
-    ? '<span title="Auto-substituted in for a starter who didn\'t feature for their club">🔁</span> '
-    : (CLUB_STATUS_ICON[p.club_status] || "");
+  const icon = CLUB_STATUS_ICON[p.club_status] || "";
+  const statusTag = p.auto_sub
+    ? '<span class="tag" title="Came off the bench for a starter who didn\'t play">Auto-sub</span>'
+    : (CLUB_STATUS_TAG[p.club_status] || "");
   const statusCls = CLUB_STATUS_CLASS[p.club_status];
   const rowClass = (statusCls ? `${statusCls} ` : "") + (p.is_bench ? "squad-bench" : "");
   const bonusCell = !p.bonus_points ? "–"
@@ -812,7 +801,7 @@ function playerRowHtml(p) {
       ? `<span title="FPL's live bonus estimate from current BPS rank (${p.bps} BPS so far) — not official until the match ends.">+${p.bonus_points}*</span>`
       : `+${p.bonus_points}`;
   return `<tr class="${rowClass}">
-    <td class="squad-player">${icon}${p.name}${difficultyBadge(p.difficulty)}</td>
+    <td class="squad-player">${icon}${p.name}${statusTag}</td>
     <td class="squad-pos">${p.position || "-"}</td>
     <td class="squad-pts" title="${p.is_bench ? "Bench — doesn't count toward the team total" : ""}">${p.points}</td>
     <td>${p.goals_points ? "+" + p.goals_points : "–"}</td>
@@ -820,6 +809,7 @@ function playerRowHtml(p) {
     <td>${p.clean_sheet_points ? "+" + p.clean_sheet_points : "–"}</td>
     <td>${p.defcon_points ? "+" + p.defcon_points : "–"}</td>
     <td>${bonusCell}</td>
+    <td class="squad-next">${fdrRun(p.difficulty)}</td>
   </tr>`;
 }
 
@@ -831,7 +821,7 @@ function renderSparklineSvg(historyPoints, entryId) {
     .map(p => ({ t: new Date(p.t).getTime(), v: p.probs[entryId] }))
     .filter(p => p.v !== null && p.v !== undefined && !isNaN(p.t));
   if (series.length < 2) {
-    return '<div class="spark-empty">Odds history building up…</div>';
+    return '<div class="spark-empty" aria-hidden="true"></div>';
   }
   const tMin = series[0].t, tMax = series[series.length - 1].t;
   const xPos = t => tMax === tMin ? 0 : ((t - tMin) / (tMax - tMin)) * W;
@@ -865,7 +855,7 @@ function renderOddsBoard(state, matchups) {
   }
 
   if (!matchups.length) {
-    boardEl.innerHTML = '<div class="empty">No matchups this gameweek.</div>';
+    boardEl.innerHTML = '<div class="empty">No head-to-heads this gameweek.</div>';
     boardEl.style.display = "block";
     chartEl.innerHTML = "";
     controlRow.style.display = "none";
@@ -886,7 +876,7 @@ function renderOddsBoard(state, matchups) {
   } else {
     controlRow.style.display = "none";
     chartEl.innerHTML = "";
-    boardEl.style.display = "flex";
+    boardEl.style.display = "grid";
     boardEl.innerHTML = "";
     const history = state.probability_history || [];
     for (const mu of matchups) {
@@ -897,7 +887,7 @@ function renderOddsBoard(state, matchups) {
       const card = document.createElement("div");
       card.className = "odds-board-card";
       card.innerHTML = `
-        <button class="odds-board-flip" type="button" title="Flip which team shows first">⇄</button>
+        <button class="odds-board-flip" type="button" title="Swap sides" aria-label="Swap sides">⇄</button>
         <div class="odds-board-row${p1 >= p2 ? " favored" : ""}">
           <span class="team-name">${view.primary.name}</span>
           <span class="team-score">${view.primary.score}</span>
@@ -929,8 +919,8 @@ function render(state) {
   document.getElementById("league-name").textContent = state.league_name || "FPL Draft Monitor";
   const live = state.gameweek_live;
   document.getElementById("subtitle").innerHTML =
-    `Gameweek ${state.gameweek ?? "-"}` + (live ? ' <span class="badge badge-live">LIVE</span>' : "") +
-    ` &middot; updated ${fmtTime(state.generated_at)}`;
+    `<span class="gw">Gameweek ${state.gameweek ?? "-"}</span>` + (live ? '<span class="badge badge-live">Live</span>' : "") +
+    `<span>Updated ${fmtTime(state.generated_at)}</span>`;
 
   const leagueKey = state.league_id;
   const allManagers = state.managers || [];
@@ -957,26 +947,26 @@ function render(state) {
     const prob2 = 100 - prob1;
     const flash1 = scoreFlashClass(`${leagueKey}:hero:${team1.entry_id}`, team1.score);
     const flash2 = scoreFlashClass(`${leagueKey}:hero:${team2.entry_id}`, team2.score);
+    heroEl.classList.remove("empty");
     heroEl.innerHTML = `
       <div class="hero-teams">
-        <div class="hero-team">
+        <div class="hero-team${prob1 < prob2 ? " trailing" : ""}">
           <div class="hero-name">${team1.name}</div>
           <div class="hero-score${flash1}">${team1.score}</div>
-          <div class="hero-pct${prob1 >= prob2 ? " favored" : ""}">${prob1}% to win</div>
+          <div class="hero-pct${prob1 >= prob2 ? " favored" : ""}">${prob1}% chance to win</div>
         </div>
         <div class="hero-vs">
-          <button class="flip-btn" id="hero-flip-btn" type="button" title="Flip which team shows first">⇄</button>
-          <span>vs</span>
+          <button class="flip-btn" id="hero-flip-btn" type="button" title="Swap sides" aria-label="Swap sides">⇄</button>
         </div>
-        <div class="hero-team right">
+        <div class="hero-team right${prob2 < prob1 ? " trailing" : ""}">
           <div class="hero-name">${team2.name}</div>
           <div class="hero-score${flash2}">${team2.score}</div>
-          <div class="hero-pct${prob2 > prob1 ? " favored" : ""}">${prob2}% to win</div>
+          <div class="hero-pct${prob2 > prob1 ? " favored" : ""}">${prob2}% chance to win</div>
         </div>
       </div>
-      <div class="hero-bar"><div class="a" style="width:${prob1}%"></div><div class="b" style="width:${prob2}%"></div></div>
+      <div class="hero-bar" role="img" aria-label="${team1.name} ${prob1}%, ${team2.name} ${prob2}%"><div class="a${prob1 >= prob2 ? " fav" : ""}" style="width:${prob1}%"></div><div class="b${prob2 > prob1 ? " fav" : ""}" style="width:${prob2}%"></div></div>
       <details class="win-prob-explainer">
-        <summary>How is this % calculated?</summary>
+        <summary>How the chance to win is worked out</summary>
         <p>Each team's likely final score is modeled as their <strong>current live points</strong> plus their <strong>starters who haven't played yet</strong> &times; a typical points-per-player value (this season's real gameweek average once one exists, otherwise a generic estimate). The more players a team still has left to play, the more uncertain their final score is &mdash; that uncertainty is factored in too, not just the average. The win % is the chance one team's projected final score beats the other's, given both projections and their uncertainty.</p>
         <p>This is a statistical estimate, not a prediction from FPL itself &mdash; it updates every poll as real results come in, and swings hardest early in a gameweek when most players haven't played yet.</p>
       </details>
@@ -993,20 +983,35 @@ function render(state) {
   const eventsEl = document.getElementById("match-events");
   const matchEvents = (state.match_events || []).filter(m => m.events.length || m.status !== "not_started");
   if (!matchEvents.length) {
-    eventsEl.innerHTML = '<div class="empty">No fixtures live yet.</div>';
+    eventsEl.innerHTML = '<div class="empty">No matches have kicked off this gameweek yet.</div>';
   } else {
     eventsEl.innerHTML = "";
     for (const m of matchEvents) {
       const div = document.createElement("div");
       div.className = "match-block";
-      const statusText = m.status === "finished" ? "FT" : m.status === "finished_provisional" ? "FT (provisional)" : `${m.minutes}'`;
+      const isLive = m.status === "started";
+      const statusText = m.status === "finished" ? "FT" : m.status === "finished_provisional" ? "FT*" : `${m.minutes}'`;
+      const statusTitle = m.status === "finished_provisional" ? "Full time, stats not yet confirmed by FPL" : "";
+      const eventMark = e => {
+        if (e.label === "Yellow Card") return '<span class="ev-card y" title="Yellow card"></span>';
+        if (e.label === "Red Card") return '<span class="ev-card r" title="Red card"></span>';
+        const word = { "Goal": "Goal", "Own Goal": "OG", "Assist": "Assist", "Penalty Missed": "Pen missed", "Penalty Saved": "Pen saved" }[e.label] || e.label;
+        return `<span class="ev-word">${word}</span>`;
+      };
+      const eventRow = e => {
+        const name = `<span class="player">${e.player}${e.value > 1 ? ` ×${e.value}` : ""}</span>`;
+        return `<div class="match-event-row">${e.side === "h" ? name + eventMark(e) : eventMark(e) + name}</div>`;
+      };
+      const homeEv = m.events.filter(e => e.side === "h"), awayEv = m.events.filter(e => e.side === "a");
       const eventsHtml = m.events.length
-        ? m.events.map(e => `<div class="match-event-row"><span>${e.icon} ${e.label}</span><span class="player">${e.player}${e.value > 1 ? ` x${e.value}` : ""}</span></div>`).join("")
-        : '<div class="match-event-row">No events yet</div>';
+        ? `<div class="match-events"><div class="side side-h">${homeEv.map(eventRow).join("")}</div><div class="side side-a">${awayEv.map(eventRow).join("")}</div></div>`
+        : "";
       div.innerHTML = `
         <div class="match-scoreline">
-          <span>${m.home_team} <span class="score">${m.home_score ?? 0}</span> - <span class="score">${m.away_score ?? 0}</span> ${m.away_team}</span>
-          <span class="match-minutes">${statusText}</span>
+          <span class="home">${m.home_team}</span>
+          <span class="scores">${m.home_score ?? 0}&ndash;${m.away_score ?? 0}</span>
+          <span class="away">${m.away_team}</span>
+          <span class="match-minutes${isLive ? " is-live" : ""}" title="${statusTitle}">${statusText}</span>
         </div>
         ${eventsHtml}
       `;
@@ -1036,21 +1041,24 @@ function render(state) {
   for (const m of managers) {
     rowIndex++;
     const tr = document.createElement("tr");
+    tr.className = "team-row";
     const s = m.summary || {};
     const h2h = h2hByEntry.get(m.entry_id) || { league_points: 0, played: 0, won: 0, drawn: 0, lost: 0, points_for: 0 };
+    if (h2h.rank === 1) tr.classList.add("pos-top");
+    if (h2h.rank === allManagers.length) tr.classList.add("pos-bottom");
     const goalsPts = s.goals_points ?? 0;
     const assistsPts = s.assists_points ?? 0;
     const csPts = s.clean_sheet_points ?? 0;
     const defconPts = s.defcon_points ?? 0;
     const bonusPts = s.bonus_points ?? 0;
     const bonusBit = bonusPts
-      ? ` &middot; <span title="Bonus points earned so far, from FPL directly — official for finished fixtures, their own live BPS-rank estimate for ones still in progress. The live portion is not official yet and can still shift.">+${bonusPts} bonus*</span>`
+      ? `, <span title="Bonus points earned so far, from FPL directly — official for finished fixtures, their own live BPS-rank estimate for ones still in progress. The live portion is not official yet and can still shift.">bonus +${bonusPts}*</span>`
       : "";
     const subsHtml = (m.subs_made || []).length
-      ? `<div class="roster-summary">${m.subs_made.map(sm => `🔁 <strong>${sm.in}</strong> auto-sub in for ${sm.out} (didn't feature)`).join("<br>")}</div>`
+      ? `<div class="roster-summary">${m.subs_made.map(sm => `Auto-sub: <strong>${sm.in}</strong> came on for ${sm.out}, who didn't play.`).join("<br>")}</div>`
       : "";
     const summaryLine = subsHtml + ((goalsPts || assistsPts || csPts || defconPts || bonusPts)
-      ? `<div class="roster-summary">+${goalsPts} goals pts &middot; +${assistsPts} assists pts &middot; +${csPts} CS pts &middot; +${defconPts} DEFCON pts${bonusBit}</div>` : "");
+      ? `<div class="roster-summary">Goals +${goalsPts}, assists +${assistsPts}, clean sheets +${csPts}, defensive contributions +${defconPts}${bonusBit}</div>` : "");
 
     // ESPN-style layout: a real sub-table whose columns mirror the outer standings
     // table (Pts/Goals/Assists/CS/DEFCON/Bonus), starters grouped by position
@@ -1062,35 +1070,45 @@ function render(state) {
     for (const pos of POSITION_ORDER) {
       const group = starters.filter(p => p.position === pos);
       if (!group.length) continue;
-      bodyRows += `<tr class="squad-group-row"><td colspan="8">${pos}</td></tr>` + group.map(playerRowHtml).join("");
+      bodyRows += `<tr class="squad-group-row"><td colspan="9">${pos}</td></tr>` + group.map(playerRowHtml).join("");
     }
     if (bench.length) {
-      bodyRows += `<tr class="squad-group-row"><td colspan="8">BN <span class="squad-bn-note">(doesn't count)</span></td></tr>` + bench.map(playerRowHtml).join("");
+      bodyRows += `<tr class="squad-group-row"><td colspan="9">Bench <span class="squad-bn-note">(doesn't count)</span></td></tr>` + bench.map(playerRowHtml).join("");
     }
     const playersHtml = bodyRows ? `<table class="squad-table">
-      <thead><tr><th>Player</th><th>Pos</th><th>Pts</th><th>Goals</th><th>Assists</th><th>CS</th><th>DEFCON</th><th>Bonus</th></tr></thead>
+      <thead><tr><th>Player</th><th>Pos</th><th>Pts</th><th title="Goals">G</th><th title="Assists">A</th><th title="Clean sheet">CS</th><th title="Defensive contribution">DC</th><th>Bonus</th><th title="Next three fixtures, coloured by FPL's difficulty rating: 1 easiest, 5 hardest.">Next 3</th></tr></thead>
       <tbody>${bodyRows}</tbody>
     </table>` : "";
 
     const scoreFlash = scoreFlashClass(`${leagueKey}:${m.entry_id}`, m.live_score);
     const ptsFlash = scoreFlashClass(`${leagueKey}:${m.entry_id}:h2hpts`, h2h.league_points);
     tr.innerHTML = `
-      <td>${rowIndex}</td>
-      <td class="team-cell">${m.name}</td>
+      <td>${h2h.rank ?? rowIndex}</td>
+      <td class="team-cell"><button type="button" class="team-toggle" aria-expanded="${openTeams.has(m.entry_id)}" aria-controls="squad-${m.entry_id}"><span class="chev" aria-hidden="true"></span>${m.name}</button></td>
       <td class="h2h-pts${ptsFlash}">${h2h.league_points}</td>
-      <td>${h2h.played}</td>
       <td>${h2h.won}</td>
       <td>${h2h.drawn}</td>
       <td>${h2h.lost}</td>
       <td>${h2h.points_for}</td>
-      <td class="score${scoreFlash}">${m.live_score ?? "-"}${m.score_finalized ? '<span class="final-badge" title="Official final score, confirmed by FPL — no longer a live estimate">&#10003; final</span>' : ""}${s.live_now ? `<span class="live-count-tag" title="${s.live_now} currently on the pitch right now">&#9679; ${s.live_now} live</span>` : ""}</td>
+      <td class="score${scoreFlash}">${m.live_score ?? "-"}${m.score_finalized ? '<span class="final-badge" title="Final score, confirmed by FPL">final</span>' : ""}${s.live_now ? `<span class="live-count-tag" title="${s.live_now} on the pitch now">${s.live_now} playing</span>` : ""}</td>
     `;
     tbody.appendChild(tr);
     if (playersHtml) {
       const detailRow = document.createElement("tr");
+      detailRow.className = "detail-row";
+      detailRow.id = `squad-${m.entry_id}`;
+      detailRow.hidden = !openTeams.has(m.entry_id);
+      tr.classList.toggle("is-open", openTeams.has(m.entry_id));
+      tr.querySelector(".team-toggle").addEventListener("click", (ev) => {
+        const open = !openTeams.has(m.entry_id);
+        if (open) openTeams.add(m.entry_id); else openTeams.delete(m.entry_id);
+        detailRow.hidden = !open;
+        tr.classList.toggle("is-open", open);
+        ev.currentTarget.setAttribute("aria-expanded", String(open));
+      });
       const td = document.createElement("td");
-      td.colSpan = 9;
-      td.innerHTML = `<details><summary>Squad &amp; Point Breakdown</summary>${summaryLine}${playersHtml}</details>`;
+      td.colSpan = 8;
+      td.innerHTML = `${summaryLine}${playersHtml}`;
       detailRow.appendChild(td);
       tbody.appendChild(detailRow);
     }
@@ -1120,7 +1138,7 @@ function render(state) {
 
   feed.innerHTML = "";
   if (!moves.length) {
-    feed.innerHTML = '<div class="empty">No moves yet.</div>';
+    feed.innerHTML = '<div class="empty">No waivers, signings or trades yet.</div>';
   } else {
     // Group by team, most-recently-active team first.
     const groups = new Map();
@@ -1135,19 +1153,33 @@ function render(state) {
       header.className = "team-group-header";
       header.textContent = group.manager;
       groupDiv.appendChild(header);
-      for (const mv of group.items) {
+      const showAll = expandedMoveGroups.has(entryId) || selectedTeam;
+      const items = showAll ? group.items : group.items.slice(0, MOVES_PER_TEAM);
+      for (const mv of items) {
         const div = document.createElement("div");
         div.className = "feed-item" + (mv.status === "declined" ? " declined" : "");
         const badgeClass = mv.status === "accepted" ? "badge-good" : "badge-bad";
+        const statusText = mv.status === "accepted" ? "Accepted" : mv.status === "declined" ? "Declined" : (mv.status_label || mv.status);
         div.innerHTML = `
           <div class="time">${fmtTime(mv.time)}</div>
-          <div><span class="kind-${mv.kind}">${kindLabel(mv.kind)}</span>
-          ${mv.element_in ? ` &nbsp;<strong>+${mv.element_in}</strong>` : ""}
-          ${mv.element_out ? ` &nbsp;<strong>-${mv.element_out}</strong>` : ""}
-          <span class="badge ${badgeClass}">${mv.status_label || mv.status}</span>
+          <div class="what"><span class="kind-${mv.kind}">${kindLabel(mv.kind)}</span>
+          ${mv.element_in ? `<span class="in">+ ${mv.element_in}</span>` : ""}
+          ${mv.element_out ? `<span class="out">&minus; ${mv.element_out}</span>` : ""}
+          ${mv.status === "accepted" ? "" : `<span class="badge ${badgeClass}" title="${mv.status_label || ""}">${statusText}</span>`}
           </div>
         `;
         groupDiv.appendChild(div);
+      }
+      if (group.items.length > MOVES_PER_TEAM && !selectedTeam) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "more-btn";
+        btn.textContent = expandedMoveGroups.has(entryId) ? "Show fewer" : `Show all ${group.items.length}`;
+        btn.addEventListener("click", () => {
+          if (expandedMoveGroups.has(entryId)) expandedMoveGroups.delete(entryId); else expandedMoveGroups.add(entryId);
+          render(lastState);
+        });
+        groupDiv.appendChild(btn);
       }
       feed.appendChild(groupDiv);
     }
@@ -1155,8 +1187,9 @@ function render(state) {
 
   const gc = state.global_context;
   document.getElementById("global-context").innerHTML = gc
-    ? `GW${gc.gw}: average score <strong>${gc.average_entry_score}</strong>, highest score <strong>${gc.highest_score}</strong>`
-    : '<span class="empty">No finished gameweek yet — global averages appear once GW1 completes.</span>';
+    ? `<div class="gc-stat" title="Average score across every FPL manager in gameweek ${gc.gw}"><span class="v">${gc.average_entry_score}</span><span class="k">FPL average, GW${gc.gw}</span></div>
+       <div class="gc-stat" title="Highest score by any FPL manager in gameweek ${gc.gw}"><span class="v">${gc.highest_score}</span><span class="k">Highest, GW${gc.gw}</span></div>`
+    : "";
 }
 
 let lastState = null;
@@ -1166,6 +1199,9 @@ let selectedMatchupKey = null; // null = default to the first matchup
 let boardExpanded = false; // false = Live Odds Board shows the mini-card grid; true = one expanded chart
 let standingsSortKey = "league_points"; // which Standings column currently drives the ranking
 let standingsSortDir = "desc";
+const openTeams = new Set(); // teams whose squad breakdown is open in the table
+const expandedMoveGroups = new Set(); // teams whose full move history is shown
+const MOVES_PER_TEAM = 5;
 
 // Which team displays first/primary for a given matchup — team1/team2 from the backend
 // is an arbitrary, fixed order (whichever the league API listed first), so anyone should
@@ -1281,8 +1317,10 @@ document.getElementById("refresh-btn").addEventListener("click", async () => {
 
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
-  document.getElementById("theme-toggle").textContent = theme === "light" ? "🌙 Dark mode" : "☀️ Light mode";
-  localStorage.setItem("fpl-dashboard-theme", theme);
+  document.getElementById("theme-toggle").textContent = theme === "light" ? "Dark mode" : "Light mode";
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute("content", theme === "light" ? "#e7eee8" : "#0d2c21");
+  try { localStorage.setItem("fpl-dashboard-theme", theme); } catch (e) {}
 }
 
 document.getElementById("theme-toggle").addEventListener("click", () => {
@@ -1290,7 +1328,9 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
   applyTheme(current === "light" ? "dark" : "light");
 });
 
-applyTheme(localStorage.getItem("fpl-dashboard-theme") || "dark");
+let savedTheme = null;
+try { savedTheme = localStorage.getItem("fpl-dashboard-theme"); } catch (e) {}
+applyTheme(savedTheme || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"));
 
 const leagueSwitcherEl = document.getElementById("league-switcher");
 leagueSwitcherEl.addEventListener("change", () => {
@@ -1320,6 +1360,7 @@ async function initLeagues() {
   const validSaved = leagues.find(lg => String(lg.league_id) === saved);
   currentLeagueId = validSaved ? saved : (leagues[0] && leagues[0].league_id);
   leagueSwitcherEl.value = currentLeagueId;
+  leagueSwitcherEl.hidden = leagues.length < 2;
   refresh();
   setInterval(refresh, 60000); // data is rebuilt by GitHub Actions every ~5 min
 }

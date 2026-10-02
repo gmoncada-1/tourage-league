@@ -106,7 +106,7 @@ def _get_all_fixtures():
     return _fixtures_cache["data"]
 
 
-UPCOMING_DIFFICULTY_WINDOW = 1  # just this matchup's fixture, not a multi-gameweek look-ahead
+UPCOMING_DIFFICULTY_WINDOW = 3  # next three fixtures each player's club still has to play
 
 
 def _build_team_difficulty_index(all_fixtures, gw, teams_by_id):
@@ -119,6 +119,8 @@ def _build_team_difficulty_index(all_fixtures, gw, teams_by_id):
         event = f.get("event")
         if event is None or event < gw:
             continue
+        if f.get("finished") or f.get("finished_provisional"):
+            continue  # already played, so not part of the run of fixtures ahead
         for team_key, diff_key, opp_key, is_home in (
             ("team_h", "team_h_difficulty", "team_a", True),
             ("team_a", "team_a_difficulty", "team_h", False),
