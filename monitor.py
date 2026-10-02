@@ -693,6 +693,78 @@ def _update_probability_history(league_id, gw, current_matchups):
     return history["points"]
 
 
+POSITION_SHORT = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD"}
+
+
+def _premier_league_table(all_fixtures, teams_by_id):
+    """The Premier League table worked out from finished fixtures (FPL doesn't publish
+    one): points, then goal difference, then goals scored. Returns rows in order."""
+    rec = {tid: {"club": t.get("short_name"), "team_id": tid, "played": 0, "pts": 0, "gf": 0, "ga": 0}
+           for tid, t in teams_by_id.items()}
+    for f in all_fixtures or []:
+        if not (f.get("finished") or f.get("finished_provisional")):
+            continue
+        hs, as_ = f.get("team_h_score"), f.get("team_a_score")
+        if hs is None or as_ is None:
+            continue
+        for tid, gf, ga in ((f["team_h"], hs, as_), (f["team_a"], as_, hs)):
+            r = rec.get(tid)
+            if not r:
+                continue
+            r["played"] += 1; r["gf"] += gf; r["ga"] += ga
+            r["pts"] += 3 if gf > ga else 1 if gf == ga else 0
+    rows = sorted(rec.values(), key=lambda r: (-r["pts"], -(r["gf"] - r["ga"]), -r["gf"], r["club"] or ""))
+    for i, r in enumerate(rows, start=1):
+        r["pos"] = i
+        r["gd"] = r["gf"] - r["ga"]
+    return rows
+
+
+def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, teams_by_id, transactions, entries, pl_pos=None):
+    """Every unowned player in this league who has played this season, with the numbers
+    managers use for waiver calls: form, points, starts, xGI, defensive contributions,
+    penalty duty, availability, the next three fixtures, and who dropped him last.
+    Stats come from the Draft API's own player list, so its ids line up with element-status."""
+    statuses = (fpl_api.element_status(league_id) or {}).get("element_status", [])
+    free = {s["element"]: s for s in statuses if not s.get("owner") and s.get("status") in ("a", "w")}
+    entry_name = {e["entry_id"]: e["entry_name"] for e in entries}
+    dropped = {}
+    for t in sorted(transactions, key=lambda t: t.get("added", "")):
+        if t.get("result") == "a" and t.get("element_out"):
+            dropped[t["element_out"]] = (entry_name.get(t.get("entry")), t.get("added"))
+    rows = []
+    for e in draft_bootstrap["elements"]:
+        if e["id"] not in free or not e.get("minutes"):
+            continue
+        cid = to_classic.get(e["id"], e["id"])
+        fixtures = [f for f in (difficulty_index.get(e["team"], {}).get("fixtures") or []) if f["event"] > (gw or 0)][:3]
+        by, at = dropped.get(cid, (None, None))
+        rows.append({
+            "id": cid,
+            "name": e.get("web_name"),
+            "pos": POSITION_SHORT.get(e.get("element_type")),
+            "club": teams_by_id.get(e.get("team"), {}).get("short_name", "?"),
+            "club_pos": (pl_pos or {}).get(e.get("team")),
+            "form": float(e.get("form") or 0),
+            "pts": e.get("total_points") or 0,
+            "ppg": float(e.get("points_per_game") or 0),
+            "starts": e.get("starts") or 0,
+            "mins": e.get("minutes") or 0,
+            "xgi": round(float(e.get("expected_goal_involvements") or 0), 2),
+            "dc": e.get("defensive_contribution") or 0,
+            "pens": e.get("penalties_order"),
+            "status": e.get("status", "a"),
+            "chance": e.get("chance_of_playing_next_round"),
+            "news": e.get("news") or "",
+            "on_waivers": free[e["id"]].get("status") == "w",
+            "fixtures": fixtures,
+            "dropped_by": by,
+            "dropped_at": at,
+        })
+    rows.sort(key=lambda r: (-r["form"], -r["pts"]))
+    return rows
+
+
 def _next_gameweek_info(draft_bootstrap, gw):
     """The coming gameweek's Draft deadlines (trades, waivers, lineups), for the
     Next gameweek section. None if the season is over."""
@@ -758,15 +830,26 @@ def poll_once(league_cfg):
     fast_poll_needed = False
     team_scores = {}
     match_events = []
+    difficulty_index = {}
+    pl_table = []
     if gw:
         try:
             all_fixtures = _get_all_fixtures()
             difficulty_index = _build_team_difficulty_index(all_fixtures, gw, teams_by_id)
+            pl_table = _premier_league_table(all_fixtures, teams_by_id)
             team_scores, any_live, fast_poll_needed, match_events = _compute_live_scores(
                 gw, lineups, draft_elements_by_id, classic_elements_by_id, teams_by_id, difficulty_index
             )
         except Exception as e:
             log.warning("Live score computation failed for league %s gw %s: %s", league_id, gw, e)
+
+    try:
+        free_agents = _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw,
+                                   teams_by_id, transactions, entries,
+                                   {r["team_id"]: r["pos"] for r in pl_table})
+    except Exception as e:
+        log.warning("Free agent list failed for league %s: %s", league_id, e)
+        free_agents = []
 
     # Once FPL marks a manager's H2H match for this gameweek as finished, trust their own
     # official score over our live approximation (our auto-sub logic is simplified — no
@@ -972,6 +1055,8 @@ def poll_once(league_cfg):
         "match_events": match_events,
         "probability_history": probability_history_points,
         "moves_feed": moves_feed,
+        "free_agents": free_agents,
+        "pl_table": pl_table,
         "transfer_deadline_moves": transfer_deadline_moves,
         "new_moves_count": len(new_transactions),
         "lineup_changes": lineup_changes,

@@ -308,6 +308,17 @@
   .avail-y { background: #f4c430; color: #1d1700; }
   .avail-o { background: #f08a24; color: #1d1000; }
   .avail-r { background: #d8302b; color: #ffffff; }
+  .fa-controls { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-bottom: 12px; }
+  .fa-controls select { padding: 8px 10px; font-size: 13.5px; }
+  .fa-controls input[type="search"] { flex: 1 1 180px; min-width: 0; font: 500 14px var(--font-text); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 8px 10px; }
+  .fa-check { display: inline-flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--muted); cursor: pointer; }
+  #fa-table td, #fa-table th { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  #fa-table td:nth-child(-n+2), #fa-table th:nth-child(-n+2) { text-align: left; }
+  #fa-table .fa-name { font-weight: 600; }
+  #fa-table .fa-meta { display: block; font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+  #fa-table .fa-meta .pens { color: var(--card-ink); font-weight: 700; }
+  #fa-table .fa-form { font-weight: 700; }
+  .fa-foot { display: flex; align-items: center; gap: 14px; margin-top: 12px; color: var(--muted); font-size: 13px; }
   .cmp-note { color: var(--muted); font-size: 12.5px; margin: 10px 0 0; }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
@@ -440,6 +451,10 @@
     #squad-rank-table tr > :nth-child(2) { left: 26px; min-width: 104px; max-width: 104px; box-shadow: 1px 0 0 var(--line); }
     #squad-rank-table tr.is-me > :nth-child(-n+2) { background: var(--surface-2); }
     .table-wrap:has(> #squad-rank-table) { margin: 0; padding: 0; }
+    #fa-table th, #fa-table td { padding-inline: 5px; }
+    #fa-table tr > :nth-child(1) { position: sticky; left: 0; z-index: 1; background: var(--surface); min-width: 132px; max-width: 132px; white-space: normal; box-shadow: 1px 0 0 var(--line); }
+    .table-wrap:has(> #fa-table) { margin: 0; padding: 0; }
+    #fa-table .fx-run { flex-wrap: nowrap; }
     .squad-table { font-size: 12.5px; }
     .final-badge { display: none; }
     .squad-table th:nth-child(n+4), .squad-table td:nth-child(n+4) { padding-inline: 3px; }
@@ -556,6 +571,58 @@
     </div>
     <div id="cmp-body"></div>
     <p class="cmp-note">Fixtures: this gameweek's match, then next gameweek's. Capitals are home games, lower case away, coloured by FPL difficulty; a struck-through grey chip has already been played. A % next to a name is FPL's chance of him playing; hover it for the news.</p>
+  </section>
+
+  <section class="panel" id="fa-panel" aria-labelledby="fa-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="fa-title">Free agents</h2>
+        <p class="panel-note">Every unowned player in the league who has played this season, with what you need for a waiver call. Tap a column to sort.</p>
+      </div>
+    </div>
+    <div class="fa-controls">
+      <div class="seg" id="fa-pos" role="group" aria-label="Position">
+        <button type="button" data-pos="" aria-pressed="true">All</button>
+        <button type="button" data-pos="GK" aria-pressed="false">GK</button>
+        <button type="button" data-pos="DEF" aria-pressed="false">DEF</button>
+        <button type="button" data-pos="MID" aria-pressed="false">MID</button>
+        <button type="button" data-pos="FWD" aria-pressed="false">FWD</button>
+      </div>
+      <select id="fa-club" aria-label="Club"><option value="">All clubs</option></select>
+      <select id="fa-tier" aria-label="Club's Premier League position">
+        <option value="">Any league position</option>
+        <option value="1-4">Top 4 clubs</option>
+        <option value="1-6">Top 6 clubs</option>
+        <option value="1-10">Top 10 clubs</option>
+        <option value="11-20">Bottom 10 clubs</option>
+      </select>
+      <input type="search" id="fa-search" placeholder="Search player" aria-label="Search free agents">
+      <label class="fa-check"><input type="checkbox" id="fa-fit"> Hide injured and doubtful</label>
+    </div>
+    <div class="table-wrap">
+    <table id="fa-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th class="sortable" data-fasort="fixtures" title="Next three fixtures, coloured by FPL difficulty. Sorts by the easiest run.">Next 3<span class="sort-caret"></span></th>
+          <th class="sortable" data-fasort="form" title="FPL form: average points per match over the last 30 days">Form<span class="sort-caret"></span></th>
+          <th class="sortable" data-fasort="pts" title="Total FPL points this season">Pts<span class="sort-caret"></span></th>
+          <th class="sortable" data-fasort="ppg" title="Points per match played">PPG<span class="sort-caret"></span></th>
+          <th class="sortable" data-fasort="starts" title="Matches started this season">Starts<span class="sort-caret"></span></th>
+          <th class="sortable" data-fasort="xgi" title="Expected goal involvements: expected goals plus expected assists, season total">xGI<span class="sort-caret"></span></th>
+          <th class="sortable" data-fasort="dc" title="Defensive contributions this season: clearances, blocks, interceptions, tackles (and recoveries for midfielders)">DC<span class="sort-caret"></span></th>
+        </tr>
+      </thead>
+      <tbody id="fa-body"></tbody>
+    </table>
+    </div>
+    <div class="fa-foot"><button type="button" class="more-btn" id="fa-more" hidden>Show 25 more</button><span id="fa-count"></span></div>
+    <details class="table-footnote">
+      <summary>What the columns mean</summary>
+      <p>Form is FPL's average points per match over the last 30 days, the quickest sign of who is in a purple patch. PPG is points per match across the season, and Starts shows whether he is a regular. xGI adds up expected goals and expected assists, so a high xGI with few points suggests returns are coming. DC is defensive contributions, which earn defenders and midfielders bonus points once they pass FPL's threshold in a match.</p>
+      <p>"Pens" marks the club's first-choice penalty taker. A % or red flag is FPL's chance of him playing next; hover it for the news. "Dropped by" shows the last team that released him.</p>
+      <p>The number after a club is its current Premier League position, worked out from this season's results (points, then goal difference, then goals scored). Use the league position filter to keep only players from the stronger, or weaker, clubs.</p>
+    </details>
   </section>
 
   <section class="panel" aria-labelledby="squad-rank-title">
@@ -945,6 +1012,69 @@ function renderNextGameweek(state) {
       <span class="mr-name b">${b.name}<span class="mr-form" title="Last five results, oldest first">${teamForm(state, fx.league_entry_2)}</span></span>
     </button>`;
   }).join("");
+}
+
+// Free agents: unowned players who have played, filterable and sortable for waiver calls.
+let faPos = "", faClub = "", faTier = "", faQuery = "", faFitOnly = false, faSortKey = "form", faSortBest = true, faLimit = 25;
+function faFixtureAvg(r) {
+  const d = (r.fixtures || []).map(f => f.difficulty).filter(Boolean);
+  return d.length ? d.reduce((a, b) => a + b, 0) / d.length : 9;
+}
+function renderFreeAgents(state) {
+  const panel = document.getElementById("fa-panel");
+  const all = state.free_agents || [];
+  panel.hidden = !all.length;
+  if (!all.length) return;
+  // Club picker, ordered by Premier League position.
+  const clubSel = document.getElementById("fa-club");
+  const clubs = [...new Map(all.map(r => [r.club, r.club_pos])).entries()].sort((a, b) => (a[1] ?? 99) - (b[1] ?? 99));
+  if (clubSel.options.length !== clubs.length + 1) {
+    clubSel.innerHTML = '<option value="">All clubs</option>' + clubs.map(([c, p]) => `<option value="${c}">${c}${p ? ` (${ordinal(p)})` : ""}</option>`).join("");
+  }
+  clubSel.value = faClub;
+  const [tLo, tHi] = faTier ? faTier.split("-").map(Number) : [0, 99];
+  const q = faQuery.trim().toLowerCase();
+  let rows = all.filter(r => (!faPos || r.pos === faPos)
+    && (!faClub || r.club === faClub)
+    && (!faTier || (r.club_pos && r.club_pos >= tLo && r.club_pos <= tHi))
+    && (!q || r.name.toLowerCase().includes(q) || r.club.toLowerCase().includes(q))
+    && (!faFitOnly || r.status === "a"));
+  // Fixtures: easier is better (lower). Everything else: higher is better.
+  const val = r => faSortKey === "fixtures" ? faFixtureAvg(r) : (r[faSortKey] ?? 0);
+  const lowerBetter = faSortKey === "fixtures";
+  rows = rows.slice().sort((a, b) => {
+    const d = lowerBetter ? val(a) - val(b) : val(b) - val(a);
+    return (faSortBest ? d : -d) || b.form - a.form;
+  });
+  document.querySelectorAll("#fa-table th.sortable").forEach(th => {
+    const active = th.dataset.fasort === faSortKey;
+    th.classList.toggle("active", active);
+    th.querySelector(".sort-caret").textContent = active ? (faSortBest ? " ▾" : " ▴") : "";
+  });
+  document.querySelectorAll("#fa-pos button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.pos === faPos)));
+  const shown = rows.slice(0, faLimit);
+  const when = iso => iso ? new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short" }) : "";
+  document.getElementById("fa-body").innerHTML = shown.length ? shown.map(r => {
+    const flag = availChip({ status: r.status, chance_next: r.chance, news: r.news });
+    const bits = [`${r.club}${r.club_pos ? ` (${ordinal(r.club_pos)})` : ""} ${r.pos}`];
+    if (r.pens === 1) bits.push('<span class="pens" title="First-choice penalty taker">Pens</span>');
+    if (r.on_waivers) bits.push("On waivers");
+    if (r.dropped_by) bits.push(`Dropped by ${r.dropped_by}${r.dropped_at ? ` ${when(r.dropped_at)}` : ""}`);
+    const run = (r.fixtures || []).length ? `<span class="fx-run">${r.fixtures.map(f => fxChip(f, false)).join("")}</span>` : '<span class="fdr-none">–</span>';
+    return `<tr>
+      <td><span class="fa-name">${r.name}</span>${flag}<span class="fa-meta">${bits.join(", ")}</span></td>
+      <td>${run}</td>
+      <td class="fa-form">${r.form.toFixed(1)}</td>
+      <td>${r.pts}</td>
+      <td>${r.ppg.toFixed(1)}</td>
+      <td>${r.starts}</td>
+      <td>${r.xgi.toFixed(2)}</td>
+      <td>${r.dc}</td>
+    </tr>`;
+  }).join("") : '<tr><td colspan="8" class="empty">No free agents match.</td></tr>';
+  const more = document.getElementById("fa-more");
+  more.hidden = rows.length <= faLimit;
+  document.getElementById("fa-count").textContent = `Showing ${shown.length} of ${rows.length}`;
 }
 
 // Compare: two squads side by side. Players are paired best-against-best within each
@@ -1357,6 +1487,7 @@ function render(state) {
   }
 
   renderSquadRanks(state);
+  renderFreeAgents(state);
 
   document.getElementById("global-context").innerHTML = poolStatHtml();
 }
@@ -1416,6 +1547,40 @@ for (const id of ["cmp-a", "cmp-b"]) {
     if (lastState) render(lastState);
   });
 }
+document.getElementById("fa-pos").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-pos]");
+  if (!b) return;
+  faPos = b.dataset.pos; faLimit = 25;
+  if (lastState) renderFreeAgents(lastState);
+});
+document.getElementById("fa-club").addEventListener("change", (e) => {
+  faClub = e.target.value; faLimit = 25;
+  if (lastState) renderFreeAgents(lastState);
+});
+document.getElementById("fa-tier").addEventListener("change", (e) => {
+  faTier = e.target.value; faLimit = 25;
+  if (lastState) renderFreeAgents(lastState);
+});
+document.getElementById("fa-search").addEventListener("input", (e) => {
+  faQuery = e.target.value; faLimit = 25;
+  if (lastState) renderFreeAgents(lastState);
+});
+document.getElementById("fa-fit").addEventListener("change", (e) => {
+  faFitOnly = e.target.checked;
+  if (lastState) renderFreeAgents(lastState);
+});
+document.getElementById("fa-more").addEventListener("click", () => {
+  faLimit += 25;
+  if (lastState) renderFreeAgents(lastState);
+});
+document.querySelectorAll("#fa-table th.sortable").forEach(th => {
+  th.addEventListener("click", () => {
+    const key = th.dataset.fasort;
+    faSortBest = faSortKey === key ? !faSortBest : true;
+    faSortKey = key;
+    if (lastState) renderFreeAgents(lastState);
+  });
+});
 document.getElementById("cmp-mode").addEventListener("click", (e) => {
   const b = e.target.closest("button[data-mode]");
   if (!b) return;
