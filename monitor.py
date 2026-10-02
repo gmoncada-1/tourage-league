@@ -693,6 +693,22 @@ def _update_probability_history(league_id, gw, current_matchups):
     return history["points"]
 
 
+def _next_gameweek_info(draft_bootstrap, gw):
+    """The coming gameweek's Draft deadlines (trades, waivers, lineups), for the
+    Next gameweek section. None if the season is over."""
+    events = draft_bootstrap.get("events") or {}
+    data = events.get("data", []) if isinstance(events, dict) else events
+    nxt = next((e for e in data if gw and e.get("id") == gw + 1), None)
+    if not nxt:
+        return None
+    return {
+        "event": nxt["id"],
+        "deadline": nxt.get("deadline_time"),
+        "waivers": nxt.get("waivers_time"),
+        "trades": nxt.get("trades_time"),
+    }
+
+
 def _draft_to_classic_ids(draft_bootstrap, classic_bootstrap):
     """Draft and classic FPL number players independently: they agree for players present
     at launch, but anyone added later (ids 554+ in 26/27, 64 players as of GW5) gets a
@@ -926,6 +942,7 @@ def poll_once(league_cfg):
         "my_entry_id": my_entry_id,
         "gameweek": gw,
         "gameweek_live": any_live,
+        "next_gameweek": _next_gameweek_info(draft_bootstrap, gw),
         "managers": [
             {
                 "entry_id": e["entry_id"],
