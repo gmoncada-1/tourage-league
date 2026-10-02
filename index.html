@@ -13,8 +13,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* Layout: one 1120px column; the gameweek scoreboard leads, the table follows,
-     feeds pair up in two columns on desktop and stack on phones.
+  /* Layout: one 1120px column; the league table leads, then this gameweek's
+     matches, the side-by-side compare, squad rank, and the match feed while live.
      Look: a floodlit pitch at night (dark) or a daytime pitch (light); chalk-line
      borders; stadium-signage numerals; yellow-card yellow marks who is ahead. */
   :root {
@@ -150,40 +150,6 @@
   .flash { animation: flashBg 1.6s ease-out; border-radius: 4px; }
 
   /* ---------- Scoreboard (odds board) ---------- */
-  #odds-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 12px; }
-  .odds-board-card {
-    position: relative;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-sm);
-    padding: 12px 14px;
-    cursor: pointer;
-    display: flex; flex-direction: column; gap: 6px;
-    transition: border-color 0.15s;
-  }
-  .odds-board-card:hover { border-color: var(--line-strong); }
-  .odds-board-row { display: grid; grid-template-columns: minmax(0, 1fr) auto 52px; align-items: center; gap: 10px; }
-  .odds-board-row .team-name { font-weight: 600; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .odds-board-row .team-score { font: 800 34px/1 var(--font-display); }
-  .odds-board-row .team-pct {
-    justify-self: end; font-weight: 600; font-size: 13px; color: var(--muted);
-    padding: 3px 6px; border-radius: 4px; min-width: 46px; text-align: center;
-  }
-  .odds-board-row.favored .team-pct { background: var(--card); color: var(--on-card); }
-  .odds-board-row:not(.favored) .team-name, .odds-board-row:not(.favored) .team-score { color: var(--muted); }
-  .odds-board-flip {
-    position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
-    width: 26px; height: 26px; border-radius: 50%;
-    background: var(--surface-2); border: 1px solid var(--line-strong); color: var(--muted);
-    display: grid; place-items: center; cursor: pointer; font-size: 13px; line-height: 1; z-index: 1;
-  }
-  .odds-board-flip:hover { color: var(--ink); border-color: var(--ink); }
-  .odds-board-spark { margin-right: 36px; }
-  .spark-svg { width: 100%; height: 30px; display: block; overflow: visible; }
-  .spark-area { fill: var(--card); opacity: 0.14; }
-  .spark-path { fill: none; stroke: var(--card); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
-  .spark-mid { stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 2 3; vector-effect: non-scaling-stroke; }
-  .spark-empty { height: 1px; background: var(--line); margin: 6px 0; font-size: 0; }
 
   .chart-filter-row { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
   .chart-filter-btn {
@@ -192,6 +158,53 @@
   }
   .chart-filter-btn:hover { color: var(--ink); border-color: var(--line-strong); }
   .chart-filter-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* ---------- This gameweek: one line per match ---------- */
+  #match-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; }
+  .match-row {
+    all: unset; box-sizing: border-box; width: 100%; cursor: pointer;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto 12px auto minmax(0, 1fr); align-items: center; gap: 10px;
+    padding: 10px 10px; border-bottom: 1px solid var(--line); border-radius: 4px;
+  }
+  .match-row:hover { background: var(--surface-2); }
+  .match-row:focus-visible { outline: 2px solid var(--card); outline-offset: -2px; }
+  .match-row.is-selected { background: var(--surface-2); box-shadow: inset 3px 0 0 var(--card); }
+  .mr-name { font-weight: 600; font-size: 15px; line-height: 1.25; min-width: 0; overflow-wrap: anywhere; }
+  .mr-name.a { text-align: right; }
+  .mr-score { font: 800 30px/1 var(--font-display); }
+  .mr-dash { color: var(--muted); text-align: center; }
+  .match-row .behind { color: var(--muted); }
+  .mr-pct { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+  .mr-pct.fav { color: var(--card-ink); }
+  @media (max-width: 760px) { #match-list { grid-template-columns: minmax(0, 1fr); } }
+
+  /* ---------- Compare ---------- */
+  .cmp-controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-bottom: 16px; }
+  .cmp-controls select { flex: 1 1 150px; min-width: 0; padding: 8px 10px; }
+  .cmp-vs { color: var(--muted); font-weight: 600; font-size: 13.5px; }
+  .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; gap: 2px; }
+  .seg button { font: 600 13px/1 var(--font-text); color: var(--muted); background: transparent; border: 0; border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+  .seg button:hover { color: var(--ink); }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .cmp-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-bottom: 6px; }
+  .cmp-summary .side.b { text-align: right; }
+  .cmp-summary .big { font: 800 44px/1 var(--font-display); }
+  .cmp-summary .lbl { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .cmp-summary .side.behind .big { color: var(--muted); }
+  .cmp-summary .fav-line { color: var(--card-ink); font-weight: 700; }
+  #cmp-chart-wrap { margin: 10px 0 18px; }
+  .cmp-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .cmp-table col.v { width: 54px; }
+  .cmp-table td { padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .cmp-table .nm .n { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+  .cmp-table .nm.b { text-align: right; }
+  .cmp-table .meta { display: block; font-size: 12px; color: var(--muted); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cmp-table .val { text-align: center; font-weight: 700; font-size: 16px; }
+  .cmp-table .val.lo { color: var(--muted); font-weight: 500; }
+  .cmp-table .val.hi { color: var(--ink); }
+  .cmp-table tr.grp td { font-size: 12.5px; font-weight: 700; color: var(--muted); padding-top: 16px; border-bottom-color: var(--line-strong); }
+  .cmp-table tr.grp td.val { color: var(--ink); font-size: 14px; }
+  .cmp-table tr.bench td { opacity: 0.62; }
 
   /* Expanded win-probability chart */
   .odds-readout { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 10px; }
@@ -221,41 +234,6 @@
   .chart-data-table { width: 100%; font-size: 13px; margin-top: 8px; border-collapse: collapse; }
   .chart-data-table th, .chart-data-table td { padding: 5px 6px; border-bottom: 1px solid var(--line); text-align: left; }
 
-  /* ---------- Spotlight ---------- */
-  .hero {
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    padding: 18px 20px 20px;
-  }
-  .hero .label { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
-  .hero .label > span:first-child { font-size: 19px; font-weight: 700; }
-  .matchup-toggle { display: flex; align-items: center; gap: 6px; }
-  .matchup-toggle-btn {
-    width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
-    background: transparent; border: 1px solid var(--line); color: var(--ink);
-    font-size: 18px; line-height: 1; cursor: pointer;
-  }
-  .matchup-toggle-btn:hover { border-color: var(--line-strong); }
-  .matchup-position { font-size: 13.5px; color: var(--muted); min-width: 44px; text-align: center; }
-  .hero-teams { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: end; gap: 16px; }
-  .hero-team { min-width: 0; }
-  .hero-team.right { text-align: right; }
-  .hero-name { font-size: 17px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .hero-score { font: 800 clamp(64px, 11vw, 112px)/0.9 var(--font-display); margin-top: 4px; display: inline-block; padding: 0 2px; }
-  .hero-pct { font-size: 14px; color: var(--muted); margin-top: 6px; }
-  .hero-pct.favored { color: var(--card-ink); font-weight: 700; }
-  .hero-vs { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-bottom: 30px; color: var(--muted); font-size: 13px; }
-  .hero-vs .flip-btn {
-    width: 54px; height: 54px; border-radius: 50%;
-    border: 1.5px solid var(--line-strong); background: transparent; color: var(--muted);
-    display: grid; place-items: center; font-size: 16px; cursor: pointer;
-  }
-  .hero-vs .flip-btn:hover { color: var(--ink); border-color: var(--ink); }
-  .hero-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--line); margin-top: 18px; gap: 2px; }
-  .hero-bar > div { background: var(--line-strong); transition: width 0.4s; }
-  .hero-bar > div.fav { background: var(--card); }
-  .hero-team.trailing .hero-score, .hero-team.trailing .hero-name { color: var(--muted); }
   .win-prob-explainer { margin-top: 14px; }
   .win-prob-explainer p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 68ch; }
   .win-prob-explainer strong { color: var(--ink); }
@@ -303,6 +281,8 @@
   .prize-neg { color: var(--red); font-weight: 600; }
   .prize-none { color: var(--muted); }
   .gc-pool .v { color: var(--card-ink); }
+  .gc-pnl.up .v { color: var(--good); }
+  .gc-pnl.down .v { color: var(--red); }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
   .table-footnote p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 72ch; }
@@ -392,6 +372,8 @@
   .transfer-arrow { color: var(--muted); font-size: 13px; }
   .transfer-team { color: var(--muted); }
 
+  .icon-btn { width: 38px; height: 38px; padding: 0; justify-content: center; }
+  .icon-btn svg { width: 17px; height: 17px; }
   .gc-stats { display: flex; gap: 22px; text-align: right; }
   .gc-stat { display: flex; flex-direction: column; gap: 3px; }
   .gc-stat .v { font: 800 30px/1 var(--font-display); }
@@ -406,13 +388,18 @@
   }
   @media (max-width: 640px) {
     body { padding-block-start: 18px; font-size: 14.5px; }
-    .panel, .hero { padding: 16px 14px 16px; }
-    .header-controls { width: 100%; }
-    .header-controls .btn { flex: 1; justify-content: center; }
-    .hero-teams { gap: 8px; }
-    .hero-name { font-size: 14.5px; white-space: normal; }
-    .hero-vs { padding-bottom: 26px; }
-    .hero-vs .flip-btn { width: 40px; height: 40px; }
+    .panel { padding: 16px 14px 16px; }
+    .header-row { position: relative; }
+    .brand-row { margin-right: 92px; min-height: 38px; }
+    .header-controls { position: absolute; top: 0; right: 0; }
+    h1 { margin: 8px 0 6px; }
+    .purpose { font-size: 14.5px; margin-bottom: 8px; }
+    .cmp-table .meta { font-size: 11.5px; }
+    .cmp-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .cmp-vs { display: none; }
+    .seg { grid-column: 1 / -1; justify-self: start; }
+    .mr-name { font-size: 14px; }
+    .match-row .mr-score { font-size: 26px; }
     th, td { padding: 10px 6px; }
     #standings-table > thead > tr > :nth-child(-n+6):nth-child(n+4), #standings-table > tbody > tr.team-row > :nth-child(-n+6):nth-child(n+4) { display: none; }
     #standings-table tr.detail-row > td { display: table-cell; }
@@ -443,40 +430,10 @@
     </div>
     <div class="header-controls">
       <select id="league-switcher" aria-label="League" hidden></select>
-      <button id="refresh-btn" class="btn" type="button" title="Load the latest data"><svg class="refresh-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Refresh</button>
-      <button id="theme-toggle" class="btn" type="button">Light mode</button>
+      <button id="refresh-btn" class="btn icon-btn" type="button" title="Load the latest data" aria-label="Refresh"><svg class="refresh-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66M20 4v5h-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button id="theme-toggle" class="btn icon-btn" type="button"></button>
     </div>
   </header>
-
-  <section class="panel odds-board-panel" aria-labelledby="board-title">
-    <div class="panel-head">
-      <div>
-        <h2 id="board-title">This gameweek</h2>
-        <p class="panel-note" id="board-note">Live scores and each team's chance to win. Tap a match for its odds chart.</p>
-      </div>
-    </div>
-    <div class="chart-filter-row" id="board-control-row" style="display:none;">
-      <button type="button" class="chart-filter-btn" id="board-back-btn">‹ All matches</button>
-      <button type="button" class="chart-filter-btn active" data-range="all">Whole gameweek</button>
-      <button type="button" class="chart-filter-btn" data-range="60">Last hour</button>
-      <button type="button" class="chart-filter-btn" data-range="180">Last 3 hours</button>
-      <button type="button" class="chart-filter-btn" id="board-flip-btn" style="margin-left:auto;" title="Swap which team is shown first">⇄ Swap sides</button>
-    </div>
-    <div id="odds-board"></div>
-    <div id="score-chart"></div>
-  </section>
-
-  <section class="hero" id="hero-matchup" aria-label="Match spotlight">
-    <div class="label">
-      <span>Spotlight</span>
-      <div class="matchup-toggle">
-        <button class="matchup-toggle-btn" id="matchup-prev-btn" type="button" title="Previous match" aria-label="Previous match">‹</button>
-        <span class="matchup-position" id="matchup-position"></span>
-        <button class="matchup-toggle-btn" id="matchup-next-btn" type="button" title="Next match" aria-label="Next match">›</button>
-      </div>
-    </div>
-    <div id="hero-content" class="empty">Loading…</div>
-  </section>
 
   <section class="panel" aria-labelledby="table-title">
     <div class="panel-head">
@@ -511,6 +468,49 @@
       <p>Prize shows what each position pays if the season ended now. The pool is 0.0201 BTC, valued at the live BTC price. First takes the pool minus $300, second takes $300, and third collects $150: $100 from last place and $50 from seventh.</p>
       <p><span class="key-swatch" style="background:var(--card)"></span>Top of the table <span class="key-swatch" style="background:var(--red); margin-left:14px"></span>Bottom of the table</p>
     </details>
+  </section>
+
+  <section class="panel" aria-labelledby="board-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="board-title">This gameweek</h2>
+        <p class="panel-note" id="board-note">Tap a match to compare the two squads.</p>
+      </div>
+    </div>
+    <div id="match-list"></div>
+  </section>
+
+  <section class="panel" id="compare-panel" aria-labelledby="compare-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="compare-title">Compare teams</h2>
+        <p class="panel-note">Two squads side by side, best player against best player in each position.</p>
+      </div>
+    </div>
+    <div class="cmp-controls">
+      <select id="cmp-a" aria-label="First team"></select>
+      <span class="cmp-vs">vs</span>
+      <select id="cmp-b" aria-label="Second team"></select>
+      <div class="seg" id="cmp-mode" role="group" aria-label="What to compare">
+        <button type="button" data-mode="gw" aria-pressed="true">This gameweek</button>
+        <button type="button" data-mode="season" aria-pressed="false">Season</button>
+      </div>
+    </div>
+    <div id="cmp-summary" class="cmp-summary"></div>
+    <div id="cmp-chart-wrap" hidden>
+      <div class="chart-filter-row">
+        <button type="button" class="chart-filter-btn active" data-range="all">Whole gameweek</button>
+        <button type="button" class="chart-filter-btn" data-range="60">Last hour</button>
+        <button type="button" class="chart-filter-btn" data-range="180">Last 3 hours</button>
+      </div>
+      <div id="score-chart"></div>
+      <details class="win-prob-explainer">
+        <summary>How the chance to win is worked out</summary>
+        <p>Each team's likely final score is its live points plus a typical score for every starter who hasn't played yet. The more players a team still has to come, the less certain its final score, and that uncertainty is factored in. The win % is the chance one team's projected final score beats the other's.</p>
+        <p>It's a statistical estimate, not a prediction from FPL. It updates with every refresh and swings most early in a gameweek, when few players have played.</p>
+      </details>
+    </div>
+    <div id="cmp-body"></div>
   </section>
 
   <section class="panel" aria-labelledby="squad-rank-title">
@@ -823,102 +823,123 @@ function playerRowHtml(p) {
 
 // Small trend-line preview for a board card's compact state — same probability
 // history as the full chart, just no axes/legend/hover, sized to sit inside a card.
-function renderSparklineSvg(historyPoints, entryId) {
-  const W = 100, H = 34, PAD = 4;
-  const series = (historyPoints || [])
-    .map(p => ({ t: new Date(p.t).getTime(), v: p.probs[entryId] }))
-    .filter(p => p.v !== null && p.v !== undefined && !isNaN(p.t));
-  if (series.length < 2) {
-    return '<div class="spark-empty" aria-hidden="true"></div>';
-  }
-  const tMin = series[0].t, tMax = series[series.length - 1].t;
-  const xPos = t => tMax === tMin ? 0 : ((t - tMin) / (tMax - tMin)) * W;
-  const yPos = v => PAD + (1 - v) * (H - 2 * PAD);
-  const d = series.map((p, i) => `${i === 0 ? "M" : "L"}${xPos(p.t).toFixed(1)},${yPos(p.v).toFixed(1)}`).join(" ");
-  const areaD = `${d} L${xPos(series[series.length - 1].t).toFixed(1)},${H} L${xPos(series[0].t).toFixed(1)},${H} Z`;
-  return `<svg class="spark-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
-    <line x1="0" y1="${(H / 2).toFixed(1)}" x2="${W}" y2="${(H / 2).toFixed(1)}" class="spark-mid"/>
-    <path d="${areaD}" class="spark-area"/>
-    <path d="${d}" class="spark-path"/>
-  </svg>`;
-}
-
-// Live Odds Board: compact sparkline-card grid by default; tapping a card (or picking
-// a team from the "jump to team" dropdown) expands that one matchup into the full
-// detailed chart (reusing renderProbabilityChart), with a back control to collapse.
-function renderOddsBoard(state, matchups) {
-  const boardEl = document.getElementById("odds-board");
-  const chartEl = document.getElementById("score-chart");
-  const controlRow = document.getElementById("board-control-row");
-
-  if (!matchups.length) {
-    boardEl.innerHTML = '<div class="empty">No head-to-heads this gameweek.</div>';
-    boardEl.style.display = "block";
-    chartEl.innerHTML = "";
-    controlRow.style.display = "none";
-    return;
-  }
-
-  // Odds and the probability chart only mean something while matches are being played.
+// This gameweek: one line per head-to-head. Tapping a match loads it into Compare.
+function renderMatchList(state, matchups) {
+  const el = document.getElementById("match-list");
   const live = !!state.gameweek_live;
   document.getElementById("board-note").textContent = live
-    ? "Live scores and each team's chance to win. Tap a match for its odds chart."
-    : "Head-to-head results for this gameweek.";
-  if (!live) boardExpanded = false;
+    ? "Live scores and chances to win. Tap a match to compare the squads."
+    : "Tap a match to compare the two squads.";
+  if (!matchups.length) { el.innerHTML = '<div class="empty">No head-to-heads this gameweek.</div>'; return; }
+  el.innerHTML = matchups.map(mu => {
+    const a = mu.team1, b = mu.team2;
+    const pa = Math.round(mu.team1_win_prob * 100), pb = 100 - pa;
+    // Who is "ahead": the odds while live, the score once it's settled.
+    const aAhead = live ? pa >= pb : a.score >= b.score;
+    const bAhead = live ? pb >= pa : b.score >= a.score;
+    const sel = (a.entry_id === cmpA && b.entry_id === cmpB) || (a.entry_id === cmpB && b.entry_id === cmpA);
+    const pct = (v, fav) => live ? `<span class="mr-pct${fav ? " fav" : ""}">${v}% to win</span>` : "";
+    return `<button type="button" class="match-row${sel ? " is-selected" : ""}" data-a="${a.entry_id}" data-b="${b.entry_id}" aria-label="Compare ${a.name} and ${b.name}">
+      <span class="mr-name a${aAhead ? "" : " behind"}">${a.name}${pct(pa, pa > pb)}</span>
+      <span class="mr-score${aAhead ? "" : " behind"}">${a.score}</span>
+      <span class="mr-dash">–</span>
+      <span class="mr-score${bAhead ? "" : " behind"}">${b.score}</span>
+      <span class="mr-name b${bAhead ? "" : " behind"}">${b.name}${pct(pb, pb > pa)}</span>
+    </button>`;
+  }).join("");
+}
 
-  if (boardExpanded) {
-    boardEl.style.display = "none";
-    controlRow.style.display = "flex";
-    const chartMatchup = matchups.find(m => matchupKey(m) === selectedMatchupKey) || matchups[0];
-    const view = matchupView(chartMatchup);
-    let historyForChart = state.probability_history || [];
+// Compare: two squads side by side. Players are paired best-against-best within each
+// position: by this gameweek's points (starters, then the bench) or by season points.
+function cmpPlayerMeta(p) {
+  if (cmpMode === "season") {
+    return p.season_rank ? `${ordinal(p.season_pos_rank)} ${p.position}, #${p.season_rank}` : "Unranked";
+  }
+  if (p.auto_sub) return "Auto-sub";
+  if (p.subbed_off) return "Subbed off";
+  return { pending: "To play", live: "Playing now", benched: "Didn't play" }[p.club_status] || "Played";
+}
+function renderCompare(state) {
+  const managers = state.managers || [];
+  const byId = new Map(managers.map(m => [m.entry_id, m]));
+  if (!byId.has(cmpA) || !byId.has(cmpB) || cmpA === cmpB) {
+    const mu = (state.current_matchups || [])[0];
+    [cmpA, cmpB] = mu ? [mu.team1.entry_id, mu.team2.entry_id] : managers.slice(0, 2).map(m => m.entry_id);
+  }
+  for (const [id, val] of [["cmp-a", cmpA], ["cmp-b", cmpB]]) {
+    const sel = document.getElementById(id);
+    if (sel.options.length !== managers.length) {
+      sel.innerHTML = managers.map(m => `<option value="${m.entry_id}">${m.name}</option>`).join("");
+    }
+    sel.value = String(val);
+  }
+  document.querySelectorAll("#cmp-mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === cmpMode)));
+  const A = byId.get(cmpA), B = byId.get(cmpB);
+  if (!A || !B) return;
+  const live = !!state.gameweek_live;
+  const mu = (state.current_matchups || []).find(m =>
+    (m.team1.entry_id === cmpA && m.team2.entry_id === cmpB) || (m.team1.entry_id === cmpB && m.team2.entry_id === cmpA));
+
+  // Summary: the two numbers that matter for the chosen view.
+  let sa, sb, la, lb, aBehind, bBehind;
+  if (cmpMode === "gw") {
+    sa = A.live_score ?? 0; sb = B.live_score ?? 0;
+    la = lb = mu ? (live ? "Live score" : "Gameweek score") : "Gameweek score, different opponents";
+    if (mu && live) {
+      const probA = Math.round((mu.team1.entry_id === cmpA ? mu.team1_win_prob : mu.team2_win_prob) * 100);
+      la = `<span class="${probA >= 50 ? "fav-line" : ""}">${probA}% to win</span>`;
+      lb = `<span class="${probA < 50 ? "fav-line" : ""}">${100 - probA}% to win</span>`;
+    }
+    aBehind = sa < sb; bBehind = sb < sa;
+  } else {
+    const ranks = computeSquadRanks(state);
+    const ra = ranks.findIndex(t => t.m.entry_id === cmpA), rb = ranks.findIndex(t => t.m.entry_id === cmpB);
+    sa = ordinal(ra + 1); sb = ordinal(rb + 1);
+    la = lb = "Squad rank";
+    aBehind = ra > rb; bBehind = rb > ra;
+  }
+  document.getElementById("cmp-summary").innerHTML = `
+    <div class="side a${aBehind ? " behind" : ""}"><div class="big">${sa}</div><span class="lbl">${la}</span></div>
+    <div class="side b${bBehind ? " behind" : ""}"><div class="big">${sb}</div><span class="lbl">${lb}</span></div>`;
+
+  // Live odds chart, only for a pairing that is actually playing each other right now.
+  const showChart = live && !!mu && cmpMode === "gw";
+  document.getElementById("cmp-chart-wrap").hidden = !showChart;
+  if (showChart) {
+    let hist = state.probability_history || [];
     if (chartRangeMinutes) {
       const cutoff = Date.now() - chartRangeMinutes * 60000;
-      historyForChart = historyForChart.filter(p => new Date(p.t).getTime() >= cutoff);
+      hist = hist.filter(pt => new Date(pt.t).getTime() >= cutoff);
     }
-    renderProbabilityChart(chartEl, historyForChart, String(view.primary.entry_id), String(view.secondary.entry_id), view.primary.name, view.secondary.name);
-  } else {
-    controlRow.style.display = "none";
-    chartEl.innerHTML = "";
-    boardEl.style.display = "grid";
-    boardEl.innerHTML = "";
-    const history = state.probability_history || [];
-    for (const mu of matchups) {
-      const key = matchupKey(mu);
-      const view = matchupView(mu);
-      const p1 = Math.round(view.primaryProb * 100);
-      const p2 = 100 - p1;
-      const card = document.createElement("div");
-      card.className = "odds-board-card";
-      card.innerHTML = `
-        <button class="odds-board-flip" type="button" title="Swap sides" aria-label="Swap sides">⇄</button>
-        <div class="odds-board-row${p1 >= p2 ? " favored" : ""}">
-          <span class="team-name">${view.primary.name}</span>
-          <span class="team-score">${view.primary.score}</span>
-          ${live ? `<span class="team-pct">${p1}%</span>` : ""}
-        </div>
-        ${live ? `<div class="odds-board-spark">${renderSparklineSvg(history, String(view.primary.entry_id))}</div>` : ""}
-        <div class="odds-board-row${p2 > p1 ? " favored" : ""}">
-          <span class="team-name">${view.secondary.name}</span>
-          <span class="team-score">${view.secondary.score}</span>
-          ${live ? `<span class="team-pct">${p2}%</span>` : ""}
-        </div>
-      `;
-      card.querySelector(".odds-board-flip").addEventListener("click", (e) => {
-        e.stopPropagation();
-        toggleFlip(mu);
-        render(lastState);
-      });
-      if (live) card.classList.add("is-live");
-      card.addEventListener("click", () => {
-        if (!live) return;
-        selectedMatchupKey = key;
-        boardExpanded = true;
-        render(lastState);
-      });
-      boardEl.appendChild(card);
+    renderProbabilityChart(document.getElementById("score-chart"), hist, String(cmpA), String(cmpB), A.name, B.name);
+  }
+
+  const value = p => cmpMode === "gw" ? (p.points ?? 0) : (p.season_points ?? 0);
+  const pick = (m, pos, bench) => (m.players || [])
+    .filter(p => (pos ? p.position === pos : true) && (cmpMode === "season" ? true : !!p.is_bench === bench))
+    .sort((x, y) => value(y) - value(x));
+  const groups = POSITION_ORDER.map(pos => ({ label: pos, a: pick(A, pos, false), b: pick(B, pos, false) }));
+  if (cmpMode === "gw") groups.push({ label: "Bench (doesn't count)", a: pick(A, null, true), b: pick(B, null, true), bench: true });
+
+  const cls = (x, y) => x > y ? "hi" : x < y ? "lo" : "";
+  const sum = list => list.reduce((t, p) => t + value(p), 0);
+  let rows = "";
+  for (const g of groups) {
+    const ta = sum(g.a), tb = sum(g.b);
+    rows += `<tr class="grp${g.bench ? " bench" : ""}"><td>${g.label}</td><td class="val ${cls(ta, tb)}">${ta}</td><td class="val ${cls(tb, ta)}">${tb}</td><td></td></tr>`;
+    for (let i = 0; i < Math.max(g.a.length, g.b.length); i++) {
+      const pa = g.a[i], pb = g.b[i];
+      const va = pa ? value(pa) : null, vb = pb ? value(pb) : null;
+      const cell = (p, side) => p ? `<td class="nm ${side}"><span class="n">${p.name}</span><span class="meta">${cmpPlayerMeta(p)}</span></td>` : `<td class="nm ${side}"></td>`;
+      rows += `<tr class="${g.bench ? "bench" : ""}">${cell(pa, "a")}
+        <td class="val ${pa && pb ? cls(va, vb) : ""}">${pa ? va : ""}</td>
+        <td class="val ${pa && pb ? cls(vb, va) : ""}">${pb ? vb : ""}</td>${cell(pb, "b")}</tr>`;
     }
   }
+  const unit = cmpMode === "gw" ? "Points this gameweek" : "Season points";
+  document.getElementById("cmp-body").innerHTML = `<table class="cmp-table" aria-label="${unit}: ${A.name} against ${B.name}">
+    <colgroup><col><col class="v"><col class="v"><col></colgroup>
+    <tbody>${rows}</tbody></table>`;
 }
 
 // Squad rank, scored like a rotisserie (category) league: per position, sum the season
@@ -986,6 +1007,7 @@ function renderSquadRanks(state) {
 // Prize pool: 0.0201 BTC, valued live. 1st takes the pool minus $300, 2nd takes $300;
 // 3rd collects $100 from last place and $50 from 7th.
 const POOL_BTC = 0.0201;
+const ENTRY_USD = 200; // per team; 8 teams paid in $1,600
 let btcUsd = null, btcAt = null;
 const usd = n => (n < 0 ? "−" : "") + "$" + Math.round(Math.abs(n)).toLocaleString("en-US");
 function payoutFor(rank, nTeams) {
@@ -1007,7 +1029,14 @@ function poolStatHtml() {
   const v = btcUsd == null ? `${POOL_BTC} BTC` : usd(POOL_BTC * btcUsd);
   const title = btcUsd == null ? "Live BTC price unavailable right now"
     : `${POOL_BTC} BTC at ${usd(btcUsd)} per BTC (${fmtTime(btcAt)})`;
-  return `<div class="gc-stat gc-pool" title="${title}"><span class="v">${v}</span><span class="k">Prize pool, ${POOL_BTC} BTC</span></div>`;
+  const paidIn = ENTRY_USD * ((lastState && lastState.managers || []).length || 8);
+  let pnl = "";
+  if (btcUsd != null) {
+    const pct = (POOL_BTC * btcUsd / paidIn - 1) * 100;
+    const sign = pct > 0 ? "+" : pct < 0 ? "−" : "";
+    pnl = `<div class="gc-stat gc-pnl ${pct >= 0 ? "up" : "down"}" title="Pool value against the ${usd(paidIn)} paid in (${usd(ENTRY_USD)} per team)"><span class="v">${sign}${Math.abs(pct).toFixed(1)}%</span><span class="k">vs ${usd(paidIn)} paid in</span></div>`;
+  }
+  return `<div class="gc-stat gc-pool" title="${title}"><span class="v">${v}</span><span class="k">Prize pool, ${POOL_BTC} BTC</span></div>` + pnl;
 }
 async function refreshBtcPrice() {
   const sources = [
@@ -1033,62 +1062,8 @@ function render(state) {
   const allManagers = state.managers || [];
   const matchups = state.current_matchups || [];
 
-  // Matchup selection is the one shared concept driving the Hero, the chart, and the
-  // Odds Board highlight — no per-viewer "which team is mine" concept. Anyone can
-  // toggle through matchups via the Hero's prev/next arrows, the chart's dropdown, or
-  // by tapping an Odds Board card; all three stay in sync via `selectedMatchupKey`.
-  if (!selectedMatchupKey || !matchups.some(m => matchupKey(m) === selectedMatchupKey)) {
-    selectedMatchupKey = matchups.length ? matchupKey(matchups[0]) : null;
-  }
-
-  const heroEl = document.getElementById("hero-content");
-  const heroMatchup = matchups.find(m => matchupKey(m) === selectedMatchupKey) || null;
-  const posEl = document.getElementById("matchup-position");
-  if (!heroMatchup) {
-    heroEl.innerHTML = '<div class="empty">No matchups this gameweek.</div>';
-    posEl.textContent = "";
-  } else {
-    const view = matchupView(heroMatchup);
-    const team1 = view.primary, team2 = view.secondary;
-    const prob1 = Math.round(view.primaryProb * 100);
-    const prob2 = 100 - prob1;
-    const heroLive = !!state.gameweek_live;
-    const resultText = (a, b) => a > b ? "Won" : a < b ? "Lost" : "Drew";
-    const heroLine = (prob, mine, theirs) => heroLive ? `${prob}% chance to win` : resultText(mine, theirs);
-    const flash1 = scoreFlashClass(`${leagueKey}:hero:${team1.entry_id}`, team1.score);
-    const flash2 = scoreFlashClass(`${leagueKey}:hero:${team2.entry_id}`, team2.score);
-    heroEl.classList.remove("empty");
-    heroEl.innerHTML = `
-      <div class="hero-teams">
-        <div class="hero-team${prob1 < prob2 ? " trailing" : ""}">
-          <div class="hero-name">${team1.name}</div>
-          <div class="hero-score${flash1}">${team1.score}</div>
-          <div class="hero-pct${prob1 >= prob2 ? " favored" : ""}">${heroLine(prob1, team1.score, team2.score)}</div>
-        </div>
-        <div class="hero-vs">
-          <button class="flip-btn" id="hero-flip-btn" type="button" title="Swap sides" aria-label="Swap sides">⇄</button>
-        </div>
-        <div class="hero-team right${prob2 < prob1 ? " trailing" : ""}">
-          <div class="hero-name">${team2.name}</div>
-          <div class="hero-score${flash2}">${team2.score}</div>
-          <div class="hero-pct${prob2 > prob1 ? " favored" : ""}">${heroLine(prob2, team2.score, team1.score)}</div>
-        </div>
-      </div>
-      ${heroLive ? `<div class="hero-bar" role="img" aria-label="${team1.name} ${prob1}%, ${team2.name} ${prob2}%"><div class="a${prob1 >= prob2 ? " fav" : ""}" style="width:${prob1}%"></div><div class="b${prob2 > prob1 ? " fav" : ""}" style="width:${prob2}%"></div></div>
-      <details class="win-prob-explainer">
-        <summary>How the chance to win is worked out</summary>
-        <p>Each team's likely final score is modeled as their <strong>current live points</strong> plus their <strong>starters who haven't played yet</strong> &times; a typical points-per-player value (this season's real gameweek average once one exists, otherwise a generic estimate). The more players a team still has left to play, the more uncertain their final score is &mdash; that uncertainty is factored in too, not just the average. The win % is the chance one team's projected final score beats the other's, given both projections and their uncertainty.</p>
-        <p>This is a statistical estimate, not a prediction from FPL itself &mdash; it updates every poll as real results come in, and swings hardest early in a gameweek when most players haven't played yet.</p>
-      </details>` : ""}
-    `;
-    document.getElementById("hero-flip-btn").addEventListener("click", () => {
-      toggleFlip(heroMatchup);
-      render(lastState);
-    });
-    posEl.textContent = `${matchups.findIndex(m => matchupKey(m) === selectedMatchupKey) + 1} of ${matchups.length}`;
-  }
-
-  renderOddsBoard(state, matchups);
+  renderMatchList(state, matchups);
+  renderCompare(state);
 
   // Premier League match feed only earns its space while games are on.
   document.getElementById("events-panel").hidden = !state.gameweek_live;
@@ -1235,49 +1210,18 @@ function render(state) {
 
   renderSquadRanks(state);
 
-  const gc = state.global_context;
-  document.getElementById("global-context").innerHTML = poolStatHtml() + (gc
-    ? `<div class="gc-stat" title="Average score across every FPL manager in gameweek ${gc.gw}"><span class="v">${gc.average_entry_score}</span><span class="k">FPL average, GW${gc.gw}</span></div>
-       <div class="gc-stat" title="Highest score by any FPL manager in gameweek ${gc.gw}"><span class="v">${gc.highest_score}</span><span class="k">Highest, GW${gc.gw}</span></div>`
-    : "");
+  document.getElementById("global-context").innerHTML = poolStatHtml();
 }
 
 let lastState = null;
 let currentLeagueId = null;
 let chartRangeMinutes = null; // null = all history
-let selectedMatchupKey = null; // null = default to the first matchup
-let boardExpanded = false; // false = Live Odds Board shows the mini-card grid; true = one expanded chart
+let cmpA = null, cmpB = null, cmpMode = "gw"; // Compare: the two teams and which view
 let standingsSortKey = "league_points"; // which Standings column currently drives the ranking
 let standingsSortDir = "desc";
 let srSortKey = "score", srSortBest = true; // squad rank table: column and best-first order
 let playerSortKey = null, playerSortBest = true; // squad tables: null keeps FPL's pick order
 const openTeams = new Set(); // teams whose squad breakdown is open in the table
-
-// Which team displays first/primary for a given matchup — team1/team2 from the backend
-// is an arbitrary, fixed order (whichever the league API listed first), so anyone should
-// be able to flip perspective per-matchup. Keyed by matchupKey and shared globally, so
-// flipping a card in the board, the Hero spotlight, and the expanded chart for the same
-// matchup all stay in sync automatically.
-const flippedMatchups = new Set();
-
-function matchupKey(m) { return `${m.team1.entry_id}_${m.team2.entry_id}`; }
-
-function toggleFlip(mu) {
-  const key = matchupKey(mu);
-  if (flippedMatchups.has(key)) flippedMatchups.delete(key); else flippedMatchups.add(key);
-}
-
-// Returns the matchup's two teams in display order (primary first), honoring any flip.
-function matchupView(mu) {
-  const flipped = flippedMatchups.has(matchupKey(mu));
-  return {
-    primary: flipped ? mu.team2 : mu.team1,
-    secondary: flipped ? mu.team1 : mu.team2,
-    primaryProb: flipped ? mu.team2_win_prob : mu.team1_win_prob,
-    secondaryProb: flipped ? mu.team1_win_prob : mu.team2_win_prob,
-    flipped,
-  };
-}
 
 document.querySelectorAll(".chart-filter-btn[data-range]").forEach(btn => {
   btn.addEventListener("click", () => {
@@ -1288,17 +1232,7 @@ document.querySelectorAll(".chart-filter-btn[data-range]").forEach(btn => {
   });
 });
 
-document.getElementById("board-back-btn").addEventListener("click", () => {
-  boardExpanded = false;
-  if (lastState) render(lastState);
-});
 
-document.getElementById("board-flip-btn").addEventListener("click", () => {
-  if (!lastState) return;
-  const matchups = lastState.current_matchups || [];
-  const mu = matchups.find(m => matchupKey(m) === selectedMatchupKey);
-  if (mu) { toggleFlip(mu); render(lastState); }
-});
 
 
 async function refresh() {
@@ -1312,18 +1246,29 @@ async function refresh() {
 }
 
 
-function stepMatchup(delta) {
-  if (!lastState) return;
-  const matchups = lastState.current_matchups || [];
-  if (!matchups.length) return;
-  let idx = matchups.findIndex(m => matchupKey(m) === selectedMatchupKey);
-  if (idx === -1) idx = 0;
-  idx = (idx + delta + matchups.length) % matchups.length;
-  selectedMatchupKey = matchupKey(matchups[idx]);
+
+document.getElementById("match-list").addEventListener("click", (e) => {
+  const row = e.target.closest(".match-row");
+  if (!row || !lastState) return;
+  cmpA = Number(row.dataset.a); cmpB = Number(row.dataset.b);
   render(lastState);
+  const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.getElementById("compare-panel").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+});
+for (const id of ["cmp-a", "cmp-b"]) {
+  document.getElementById(id).addEventListener("change", (e) => {
+    const v = Number(e.target.value);
+    // Picking the team already on the other side swaps the two.
+    if (id === "cmp-a") { if (v === cmpB) cmpB = cmpA; cmpA = v; } else { if (v === cmpA) cmpA = cmpB; cmpB = v; }
+    if (lastState) render(lastState);
+  });
 }
-document.getElementById("matchup-prev-btn").addEventListener("click", () => stepMatchup(-1));
-document.getElementById("matchup-next-btn").addEventListener("click", () => stepMatchup(1));
+document.getElementById("cmp-mode").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-mode]");
+  if (!b) return;
+  cmpMode = b.dataset.mode;
+  if (lastState) render(lastState);
+});
 
 document.querySelectorAll("#standings-table th.sortable").forEach(th => {
   th.addEventListener("click", () => {
@@ -1371,7 +1316,13 @@ document.getElementById("refresh-btn").addEventListener("click", async () => {
 
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
-  document.getElementById("theme-toggle").textContent = theme === "light" ? "Dark mode" : "Light mode";
+  const tt = document.getElementById("theme-toggle");
+  const next = theme === "light" ? "dark" : "light";
+  tt.setAttribute("aria-label", `Switch to ${next} mode`);
+  tt.title = `Switch to ${next} mode`;
+  tt.innerHTML = next === "dark"
+    ? '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.setAttribute("content", theme === "light" ? "#e7eee8" : "#0d2c21");
   try { localStorage.setItem("fpl-dashboard-theme", theme); } catch (e) {}
@@ -1391,8 +1342,7 @@ leagueSwitcherEl.addEventListener("change", () => {
   currentLeagueId = leagueSwitcherEl.value;
   localStorage.setItem("fpl-dashboard-league", currentLeagueId);
   prevScores = {};
-  selectedMatchupKey = null; // different league, different matchups
-  boardExpanded = false;
+  cmpA = cmpB = null; // different league, different teams
   refresh();
 });
 
