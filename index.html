@@ -287,6 +287,16 @@
   .score { font-weight: 700; }
   td.score { white-space: nowrap; }
   .final-badge { font-size: 12px; color: var(--muted); font-weight: 500; margin-left: 6px; }
+  #squad-rank-table td, #squad-rank-table th { text-align: right; font-variant-numeric: tabular-nums; }
+  #squad-rank-table td:nth-child(-n+2), #squad-rank-table th:nth-child(-n+2) { text-align: left; }
+  #squad-rank-table td:first-child { width: 36px; color: var(--muted); font-weight: 600; }
+  #squad-rank-table tr.is-me td { background: var(--surface-2); }
+  #squad-rank-table .sr-score { font: 800 24px/1 var(--font-display); }
+  #squad-rank-table .sr-cat { color: var(--muted); }
+  #squad-rank-table .sr-cat.best { color: var(--ink); font-weight: 700; }
+  #squad-rank-table .sr-gap { font-size: 12px; font-weight: 600; margin-left: 6px; }
+  #squad-rank-table .sr-gap.up { color: var(--muted); }
+  #squad-rank-table .sr-gap.down { color: var(--red); }
   .live-count-tag { font-size: 12px; color: var(--card-ink); font-weight: 700; margin-left: 6px; }
   .table-footnote { margin-top: 14px; }
   .table-footnote p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 8px 0 0; max-width: 72ch; }
@@ -400,6 +410,7 @@
     th, td { padding: 10px 6px; }
     #standings-table tr > :nth-child(5), #standings-table tr > :nth-child(6) { display: none; }
     #standings-table tr.detail-row > td { display: table-cell; }
+    #squad-rank-table tr > :nth-child(8) { display: none; }
     .squad-table { font-size: 12.5px; }
     .final-badge { display: none; }
     .gc-stats { text-align: left; }
@@ -490,6 +501,38 @@
       <p>Teams are ranked by league points: 3 for a win and 1 for a draw. Ties are broken by total FPL points scored this season, the same rule FPL Draft uses. While a gameweek is in progress, points and "This GW" are worked out from the live scores, so the table moves as the matches do.</p>
       <p>Bonus points only become official when FPL marks a match finished. Until then, "This GW" includes FPL's own live bonus estimate, based on each player's current BPS ranking in his match.</p>
       <p><span class="key-swatch" style="background:var(--card)"></span>Top of the table <span class="key-swatch" style="background:var(--red); margin-left:14px"></span>Bottom of the table</p>
+    </details>
+  </section>
+
+  <section class="panel" aria-labelledby="squad-rank-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="squad-rank-title">Squad rank</h2>
+        <p class="panel-note">Who has the strongest squad on paper, whatever the results say. Each team's best players by position, ranked against the league.</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+    <table id="squad-rank-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Team</th>
+          <th title="Category score: 8 points for the best team in a position down to 1 for the worst, added across the four positions">Score</th>
+          <th title="Rank for the best goalkeeper's season points">GK</th>
+          <th title="Rank for the best four defenders' season points">DEF</th>
+          <th title="Rank for the best four midfielders' season points">MID</th>
+          <th title="Rank for the best two forwards' season points">FWD</th>
+          <th title="Season points of the best 1-4-4-2 from the squad. Breaks ties on score.">Best XI pts</th>
+          <th title="Position in the league table, and how far it is from the squad rank">Table</th>
+        </tr>
+      </thead>
+      <tbody id="squad-rank-body"></tbody>
+    </table>
+    </div>
+    <details class="table-footnote">
+      <summary>How squad rank works</summary>
+      <p>It's scored like a category league. Each squad is split into four positions, and in each one we add up the season FPL points of its best players: one goalkeeper, four defenders, four midfielders and two forwards. Teams are ranked within each position, the best getting 8 points and the worst 1, and the four results are added together. Ties go to the team whose best eleven has more season points.</p>
+      <p>Season points include anything a player scored before his current team signed him, so this measures the squad, not the results. The Table column shows where each team actually sits, so you can see who is punching above or below their squad.</p>
     </details>
   </section>
 
@@ -745,7 +788,9 @@ function playerRowHtml(p) {
   const icon = CLUB_STATUS_ICON[p.club_status] || "";
   const statusTag = p.auto_sub
     ? '<span class="tag" title="Came off the bench for a starter who didn\'t play">Auto-sub</span>'
-    : (CLUB_STATUS_TAG[p.club_status] || "");
+    : p.subbed_off
+      ? '<span class="tag" title="Started but didn\'t play, so a bench player came on for him">Subbed off</span>'
+      : (CLUB_STATUS_TAG[p.club_status] || "");
   const statusCls = CLUB_STATUS_CLASS[p.club_status];
   const rowClass = (statusCls ? `${statusCls} ` : "") + (p.is_bench ? "squad-bench" : "");
   const bonusCell = !p.bonus_points ? "–"
@@ -876,6 +921,54 @@ function renderOddsBoard(state, matchups) {
       boardEl.appendChild(card);
     }
   }
+}
+
+// Squad rank, scored like a rotisserie (category) league: per position, sum the season
+// points of a team's best players in a 1-4-4-2 shape, rank the teams in each position
+// (N points for first down to 1), and add the four. Ties on score go to best-XI points.
+const SQUAD_SHAPE = { GK: 1, DEF: 4, MID: 4, FWD: 2 };
+function computeSquadRanks(state) {
+  const teams = (state.managers || []).map(m => {
+    const cat = {};
+    for (const pos of POSITION_ORDER) {
+      cat[pos] = (m.players || []).filter(p => p.position === pos)
+        .map(p => p.season_points || 0).sort((a, b) => b - a)
+        .slice(0, SQUAD_SHAPE[pos]).reduce((a, b) => a + b, 0);
+    }
+    const h2h = (state.h2h_standings || []).find(h => h.entry_id === m.entry_id) || {};
+    return { m, cat, xi: POSITION_ORDER.reduce((a, pos) => a + cat[pos], 0), place: {}, score: 0, table: h2h.rank };
+  });
+  const n = teams.length;
+  for (const pos of POSITION_ORDER) {
+    const sorted = [...teams].sort((a, b) => b.cat[pos] - a.cat[pos]);
+    sorted.forEach((t, i) => {
+      // Level teams share the higher place, as in any standings table.
+      const rank = i > 0 && t.cat[pos] === sorted[i - 1].cat[pos] ? sorted[i - 1].place[pos] : i + 1;
+      t.place[pos] = rank;
+      t.score += n - rank + 1;
+    });
+  }
+  return teams.sort((a, b) => b.score - a.score || b.xi - a.xi);
+}
+
+function renderSquadRanks(state) {
+  const body = document.getElementById("squad-rank-body");
+  const ranked = computeSquadRanks(state);
+  body.innerHTML = ranked.map((t, i) => {
+    const rank = i + 1;
+    const gap = t.table ? t.table - rank : 0;
+    const gapHtml = gap > 0 ? `<span class="sr-gap down" title="${gap} place${gap > 1 ? "s" : ""} lower in the table than the squad suggests">▼${gap}</span>`
+      : gap < 0 ? `<span class="sr-gap up" title="${-gap} place${gap < -1 ? "s" : ""} higher in the table than the squad suggests">▲${-gap}</span>` : "";
+    const cats = POSITION_ORDER.map(pos => `<td class="sr-cat${t.place[pos] === 1 ? " best" : ""}" title="${t.cat[pos]} season pts">${ordinal(t.place[pos])}</td>`).join("");
+    return `<tr class="${t.m.is_me ? "is-me" : ""}">
+      <td>${rank}</td>
+      <td class="team-cell">${t.m.name}</td>
+      <td class="sr-score">${t.score}</td>
+      ${cats}
+      <td>${t.xi}</td>
+      <td>${t.table ? ordinal(t.table) : "–"}${gapHtml}</td>
+    </tr>`;
+  }).join("");
 }
 
 function render(state) {
@@ -1078,6 +1171,8 @@ function render(state) {
       tbody.appendChild(detailRow);
     }
   }
+
+  renderSquadRanks(state);
 
   const gc = state.global_context;
   document.getElementById("global-context").innerHTML = gc

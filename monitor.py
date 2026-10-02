@@ -589,6 +589,12 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             player_rows.append(row)
         # Bench players never auto-subbed in — shown for visibility (ESPN-style "BN"
         # section) but their points never count toward the team total.
+        subbed_out_ids = {s["out"] for s in subs_made}
+        for pick in picks.get("starting", []):
+            if pick["element"] in subbed_out_ids:
+                row, _ = _build_player_row(pick, True, subbed_in_ids)
+                row["subbed_off"] = True
+                player_rows.append(row)
         for pick in picks.get("bench", []):
             if pick["element"] in subbed_in_ids:
                 continue
@@ -666,6 +672,23 @@ def _update_probability_history(league_id, gw, current_matchups):
     return history["points"]
 
 
+def _draft_to_classic_ids(draft_bootstrap, classic_bootstrap):
+    """Draft and classic FPL number players independently: they agree for players present
+    at launch, but anyone added later (ids 554+ in 26/27, 64 players as of GW5) gets a
+    different id in each game. Every per-player number we show (live points, minutes,
+    season totals, position, club) comes from the classic API, so translate Draft ids
+    through the permanent player `code`, which both games share."""
+    classic_id_by_code = {e["code"]: e["id"] for e in classic_bootstrap["elements"]}
+    mapping = {}
+    for e in draft_bootstrap["elements"]:
+        cid = classic_id_by_code.get(e.get("code"))
+        if cid is None:
+            log.warning("Draft player %s (%s) has no classic match by code", e["id"], e.get("web_name"))
+            cid = e["id"]
+        mapping[e["id"]] = cid
+    return mapping
+
+
 def poll_once(league_cfg):
     league_id = league_cfg["league_id"]
     my_entry_id = league_cfg["my_entry_id"]
@@ -681,9 +704,18 @@ def poll_once(league_cfg):
     entry_ids = [e["entry_id"] for e in entries]
 
     transactions_resp = fpl_api.league_transactions(league_id)
-    transactions = transactions_resp.get("transactions", [])
+    to_classic = _draft_to_classic_ids(draft_bootstrap, classic_bootstrap)
+    transactions = [
+        {**t,
+         "element_in": to_classic.get(t.get("element_in"), t.get("element_in")),
+         "element_out": to_classic.get(t.get("element_out"), t.get("element_out"))}
+        for t in transactions_resp.get("transactions", [])
+    ]
 
     lineups = _fetch_lineups(gw, entry_ids, league_id)
+    for lineup in lineups.values():
+        for pick in lineup["starting"] + lineup["bench"]:
+            pick["element"] = to_classic.get(pick["element"], pick["element"])
 
     any_live = False
     fast_poll_needed = False

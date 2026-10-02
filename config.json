@@ -8,27 +8,5 @@
   ],
   "idle_poll_seconds": 900,
   "live_poll_seconds": 20,
-  "dashboard_port": 8765,
-  "lineup_overrides": {
-    "10570": {
-      "51951": {
-        "1": [
-          {
-            "out": 554,
-            "in": 557,
-            "note": "User confirms Tzolis (557) is actually starting in place of Van Oevelen (554) per the official FPL Draft app. Not reflected in the Draft API's entry_event_picks/element_status for this team as of 2026-08-21 — no matching transaction found anywhere in the league either. Remove this override once the API catches up, or if it turns out to be wrong."
-          }
-        ]
-      },
-      "51952": {
-        "2": [
-          {
-            "out": 595,
-            "in": 593,
-            "note": "User confirms Dedic (593) is on Combadtrip's bench, not Gozo (595), per the official FPL Draft app as of 2026-08-30 — despite the Draft API's own picks data and an accepted free-agent transaction both showing Gozo (595) acquired on 2026-08-27. Element ids are close (593 vs 595) so easy to mix up upstream. Remove this override once the API catches up, or if it turns out to be wrong."
-          }
-        ]
-      }
-    }
-  }
+  "dashboard_port": 8765
 }
