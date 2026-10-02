@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T03:19:47.484890+00:00",
+  "generated_at": "2026-10-02T04:31:17.721415+00:00",
   "league_id": 10570,
   "league_name": "Tourage Invitational 26/27",
   "my_entry_id": 51947,
@@ -61,7 +61,11 @@
           "season_rank": 121,
           "season_pos_rank": 13,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 3.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 469,
@@ -111,7 +115,11 @@
           "season_rank": 83,
           "season_pos_rank": 34,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 3.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 5,
@@ -161,7 +169,11 @@
           "season_rank": 374,
           "season_pos_rank": 129,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 334,
@@ -211,7 +223,11 @@
           "season_rank": 32,
           "season_pos_rank": 9,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 5.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 427,
@@ -261,7 +277,11 @@
           "season_rank": 42,
           "season_pos_rank": 19,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 13,
@@ -311,7 +331,11 @@
           "season_rank": 75,
           "season_pos_rank": 31,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.0,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Unspecified injury - 75% chance of playing"
         },
         {
           "element": 481,
@@ -361,7 +385,11 @@
           "season_rank": 107,
           "season_pos_rank": 46,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 3.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 68,
@@ -411,7 +439,11 @@
           "season_rank": 16,
           "season_pos_rank": 7,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 6.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 124,
@@ -461,7 +493,11 @@
           "season_rank": 1,
           "season_pos_rank": 1,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 10.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 346,
@@ -511,7 +547,11 @@
           "season_rank": 59,
           "season_pos_rank": 7,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 4.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 167,
@@ -561,7 +601,11 @@
           "season_rank": 194,
           "season_pos_rank": 19,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 82,
@@ -611,7 +655,11 @@
           "season_rank": 75,
           "season_pos_rank": 7,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 3.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 165,
@@ -661,7 +709,11 @@
           "season_rank": 10,
           "season_pos_rank": 2,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 4.3,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Knee injury - 75% chance of playing"
         },
         {
           "element": 200,
@@ -711,7 +763,11 @@
           "season_rank": 139,
           "season_pos_rank": 49,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 230,
@@ -761,7 +817,11 @@
           "season_rank": 32,
           "season_pos_rank": 9,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 5.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         }
       ],
       "subs_made": [],
@@ -836,7 +896,11 @@
           "season_rank": 20,
           "season_pos_rank": 2,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 6.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 391,
@@ -886,7 +950,11 @@
           "season_rank": 7,
           "season_pos_rank": 4,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 7.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 503,
@@ -936,7 +1004,11 @@
           "season_rank": 99,
           "season_pos_rank": 39,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 5.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 330,
@@ -986,7 +1058,11 @@
           "season_rank": 3,
           "season_pos_rank": 2,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 11.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 449,
@@ -1036,7 +1112,11 @@
           "season_rank": 16,
           "season_pos_rank": 6,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 5.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 12,
@@ -1086,7 +1166,11 @@
           "season_rank": 13,
           "season_pos_rank": 5,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 397,
@@ -1136,7 +1220,11 @@
           "season_rank": 10,
           "season_pos_rank": 4,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 8.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Ankle injury - 75% chance of playing"
         },
         {
           "element": 236,
@@ -1186,7 +1274,11 @@
           "season_rank": 75,
           "season_pos_rank": 31,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 377,
@@ -1236,7 +1328,11 @@
           "season_rank": 107,
           "season_pos_rank": 46,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 1.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 569,
@@ -1286,7 +1382,11 @@
           "season_rank": 121,
           "season_pos_rank": 13,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 136,
@@ -1336,7 +1436,11 @@
           "season_rank": 279,
           "season_pos_rank": 29,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 1.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 385,
@@ -1386,7 +1490,11 @@
           "season_rank": 26,
           "season_pos_rank": 3,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 5.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 439,
@@ -1436,7 +1544,11 @@
           "season_rank": 215,
           "season_pos_rank": 21,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 2.0,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Shin injury - 75% chance of playing"
         },
         {
           "element": 358,
@@ -1486,7 +1598,11 @@
           "season_rank": 139,
           "season_pos_rank": 49,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 242,
@@ -1536,7 +1652,11 @@
           "season_rank": 83,
           "season_pos_rank": 35,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         }
       ],
       "subs_made": [],
@@ -1611,7 +1731,11 @@
           "season_rank": 121,
           "season_pos_rank": 13,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 31,
@@ -1661,7 +1785,11 @@
           "season_rank": 152,
           "season_pos_rank": 56,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 3.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 579,
@@ -1711,7 +1839,11 @@
           "season_rank": 59,
           "season_pos_rank": 26,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 7.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 8,
@@ -1761,7 +1893,11 @@
           "season_rank": 23,
           "season_pos_rank": 8,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 3.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 389,
@@ -1811,7 +1947,11 @@
           "season_rank": 167,
           "season_pos_rank": 64,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 3.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 156,
@@ -1861,7 +2001,11 @@
           "season_rank": 121,
           "season_pos_rank": 56,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 368,
@@ -1911,7 +2055,11 @@
           "season_rank": 75,
           "season_pos_rank": 31,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 15,
@@ -1961,7 +2109,11 @@
           "season_rank": 23,
           "season_pos_rank": 11,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 5.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 403,
@@ -2011,7 +2163,11 @@
           "season_rank": 215,
           "season_pos_rank": 101,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 401,
@@ -2061,7 +2217,11 @@
           "season_rank": 215,
           "season_pos_rank": 21,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 106,
@@ -2111,7 +2271,11 @@
           "season_rank": 179,
           "season_pos_rank": 17,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 597,
@@ -2161,7 +2325,11 @@
           "season_rank": 99,
           "season_pos_rank": 11,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 4.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 400,
@@ -2211,7 +2379,11 @@
           "season_rank": 374,
           "season_pos_rank": 177,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 0.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 138,
@@ -2261,7 +2433,11 @@
           "season_rank": 26,
           "season_pos_rank": 4,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 7.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 145,
@@ -2311,7 +2487,11 @@
           "season_rank": 215,
           "season_pos_rank": 77,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         }
       ],
       "subs_made": [],
@@ -2386,7 +2566,11 @@
           "season_rank": 167,
           "season_pos_rank": 15,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 305,
@@ -2436,7 +2620,11 @@
           "season_rank": 42,
           "season_pos_rank": 15,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 5.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 61,
@@ -2486,7 +2674,11 @@
           "season_rank": 179,
           "season_pos_rank": 66,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 1.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 362,
@@ -2536,7 +2728,11 @@
           "season_rank": 48,
           "season_pos_rank": 19,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 6.7,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 399,
@@ -2586,7 +2782,11 @@
           "season_rank": 8,
           "season_pos_rank": 3,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 95,
@@ -2636,7 +2836,11 @@
           "season_rank": 233,
           "season_pos_rank": 109,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 1.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 67,
@@ -2686,7 +2890,11 @@
           "season_rank": 179,
           "season_pos_rank": 82,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 86,
@@ -2736,7 +2944,11 @@
           "season_rank": 59,
           "season_pos_rank": 22,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 379,
@@ -2786,7 +2998,11 @@
           "season_rank": 10,
           "season_pos_rank": 2,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 7.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Thigh injury - 75% chance of playing"
         },
         {
           "element": 26,
@@ -2836,7 +3052,11 @@
           "season_rank": 83,
           "season_pos_rank": 9,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 3.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Hamstring injury - 75% chance of playing"
         },
         {
           "element": 79,
@@ -2886,7 +3106,11 @@
           "season_rank": 89,
           "season_pos_rank": 10,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 3.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 28,
@@ -2936,7 +3160,11 @@
           "season_rank": 194,
           "season_pos_rank": 17,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 2.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 336,
@@ -2986,7 +3214,11 @@
           "season_rank": 89,
           "season_pos_rank": 36,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 5.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 142,
@@ -3036,7 +3268,11 @@
           "season_rank": 301,
           "season_pos_rank": 107,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Hamstring injury - 75% chance of playing"
         },
         {
           "element": 115,
@@ -3086,7 +3322,11 @@
           "season_rank": 6,
           "season_pos_rank": 3,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 7.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         }
       ],
       "subs_made": [],
@@ -3161,7 +3401,11 @@
           "season_rank": 32,
           "season_pos_rank": 4,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 8.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 4,
@@ -3211,7 +3455,11 @@
           "season_rank": 42,
           "season_pos_rank": 15,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 356,
@@ -3261,7 +3509,11 @@
           "season_rank": 42,
           "season_pos_rank": 15,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 7.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 472,
@@ -3311,7 +3563,11 @@
           "season_rank": 56,
           "season_pos_rank": 24,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 6.0,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 631,
@@ -3361,7 +3617,11 @@
           "season_rank": 338,
           "season_pos_rank": 159,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 0.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 40,
@@ -3411,7 +3671,11 @@
           "season_rank": 23,
           "season_pos_rank": 11,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 5.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 452,
@@ -3461,7 +3725,11 @@
           "season_rank": 194,
           "season_pos_rank": 88,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 157,
@@ -3511,7 +3779,11 @@
           "season_rank": 279,
           "season_pos_rank": 129,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 1.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 627,
@@ -3561,7 +3833,11 @@
           "season_rank": 233,
           "season_pos_rank": 109,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 552,
@@ -3611,7 +3887,11 @@
           "season_rank": 48,
           "season_pos_rank": 6,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 6.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Hamstring injury - 75% chance of playing"
         },
         {
           "element": 249,
@@ -3661,7 +3941,11 @@
           "season_rank": 75,
           "season_pos_rank": 8,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 3.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 496,
@@ -3711,7 +3995,11 @@
           "season_rank": 89,
           "season_pos_rank": 9,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 5.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 144,
@@ -3761,7 +4049,11 @@
           "season_rank": 279,
           "season_pos_rank": 102,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 112,
@@ -3811,7 +4103,11 @@
           "season_rank": 48,
           "season_pos_rank": 19,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 7.3,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Foot injury - 75% chance of playing"
         },
         {
           "element": 125,
@@ -3861,7 +4157,11 @@
           "season_rank": 250,
           "season_pos_rank": 27,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 0.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         }
       ],
       "subs_made": [],
@@ -3936,7 +4236,11 @@
           "season_rank": 42,
           "season_pos_rank": 5,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 5.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 229,
@@ -3986,7 +4290,11 @@
           "season_rank": 2,
           "season_pos_rank": 1,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 8.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 60,
@@ -4036,7 +4344,11 @@
           "season_rank": 152,
           "season_pos_rank": 56,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 2.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 502,
@@ -4086,7 +4398,11 @@
           "season_rank": 96,
           "season_pos_rank": 37,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 233,
@@ -4136,7 +4452,11 @@
           "season_rank": 32,
           "season_pos_rank": 9,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 5.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Leg injury - 75% chance of playing"
         },
         {
           "element": 418,
@@ -4186,7 +4506,11 @@
           "season_rank": 179,
           "season_pos_rank": 66,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 1.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 453,
@@ -4236,7 +4560,11 @@
           "season_rank": 26,
           "season_pos_rank": 13,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 7.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 426,
@@ -4286,7 +4614,11 @@
           "season_rank": 16,
           "season_pos_rank": 7,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 428,
@@ -4336,7 +4668,11 @@
           "season_rank": 38,
           "season_pos_rank": 18,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 5.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 155,
@@ -4386,7 +4722,11 @@
           "season_rank": 139,
           "season_pos_rank": 63,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 491,
@@ -4436,7 +4776,11 @@
           "season_rank": 152,
           "season_pos_rank": 16,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 3.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 572,
@@ -4486,7 +4830,11 @@
           "season_rank": 8,
           "season_pos_rank": 1,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 4.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 316,
@@ -4536,7 +4884,11 @@
           "season_rank": 38,
           "season_pos_rank": 5,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 5.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 223,
@@ -4586,7 +4938,11 @@
           "season_rank": 338,
           "season_pos_rank": 40,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 0.0,
+          "status": "i",
+          "chance_next": 0,
+          "news": "Hamstring injury - Expected back 11 Oct"
         },
         {
           "element": 398,
@@ -4636,7 +4992,11 @@
           "season_rank": 194,
           "season_pos_rank": 88,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": -0.3,
+          "status": "s",
+          "chance_next": 0,
+          "news": "Suspended until 17 Oct"
         }
       ],
       "subs_made": [],
@@ -4711,7 +5071,11 @@
           "season_rank": 89,
           "season_pos_rank": 9,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 4.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 390,
@@ -4761,7 +5125,11 @@
           "season_rank": 96,
           "season_pos_rank": 37,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 4.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 387,
@@ -4811,7 +5179,11 @@
           "season_rank": 250,
           "season_pos_rank": 89,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Unspecified injury - 75% chance of playing"
         },
         {
           "element": 649,
@@ -4861,7 +5233,11 @@
           "season_rank": 67,
           "season_pos_rank": 28,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 7.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 366,
@@ -4911,7 +5287,11 @@
           "season_rank": 89,
           "season_pos_rank": 36,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 367,
@@ -4961,7 +5341,11 @@
           "season_rank": 13,
           "season_pos_rank": 5,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 5.0,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Ankle injury - 75% chance of playing"
         },
         {
           "element": 557,
@@ -5011,7 +5395,11 @@
           "season_rank": 99,
           "season_pos_rank": 41,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 3.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 94,
@@ -5061,7 +5449,11 @@
           "season_rank": 4,
           "season_pos_rank": 2,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 8.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 483,
@@ -5111,7 +5503,11 @@
           "season_rank": 107,
           "season_pos_rank": 46,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 1.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 411,
@@ -5161,7 +5557,11 @@
           "season_rank": 4,
           "season_pos_rank": 1,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 8.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 166,
@@ -5211,7 +5611,11 @@
           "season_rank": 179,
           "season_pos_rank": 17,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 2.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 529,
@@ -5261,7 +5665,11 @@
           "season_rank": 167,
           "season_pos_rank": 15,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 1.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 526,
@@ -5311,7 +5719,11 @@
           "season_rank": 233,
           "season_pos_rank": 24,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 1.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 473,
@@ -5361,7 +5773,11 @@
           "season_rank": 215,
           "season_pos_rank": 77,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 1.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 152,
@@ -5411,7 +5827,11 @@
           "season_rank": 420,
           "season_pos_rank": 147,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.0,
+          "status": "d",
+          "chance_next": 50,
+          "news": "Thigh injury - 50% chance of playing"
         }
       ],
       "subs_made": [],
@@ -5486,7 +5906,11 @@
           "season_rank": 83,
           "season_pos_rank": 8,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 5.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 388,
@@ -5536,7 +5960,11 @@
           "season_rank": 20,
           "season_pos_rank": 7,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 6.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 201,
@@ -5586,7 +6014,11 @@
           "season_rank": 265,
           "season_pos_rank": 96,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 1.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 357,
@@ -5636,7 +6068,11 @@
           "season_rank": 338,
           "season_pos_rank": 120,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 237,
@@ -5686,7 +6122,11 @@
           "season_rank": 59,
           "season_pos_rank": 22,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 3.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 268,
@@ -5736,7 +6176,11 @@
           "season_rank": 48,
           "season_pos_rank": 20,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 5.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 154,
@@ -5786,7 +6230,11 @@
           "season_rank": 26,
           "season_pos_rank": 13,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 2.7,
+          "status": "d",
+          "chance_next": 75,
+          "news": "Muscular injury - 75% chance of playing"
         },
         {
           "element": 480,
@@ -5836,7 +6284,11 @@
           "season_rank": 26,
           "season_pos_rank": 13,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 4.3,
+          "status": "a",
+          "chance_next": 100,
+          "news": ""
         },
         {
           "element": 565,
@@ -5886,7 +6338,11 @@
           "season_rank": 59,
           "season_pos_rank": 22,
           "season_rank_of": 667,
-          "season_pos_rank_of": 298
+          "season_pos_rank_of": 298,
+          "form": 1.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 295,
@@ -5936,7 +6392,11 @@
           "season_rank": 139,
           "season_pos_rank": 15,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 2.3,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 464,
@@ -5986,7 +6446,11 @@
           "season_rank": 107,
           "season_pos_rank": 11,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 1.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 109,
@@ -6036,7 +6500,11 @@
           "season_rank": 56,
           "season_pos_rank": 6,
           "season_rank_of": 667,
-          "season_pos_rank_of": 73
+          "season_pos_rank_of": 73,
+          "form": 5.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 25,
@@ -6086,7 +6554,11 @@
           "season_rank": 338,
           "season_pos_rank": 40,
           "season_rank_of": 667,
-          "season_pos_rank_of": 79
+          "season_pos_rank_of": 79,
+          "form": 0.7,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 498,
@@ -6136,7 +6608,11 @@
           "season_rank": 301,
           "season_pos_rank": 107,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.0,
+          "status": "a",
+          "chance_next": null,
+          "news": ""
         },
         {
           "element": 593,
@@ -6186,7 +6662,11 @@
           "season_rank": 139,
           "season_pos_rank": 49,
           "season_rank_of": 667,
-          "season_pos_rank_of": 217
+          "season_pos_rank_of": 217,
+          "form": 0.3,
+          "status": "i",
+          "chance_next": 0,
+          "news": "Unspecified injury - Unknown return date"
         }
       ],
       "subs_made": [],
