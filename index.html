@@ -55,6 +55,7 @@
   }
 
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
@@ -69,6 +70,25 @@
     -webkit-font-smoothing: antialiased;
   }
   .page { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+  .view { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+
+  /* ---------- Menu: tabs under the header, a bottom bar on phones ---------- */
+  .views-nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    display: flex; gap: 6px; flex-wrap: wrap; padding: 8px 0;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+  }
+  .views-nav button {
+    position: relative; display: inline-flex; align-items: center; gap: 8px;
+    font: 600 14.5px/1 var(--font-text); color: var(--muted); background: none;
+    border: 0; border-radius: 999px; padding: 10px 15px; cursor: pointer;
+  }
+  .views-nav button:hover { color: var(--ink); }
+  .views-nav button[aria-current="page"] { background: var(--ink); color: var(--bg); }
+  .views-nav svg { width: 18px; height: 18px; flex: none; }
+  .tab-dot { display: none; width: 7px; height: 7px; border-radius: 50%; background: var(--card); animation: livePulse 1.4s ease-in-out infinite; }
+  #tab-live.is-live .tab-dot { display: inline-block; }
+  .views-nav button.has-update::after { content: ""; position: absolute; top: 6px; right: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
   ::selection { background: var(--card); color: var(--on-card); }
   :focus-visible { outline: 2px solid var(--card); outline-offset: 2px; border-radius: 4px; }
 
@@ -177,13 +197,15 @@
   .mr-pct { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin-top: 2px; }
   .mr-pct.fav { color: var(--card-ink); }
   @media (max-width: 760px) { #match-list, #next-list { grid-template-columns: minmax(0, 1fr); } }
-  .mr-pos { font: 800 22px/1 var(--font-display); color: var(--muted); min-width: 34px; text-align: center; }
+  .mr-pos { font: 600 13px/1 var(--font-text); color: var(--muted); min-width: 30px; text-align: center; }
   .mr-form { display: block; font-size: 11.5px; font-weight: 600; letter-spacing: 0.08em; color: var(--muted); margin-top: 2px; }
   .mr-form b { color: var(--good); font-weight: 700; }
   .mr-form i { color: var(--red); font-style: normal; }
   .deadlines { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13.5px; color: var(--muted); margin: -4px 0 10px; }
   .deadlines strong { color: var(--ink); font-weight: 600; }
   .deadlines .past { text-decoration: line-through; }
+  .deadlines .rel { font-weight: 600; }
+  .deadlines .soon .rel, .deadlines .soon strong { color: var(--card-ink); }
 
   /* ---------- Compare ---------- */
   .cmp-controls { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; margin-bottom: 16px; }
@@ -195,6 +217,7 @@
   .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
   .cmp-summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-bottom: 6px; }
   .cmp-summary .side.b { text-align: right; }
+  .cmp-summary .cmp-empty { grid-column: 1 / -1; }
   .cmp-summary .big { font: 800 44px/1 var(--font-display); }
   .cmp-summary .lbl { display: block; color: var(--muted); font-size: 13px; margin-top: 4px; }
   .cmp-summary .side.behind .big { color: var(--muted); }
@@ -422,6 +445,16 @@
   @media (max-width: 640px) {
     body { padding-block-start: 18px; font-size: 14.5px; }
     .panel { padding: 16px 14px 16px; }
+    body { padding-block-end: calc(72px + env(safe-area-inset-bottom, 0px)); }
+    .views-nav {
+      position: fixed; top: auto; bottom: 0; left: 0; right: 0; flex-wrap: nowrap; gap: 2px;
+      padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px));
+      background: var(--surface); border-bottom: 0; border-top: 1px solid var(--line-strong);
+    }
+    .views-nav button { flex: 1 1 0; flex-direction: column; gap: 4px; font-size: 11.5px; padding: 7px 4px; border-radius: 10px; }
+    .views-nav button[aria-current="page"] { background: var(--surface-2); color: var(--ink); }
+    .views-nav svg { width: 21px; height: 21px; }
+    .tab-dot { position: absolute; top: 7px; left: calc(50% + 9px); }
     .header-row { position: relative; }
     .brand-row { margin-right: 92px; min-height: 38px; }
     .header-controls { position: absolute; top: 0; right: 0; }
@@ -483,6 +516,14 @@
     </div>
   </header>
 
+  <nav class="views-nav" id="views-nav" aria-label="Sections" hidden>
+    <button type="button" data-view="live" id="tab-live"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tab-label">Live</span><span class="tab-dot" aria-hidden="true"></span></button>
+    <button type="button" data-view="matchups"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10l-3-3M17 17H7l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tab-label">Matchups</span></button>
+    <button type="button" data-view="free-agents"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10" cy="8" r="3.5" stroke="currentColor" stroke-width="2"/><path d="M3.5 19c.8-3.2 3.4-5 6.5-5 1.4 0 2.7.4 3.8 1.1M18 14v6M15 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tab-label">Free agents</span></button>
+    <button type="button" data-view="squads"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span class="tab-label">Squads</span></button>
+  </nav>
+
+  <div class="view" data-view="live" hidden>
   <section class="panel" aria-labelledby="table-title">
     <div class="panel-head">
       <div>
@@ -528,6 +569,18 @@
     <div id="match-list"></div>
   </section>
 
+  <section class="panel" id="events-panel" aria-labelledby="events-title">
+      <div class="panel-head">
+        <div>
+          <h2 id="events-title">Premier League matches</h2>
+          <p class="panel-note">Goals and cards often appear here a minute before the fantasy points update.</p>
+        </div>
+      </div>
+      <div id="match-events"></div>
+  </section>
+  </div>
+
+  <div class="view" data-view="matchups" hidden>
   <section class="panel" id="next-panel" aria-labelledby="next-title">
     <div class="panel-head">
       <div>
@@ -572,7 +625,9 @@
     <div id="cmp-body"></div>
     <p class="cmp-note">Fixtures: this gameweek's match, then next gameweek's. Capitals are home games, lower case away, coloured by FPL difficulty; a struck-through grey chip has already been played. A % next to a name is FPL's chance of him playing; hover it for the news.</p>
   </section>
+  </div>
 
+  <div class="view" data-view="free-agents" hidden>
   <section class="panel" id="fa-panel" aria-labelledby="fa-title">
     <div class="panel-head">
       <div>
@@ -624,7 +679,9 @@
       <p>The number after a club is its current Premier League position, worked out from this season's results (points, then goal difference, then goals scored). Use the league position filter to keep only players from the stronger, or weaker, clubs.</p>
     </details>
   </section>
+  </div>
 
+  <div class="view" data-view="squads" hidden>
   <section class="panel" aria-labelledby="squad-rank-title">
     <div class="panel-head">
       <div>
@@ -659,16 +716,7 @@
       <p>Season points include anything a player scored before his current team signed him, so this measures the squad, not the results. The Table column shows where each team actually sits.</p>
     </details>
   </section>
-
-  <section class="panel" id="events-panel" aria-labelledby="events-title">
-      <div class="panel-head">
-        <div>
-          <h2 id="events-title">Premier League matches</h2>
-          <p class="panel-note">Goals and cards often appear here a minute before the fantasy points update.</p>
-        </div>
-      </div>
-      <div id="match-events"></div>
-  </section>
+  </div>
 
   <footer class="site-footer">FPL Fantasy Live Monitor, est. 2026. Data from the official FPL Draft site, refreshed every few minutes.</footer>
 </div>
@@ -994,7 +1042,16 @@ function renderNextGameweek(state) {
 
   const when = iso => new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
   const now = Date.now();
-  const line = (label, iso) => iso ? `<span class="${new Date(iso).getTime() < now ? "past" : ""}">${label} <strong>${when(iso)}</strong></span>` : "";
+  const rel = ms => ms < 3600e3 ? `in ${Math.max(1, Math.round(ms / 60e3))} min` : ms < 48 * 3600e3 ? `in ${Math.round(ms / 3600e3)} h` : `in ${Math.round(ms / 86400e3)} days`;
+  // The nearest deadline still to come gets a countdown, in yellow inside 24 hours.
+  const upcoming = info ? [info.trades, info.waivers, info.deadline].filter(t => t && new Date(t).getTime() > now).sort() : [];
+  const line = (label, iso) => {
+    if (!iso) return "";
+    const t = new Date(iso).getTime();
+    if (t < now) return `<span class="past">${label} <strong>${when(iso)}</strong></span>`;
+    const isNext = iso === upcoming[0];
+    return `<span class="${isNext && t - now < 86400e3 ? "soon" : ""}">${label} <strong>${when(iso)}</strong>${isNext ? ` <span class="rel">(${rel(t - now)})</span>` : ""}</span>`;
+  };
   document.getElementById("next-deadlines").innerHTML = info
     ? line("Trades", info.trades) + line("Waivers", info.waivers) + line("Lineup deadline", info.deadline) : "";
 
@@ -1015,7 +1072,7 @@ function renderNextGameweek(state) {
 }
 
 // Free agents: unowned players who have played, filterable and sortable for waiver calls.
-let faPos = "", faClub = "", faTier = "", faQuery = "", faFitOnly = false, faSortKey = "form", faSortBest = true, faLimit = 25;
+let faPos = "", faClub = "", faTier = "", faQuery = "", faFitOnly = false, faSortKey = "form", faSortBest = true, faLimit = 10;
 function faFixtureAvg(r) {
   const d = (r.fixtures || []).map(f => f.difficulty).filter(Boolean);
   return d.length ? d.reduce((a, b) => a + b, 0) / d.length : 9;
@@ -1124,20 +1181,25 @@ function cmpPlayerMeta(p) {
 function renderCompare(state) {
   const managers = state.managers || [];
   const byId = new Map(managers.map(m => [m.entry_id, m]));
-  if (!byId.has(cmpA) || !byId.has(cmpB) || cmpA === cmpB) {
-    const mu = (state.current_matchups || [])[0];
-    [cmpA, cmpB] = mu ? [mu.team1.entry_id, mu.team2.entry_id] : managers.slice(0, 2).map(m => m.entry_id);
-  }
+  if (cmpA && !byId.has(cmpA)) cmpA = null;
+  if (cmpB && !byId.has(cmpB)) cmpB = null;
   for (const [id, val] of [["cmp-a", cmpA], ["cmp-b", cmpB]]) {
     const sel = document.getElementById(id);
-    if (sel.options.length !== managers.length) {
-      sel.innerHTML = managers.map(m => `<option value="${m.entry_id}">${m.name}</option>`).join("");
+    if (sel.options.length !== managers.length + 1) {
+      sel.innerHTML = '<option value="">Choose a team</option>' + managers.map(m => `<option value="${m.entry_id}">${m.name}</option>`).join("");
     }
-    sel.value = String(val);
+    sel.value = val ? String(val) : "";
   }
   document.querySelectorAll("#cmp-mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.mode === cmpMode)));
   const A = byId.get(cmpA), B = byId.get(cmpB);
-  if (!A || !B) return;
+  if (!A || !B || cmpA === cmpB) {
+    document.getElementById("cmp-summary").innerHTML = '<p class="empty cmp-empty">Pick two teams above, or tap a matchup, to see them side by side.</p>';
+    document.getElementById("cmp-chart-wrap").hidden = true;
+    document.getElementById("cmp-body").innerHTML = "";
+    document.querySelector(".cmp-note").hidden = true;
+    return;
+  }
+  document.querySelector(".cmp-note").hidden = false;
   const live = !!state.gameweek_live;
   const mu = (state.current_matchups || []).find(m =>
     (m.team1.entry_id === cmpA && m.team2.entry_id === cmpB) || (m.team1.entry_id === cmpB && m.team2.entry_id === cmpA));
@@ -1495,7 +1557,50 @@ function render(state) {
 let lastState = null;
 let currentLeagueId = null;
 let chartRangeMinutes = null; // null = all history
-let cmpA = null, cmpB = null, cmpMode = "gw"; // Compare: the two teams and which view
+let cmpA = null, cmpB = null, cmpMode = "gw"; // Compare: the two teams (none until chosen) and which view
+
+// ---------- Views ----------
+// Four views behind one menu. The page opens on Live while a gameweek is under way
+// (first kickoff until the last match is over) and on Matchups between gameweeks;
+// a #view link always wins. Every view renders from the same data on each refresh.
+const VIEWS = ["live", "matchups", "free-agents", "squads"];
+let currentView = null;
+let lastScoreSignature = null;
+function gameweekUnderWay(state) {
+  if (state.gameweek_live) return true;
+  const g = state.gameweek_status;
+  return !!(g && g.total && g.started > 0 && g.finished < g.total);
+}
+function viewFromHash() {
+  const v = location.hash.replace("#", "");
+  return VIEWS.includes(v) ? v : null;
+}
+function showView(v, { push = false, scroll = true } = {}) {
+  if (!VIEWS.includes(v)) v = "live";
+  currentView = v;
+  document.getElementById("views-nav").hidden = false;
+  document.querySelectorAll(".view").forEach(el => { el.hidden = el.dataset.view !== v; });
+  document.querySelectorAll("#views-nav button").forEach(b => b.setAttribute("aria-current", b.dataset.view === v ? "page" : "false"));
+  if (v === "live") document.getElementById("tab-live").classList.remove("has-update");
+  if (location.hash !== `#${v}`) history[push ? "pushState" : "replaceState"](null, "", `#${v}`);
+  if (scroll) window.scrollTo(0, 0);
+}
+document.getElementById("views-nav").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-view]");
+  if (b) showView(b.dataset.view, { push: true });
+});
+window.addEventListener("popstate", () => showView(viewFromHash() || "live", { scroll: false }));
+function afterDataLoaded(state) {
+  const underWay = gameweekUnderWay(state);
+  const tab = document.getElementById("tab-live");
+  tab.querySelector(".tab-label").textContent = underWay ? "Live" : "Table";
+  tab.classList.toggle("is-live", !!state.gameweek_live);
+  // A red dot on Live when scores move while you're looking at another view.
+  const sig = (state.managers || []).map(m => `${m.entry_id}:${m.live_score}`).join(",");
+  if (lastScoreSignature !== null && sig !== lastScoreSignature && currentView && currentView !== "live") tab.classList.add("has-update");
+  lastScoreSignature = sig;
+  if (currentView === null) showView(viewFromHash() || (underWay ? "live" : "matchups"), { scroll: false });
+}
 let standingsSortKey = "league_points"; // which Standings column currently drives the ranking
 let standingsSortDir = "desc";
 let srSortKey = "score", srSortBest = true; // squad rank table: column and best-first order
@@ -1516,11 +1621,14 @@ document.querySelectorAll(".chart-filter-btn[data-range]").forEach(btn => {
 
 async function refresh() {
   try {
-    const resp = await fetch(`state/dashboard_state_${currentLeagueId}.json?t=${Date.now()}`, {cache: "no-store"});
+    // "no-cache" asks GitHub Pages whether the file changed (ETag) and only downloads it when it has.
+    const resp = await fetch(`state/dashboard_state_${currentLeagueId}.json`, {cache: "no-cache"});
     lastState = await resp.json();
     render(lastState);
+    afterDataLoaded(lastState);
   } catch (e) {
     console.error("refresh failed", e);
+    if (currentView === null) showView(viewFromHash() || "live", { scroll: false });
   }
 }
 
@@ -1533,6 +1641,7 @@ function openCompare(row, mode) {
   if (!row || !lastState) return;
   cmpA = Number(row.dataset.a); cmpB = Number(row.dataset.b);
   cmpMode = mode;
+  showView("matchups", { push: currentView !== "matchups", scroll: false });
   render(lastState);
   const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   document.getElementById("compare-panel").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
@@ -1541,28 +1650,28 @@ document.getElementById("match-list").addEventListener("click", (e) => openCompa
 document.getElementById("next-list").addEventListener("click", (e) => openCompare(e.target.closest(".match-row"), "season"));
 for (const id of ["cmp-a", "cmp-b"]) {
   document.getElementById(id).addEventListener("change", (e) => {
-    const v = Number(e.target.value);
+    const v = Number(e.target.value) || null;
     // Picking the team already on the other side swaps the two.
-    if (id === "cmp-a") { if (v === cmpB) cmpB = cmpA; cmpA = v; } else { if (v === cmpA) cmpA = cmpB; cmpB = v; }
+    if (id === "cmp-a") { if (v && v === cmpB) cmpB = cmpA; cmpA = v; } else { if (v && v === cmpA) cmpA = cmpB; cmpB = v; }
     if (lastState) render(lastState);
   });
 }
 document.getElementById("fa-pos").addEventListener("click", (e) => {
   const b = e.target.closest("button[data-pos]");
   if (!b) return;
-  faPos = b.dataset.pos; faLimit = 25;
+  faPos = b.dataset.pos; faLimit = 10;
   if (lastState) renderFreeAgents(lastState);
 });
 document.getElementById("fa-club").addEventListener("change", (e) => {
-  faClub = e.target.value; faLimit = 25;
+  faClub = e.target.value; faLimit = 10;
   if (lastState) renderFreeAgents(lastState);
 });
 document.getElementById("fa-tier").addEventListener("change", (e) => {
-  faTier = e.target.value; faLimit = 25;
+  faTier = e.target.value; faLimit = 10;
   if (lastState) renderFreeAgents(lastState);
 });
 document.getElementById("fa-search").addEventListener("input", (e) => {
-  faQuery = e.target.value; faLimit = 25;
+  faQuery = e.target.value; faLimit = 10;
   if (lastState) renderFreeAgents(lastState);
 });
 document.getElementById("fa-fit").addEventListener("change", (e) => {
@@ -1621,9 +1730,10 @@ document.getElementById("refresh-btn").addEventListener("click", async () => {
   btn.disabled = true;
   btn.classList.add("spinning");
   try {
-    const resp = await fetch(`state/dashboard_state_${currentLeagueId}.json?t=${Date.now()}`, {cache: "no-store"});
+    const resp = await fetch(`state/dashboard_state_${currentLeagueId}.json`, {cache: "no-cache"});
     lastState = await resp.json();
     render(lastState);
+    afterDataLoaded(lastState);
   } catch (e) {
     console.error("manual refresh failed", e);
   } finally {

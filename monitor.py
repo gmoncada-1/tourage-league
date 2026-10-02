@@ -83,7 +83,7 @@ def _load_json(path, default):
 def _save_json(path, data):
     tmp = path + ".tmp"
     with open(tmp, "w") as f:
-        json.dump(data, f, indent=2)
+        json.dump(data, f, separators=(",", ":"))  # compact: the page downloads this every minute
     os.replace(tmp, path)
 
 
@@ -832,11 +832,20 @@ def poll_once(league_cfg):
     match_events = []
     difficulty_index = {}
     pl_table = []
+    gameweek_status = None
     if gw:
         try:
             all_fixtures = _get_all_fixtures()
             difficulty_index = _build_team_difficulty_index(all_fixtures, gw, teams_by_id)
             pl_table = _premier_league_table(all_fixtures, teams_by_id)
+            # How far through the gameweek we are: the page opens on Live from the first
+            # kickoff until the last match is over, and on Matchups between gameweeks.
+            gw_fx = [f for f in all_fixtures if f.get("event") == gw]
+            gameweek_status = {
+                "total": len(gw_fx),
+                "started": sum(1 for f in gw_fx if f.get("started")),
+                "finished": sum(1 for f in gw_fx if f.get("finished") or f.get("finished_provisional")),
+            }
             team_scores, any_live, fast_poll_needed, match_events = _compute_live_scores(
                 gw, lineups, draft_elements_by_id, classic_elements_by_id, teams_by_id, difficulty_index
             )
@@ -1025,6 +1034,7 @@ def poll_once(league_cfg):
         "my_entry_id": my_entry_id,
         "gameweek": gw,
         "gameweek_live": any_live,
+        "gameweek_status": gameweek_status,
         "next_gameweek": _next_gameweek_info(draft_bootstrap, gw),
         "managers": [
             {
@@ -1054,10 +1064,8 @@ def poll_once(league_cfg):
         "matches": league.get("matches", []),
         "match_events": match_events,
         "probability_history": probability_history_points,
-        "moves_feed": moves_feed,
         "free_agents": free_agents,
         "pl_table": pl_table,
-        "transfer_deadline_moves": transfer_deadline_moves,
         "new_moves_count": len(new_transactions),
         "lineup_changes": lineup_changes,
         "global_context": global_context,
