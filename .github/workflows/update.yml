@@ -5,7 +5,12 @@ on:
     # Every 5 minutes (GitHub's minimum), offset from :00 because runs at the
     # top of the hour are the ones most likely to be delayed or dropped.
     - cron: "3-58/5 * * * *"
-  workflow_dispatch: {}   # "Run workflow" button = manual refresh
+  workflow_dispatch:      # "Run workflow" button = manual refresh
+    inputs:
+      chain_test:
+        description: "Also test the live self-refresh (starts one more run)"
+        type: boolean
+        default: false
   push:
     branches: [main]
 
@@ -75,7 +80,7 @@ jobs:
       # one itself: an update about every 2 minutes. It stops on its own once matches are
       # over; the schedule above stays as the backstop.
       - name: Keep updating every couple of minutes while matches are on
-        if: steps.poll.outputs.fast_poll == 'true'
+        if: steps.poll.outputs.fast_poll == 'true' || inputs.chain_test
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
