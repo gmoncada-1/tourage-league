@@ -779,6 +779,59 @@
     .vs-table .meta .sp { display: inline; }
     .cmp-board { padding-top: 12px; }
   }
+  /* ---------- My squad ---------- */
+  .ms-empty { display: grid; gap: 12px; justify-items: start; padding: 16px; border: 1px solid var(--line); border-radius: var(--radius); }
+  .ms-empty p { margin: 0; }
+  .ms-hero { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 16px; background: var(--surface-2); display: grid; gap: 6px; }
+  .ms-vs { font-size: 15px; color: var(--muted); }
+  .ms-vs span { font-weight: 700; color: var(--ink); margin-right: 4px; }
+  .ms-vs b { color: var(--ink); }
+  .ms-odds { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .ms-odds b { font: 800 56px/0.95 var(--font-display); color: var(--card-ink); }
+  .ms-odds span { color: var(--muted); font-size: 14px; }
+  .ms-proj, .ms-after { font-size: 14px; color: var(--muted); }
+  .ms-proj b, .ms-after b { color: var(--ink); }
+  .ms-hero .deadlines { margin: 4px 0 0; font-size: 13px; }
+  .ms-section { margin-top: 22px; }
+  .ms-section > h3 { font-size: 16px; margin: 0 0 8px; }
+  .move-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; margin-bottom: 10px; background: var(--surface); }
+  .move-card header { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; align-items: baseline; }
+  .mv-n { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--card); color: var(--on-card); font-weight: 700; font-size: 13px; }
+  .mv-title { font-weight: 600; font-size: 15.5px; }
+  .mv-gain { grid-column: 2; color: var(--good); font-weight: 700; font-size: 14px; }
+  .mv-tag { color: var(--muted); font-size: 12.5px; margin: 6px 0 4px 34px; }
+  .mv-grid { max-width: 560px; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr); margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .mv-grid > div { padding: 6px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+  .mv-l { color: var(--muted); font-size: 13px; }
+  .mv-h { font-size: 12px; font-weight: 700; color: var(--muted); text-align: right; }
+  .mv-v { text-align: right; color: var(--muted); }
+  .mv-v.hi { color: var(--ink); font-weight: 700; }
+  .mv-v .mins3, .mv-v .fdr { justify-content: flex-end; }
+  .linkish { all: unset; cursor: pointer; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 3px; }
+  .linkish:focus-visible { outline: 2px solid var(--card); outline-offset: 2px; }
+  .ms-others { margin: 8px 0 4px; }
+  .ms-others summary { padding: 8px 0; }
+  .ms-alt { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .ms-alt b { flex: none; }
+  .ms-change { font-size: 14px; color: var(--muted); margin: 0 0 4px; }
+  .ms-change b { color: var(--ink); }
+  .ms-row { display: grid; grid-template-columns: minmax(0, 1fr) 44px 44px; align-items: center; gap: 6px; border-bottom: 1px solid var(--line); }
+  .ms-row.bench { opacity: 0.62; }
+  .ms-main { all: unset; box-sizing: border-box; cursor: pointer; min-width: 0; padding: 9px 0; min-height: 52px; display: block; }
+  .ms-main:focus-visible { outline: 2px solid var(--card); outline-offset: -2px; }
+  .ms-xp { font: 800 22px/1 var(--font-display); text-align: right; }
+  .key-tag { color: var(--card-ink); font-weight: 700; }
+  .lock-btn { all: unset; box-sizing: border-box; width: 44px; height: 44px; display: grid; place-items: center; cursor: pointer; color: var(--line-strong); border-radius: 8px; }
+  .lock-btn svg { width: 18px; height: 18px; }
+  .lock-btn[aria-pressed="true"] { color: var(--card-ink); }
+  .lock-btn:hover { background: var(--surface-2); }
+  .lock-btn:focus-visible { outline: 2px solid var(--card); }
+  @media (max-width: 640px) {
+    .ms-hero { padding: 14px; }
+    .ms-odds b { font-size: 48px; }
+    .views-nav button { font-size: 11px; padding-inline: 2px; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; transition: none !important; }
   }
@@ -810,6 +863,7 @@
   <nav class="views-nav" id="views-nav" aria-label="Sections" hidden>
     <button type="button" data-view="live" id="tab-live"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tab-label">Live</span><span class="tab-dot" aria-hidden="true"></span></button>
     <button type="button" data-view="matchups"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h10l-3-3M17 17H7l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="tab-label">Matchups</span></button>
+    <button type="button" data-view="my-squad"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span class="tab-label">My squad</span></button>
     <button type="button" data-view="free-agents"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10" cy="8" r="3.5" stroke="currentColor" stroke-width="2"/><path d="M3.5 19c.8-3.2 3.4-5 6.5-5 1.4 0 2.7.4 3.8 1.1M18 14v6M15 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span class="tab-label">Free agents</span></button>
     <button type="button" data-view="squads"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span class="tab-label">Squads</span></button>
   </nav>
@@ -900,6 +954,18 @@
     <button type="button" class="btn btn-wide" id="cmp-any">Compare any two teams</button>
   </section>
 
+  </div>
+
+  <div class="view" data-view="my-squad" hidden>
+  <section class="panel" id="ms-panel" aria-labelledby="ms-title">
+    <div class="panel-head">
+      <div>
+        <h2 id="ms-title">My squad</h2>
+        <p class="panel-note">Your chance to win the next gameweek, your best lineup, and the free agents that would raise it without dropping your key players.</p>
+      </div>
+    </div>
+    <div id="ms-body"></div>
+  </section>
   </div>
 
   <div class="view" data-view="free-agents" hidden>
@@ -1520,7 +1586,7 @@ function squadPlayerAsStats(p, clubPos) {
     mins: p.season_minutes, goals: p.season_goals, assists: p.season_assists, cs: p.season_cs,
     bonus: p.season_bonus, xg: p.xg, xa: p.xa,
     form: p.form, pts: p.season_points, ppg: p.ppg, starts: p.starts, xgi: p.xgi, dc: p.dc_total,
-    pens: p.pens, status: p.status, chance: p.chance_next, news: p.news,
+    pens: p.pens, status: p.status, chance: p.chance_next, news: p.news, ep: p.ep_next,
     fixtures: upcomingFixtures(p.difficulty), recent_minutes: p.recent_minutes || [],
   };
 }
@@ -2057,6 +2123,7 @@ function render(state) {
 
   renderSquadRanks(state);
   renderFreeAgents(state);
+  renderMySquad(state);
 
   document.getElementById("global-context").innerHTML = poolStatHtml();
 }
@@ -2070,7 +2137,7 @@ let cmpA = null, cmpB = null, cmpMode = "match"; // Compare: the two teams (none
 // Four views behind one menu. The page opens on Live while a gameweek is under way
 // (first kickoff until the last match is over) and on Matchups between gameweeks;
 // a #view link always wins. Every view renders from the same data on each refresh.
-const VIEWS = ["live", "matchups", "free-agents", "squads"];
+const VIEWS = ["live", "matchups", "my-squad", "free-agents", "squads"];
 let currentView = null;
 let lastScoreSignature = null;
 function gameweekUnderWay(state) {
@@ -2380,6 +2447,232 @@ function pcGridHtml(state, a, b) {
       ${rows}
     </div></div>`;
 }
+
+// ---------- My squad: projection, best lineup and suggested moves ----------
+// Projected points for one player in one gameweek, fitted on three seasons of FPL data
+// (2022-23 and 2023-24 to fit, 2024-25 to test):
+//   fixture factor x (0.72 x FPL's own projection + 0.87 x share of minutes in the last 3 GWs)
+// Fixture factor: how much a player scores against that FPL difficulty relative to his
+// usual level, by position (a defender facing a 5 scores about half what he does facing a 2).
+const FIX_FACTOR = {
+  GK: [0.996, 0.996, 0.874, 0.773, 0.700], DEF: [1.038, 1.038, 0.876, 0.653, 0.501],
+  MID: [1.060, 1.060, 0.985, 0.846, 0.733], FWD: [1.024, 1.024, 0.949, 0.772, 0.582],
+};
+const W_EP = 0.723, W_MIN = 0.869;
+// Spread of a player's score around his projection (same data): variance = 3.10 x xP - 0.76.
+const playerVar = x => Math.max(0.5, 3.10 * x - 0.76);
+function availability(r) {
+  if (!r.status || r.status === "a") return 1;
+  if (r.chance != null) return r.chance / 100;
+  return r.status === "d" ? 0.5 : 0;
+}
+function minutesShare(r) {
+  const m = r.recent_minutes || [];
+  if (!m.length) return 0;
+  return m.reduce((t, x) => t + Math.min(x, 90), 0) / (90 * m.length);
+}
+function projectGw(state, r, ev) {
+  const fx = ((state.club_fixtures || {})[r.club] || []).filter(f => f[0] === ev);
+  if (!fx.length) return 0; // blank gameweek
+  const ep = r.ep != null ? r.ep : (r.form || 0); // FPL's projection; its form before that field existed
+  const share = minutesShare(r) * availability(r);
+  const ff = FIX_FACTOR[r.pos] || FIX_FACTOR.MID;
+  return fx.reduce((t, f) => t + ff[Math.min(5, Math.max(1, f[3] || 3)) - 1] * (W_EP * ep + W_MIN * share), 0);
+}
+function projectRun(state, r, ev, n) {
+  let t = 0;
+  for (let g = ev; g < ev + n; g++) t += projectGw(state, r, g);
+  return t;
+}
+function normCdf(z) {
+  // Abramowitz and Stegun 7.1.26
+  const t = 1 / (1 + 0.3275911 * Math.abs(z) / Math.SQRT2);
+  const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-z * z / 2);
+  return z >= 0 ? (1 + y) / 2 : (1 - y) / 2;
+}
+// Best eleven by projection: 1 goalkeeper, 3-5 defenders, 2-5 midfielders, 1-3 forwards.
+function bestXI(players) {
+  const by = { GK: [], DEF: [], MID: [], FWD: [] };
+  for (const p of players) if (by[p.pos]) by[p.pos].push(p);
+  for (const k in by) by[k].sort((a, b) => b.xp - a.xp);
+  let best = null;
+  for (let d = 3; d <= 5; d++) for (let m = 2; m <= 5; m++) {
+    const f = 10 - d - m;
+    if (f < 1 || f > 3 || by.DEF.length < d || by.MID.length < m || by.FWD.length < f || !by.GK.length) continue;
+    const xi = [by.GK[0], ...by.DEF.slice(0, d), ...by.MID.slice(0, m), ...by.FWD.slice(0, f)];
+    const mean = xi.reduce((t, p) => t + p.xp, 0);
+    if (!best || mean > best.mean) best = { xi, mean, variance: xi.reduce((t, p) => t + playerVar(p.xp), 0), formation: `${d}-${m}-${f}` };
+  }
+  return best || { xi: [], mean: 0, variance: 1, formation: "" };
+}
+const winChance = (a, b) => normCdf((a.mean - b.mean) / Math.sqrt(a.variance + b.variance));
+
+// Key players are never suggested as drops: the four best in the squad over the next five
+// gameweeks, anyone in the top 10% at his position this season, and any you lock yourself.
+let keyOverrides = {};
+try { keyOverrides = JSON.parse(localStorage.getItem("fpl-key-players") || "{}") || {}; } catch (e) {}
+function saveKeyOverrides() { try { localStorage.setItem("fpl-key-players", JSON.stringify(keyOverrides)); } catch (e) {} }
+
+function mySquadPlan(state) {
+  const me = (state.managers || []).find(m => m.entry_id === myTeam);
+  if (!me) return null;
+  const ev = state.next_gameweek ? state.next_gameweek.event : (state.gameweek || 0) + 1;
+  const pool = playerPool(state);
+  // Top 10% at his position this season (at least the top 5), by FPL points.
+  const eliteCut = p => Math.max(5, Math.round((p.season_pos_rank_of || 200) * 0.1));
+  const elite = new Set((me.players || []).filter(p => p.season_pos_rank && p.season_pos_rank <= eliteCut(p)).map(p => `p${p.element}`));
+  const withProj = r => ({ ...r, xp: projectGw(state, r, ev), n3: projectRun(state, r, ev, 3), n5: projectRun(state, r, ev, 5) });
+  const squad = (me.players || []).map(p => withProj(pool.get(`p${p.element}`))).filter(Boolean);
+  const top4 = new Set(squad.slice().sort((a, b) => b.n5 - a.n5).slice(0, 4).map(r => r.key));
+  for (const r of squad) {
+    r.autoKey = top4.has(r.key) || elite.has(r.key);
+    r.isKey = keyOverrides[r.key] ?? r.autoKey;
+    r.inLineup = !(me.players.find(p => `p${p.element}` === r.key) || {}).is_bench;
+  }
+  // Opponent in that gameweek, fielding his own best eleven.
+  const byLe = new Map((state.managers || []).map(m => [m.league_entry_id, m]));
+  const fx = (state.matches || []).find(m => m.event === ev && (m.league_entry_1 === me.league_entry_id || m.league_entry_2 === me.league_entry_id));
+  const opp = fx ? byLe.get(fx.league_entry_1 === me.league_entry_id ? fx.league_entry_2 : fx.league_entry_1) : null;
+  const oppSquad = opp ? (opp.players || []).map(p => withProj(pool.get(`p${p.element}`))).filter(Boolean) : [];
+  const oppXI = opp ? bestXI(oppSquad) : null;
+
+  const myXI = bestXI(squad);
+  const chance = xi => oppXI ? winChance(xi, oppXI) : null;
+  // Free agents fit to play (75%+), the best 40 per position this gameweek.
+  const fas = {};
+  for (const r of pool.values()) {
+    if (r.owner || availability(r) < 0.75) continue;
+    (fas[r.pos] = fas[r.pos] || []).push(withProj(r));
+  }
+  for (const k in fas) fas[k] = fas[k].sort((a, b) => b.xp - a.xp).slice(0, 40);
+  // Value of the squad: chance to win when there's an opponent, projected points otherwise.
+  const score = sq => { const xi = bestXI(sq); return oppXI ? winChance(xi, oppXI) : xi.mean / 100; };
+  // Greedy plan: the move that raises the score most, then the next, up to three; a move
+  // must add at least a point of win chance (or a point of projection) and must not leave
+  // you worse off over the next three gameweeks.
+  let cur = squad.slice(), curScore = score(cur);
+  const moves = [], usedIn = new Set(), usedOut = new Set();
+  const singles = [];
+  for (let step = 0; step < 3; step++) {
+    let best = null;
+    for (const o of cur) {
+      if (o.isKey || usedOut.has(o.key) || o.newIn) continue;
+      for (const f of fas[o.pos] || []) {
+        if (usedIn.has(f.key) || f.n3 < o.n3) continue;
+        const sq = cur.map(x => x === o ? { ...f, newIn: true } : x);
+        const s = score(sq);
+        if (step === 0 && s > curScore) singles.push({ out: o, in: f, gain: s - curScore, after: s });
+        if (!best || s > best.after) best = { out: o, in: f, after: s, before: curScore, squad: sq };
+      }
+    }
+    if (!best || best.after - curScore < 0.01) break;
+    moves.push(best); usedIn.add(best.in.key); usedOut.add(best.out.key);
+    cur = best.squad; curScore = best.after;
+  }
+  // Other single moves worth a look: the best per incoming player.
+  const seen = new Set(moves.map(m => m.in.key));
+  const others = singles.sort((a, b) => b.gain - a.gain).filter(m => !seen.has(m.in.key) && (seen.add(m.in.key), true)).slice(0, 5);
+  return { me, ev, squad, myXI, opp, oppXI, base: chance(myXI), after: moves.length ? chance(bestXI(cur)) : null,
+           afterXI: moves.length ? bestXI(cur) : null, moves, others };
+}
+
+const pct = p => `${Math.round(p * 100)}%`;
+const f1 = x => x.toFixed(1);
+function nextFxChips(state, r, ev) {
+  const fx = ((state.club_fixtures || {})[r.club] || []).filter(f => f[0] === ev).map(f => ({ event: f[0], opponent: f[1], is_home: !!f[2], difficulty: f[3] }));
+  return fx.length ? fx.map(f => fxChip(f, false)).join("") : '<span class="fdr fdr-sm fdr-blank" title="No match this gameweek">–</span>';
+}
+function renderMySquad(state) {
+  const el = document.getElementById("ms-body");
+  const plan = mySquadPlan(state);
+  if (!plan) {
+    el.innerHTML = `<div class="ms-empty"><p>Pick your team to see your best lineup, your chance to win the next gameweek and the free agents that would raise it.</p><button type="button" class="btn btn-primary" data-act="pick-team">Pick my team</button></div>`;
+    return;
+  }
+  const { me, ev, squad, myXI, opp, oppXI, base, after, moves, others } = plan;
+  const gws = state.recent_gws || [];
+  // Hero: this matchup at a glance.
+  const hero = `<div class="ms-hero">
+    <div class="ms-vs"><span>GW${ev}</span> ${opp ? `v <b>${opp.name}</b>` : "no head-to-head"}</div>
+    ${opp ? `<div class="ms-odds"><b>${pct(base)}</b><span>chance to win as things stand</span></div>
+      <div class="ms-proj">Projected <b>${f1(myXI.mean)}</b> to <b>${f1(oppXI.mean)}</b>, both fielding their best eleven</div>`
+      : `<div class="ms-proj">Your best eleven is projected <b>${f1(myXI.mean)}</b> points</div>`}
+    ${after != null ? `<div class="ms-after">With the ${moves.length === 1 ? "move" : `${moves.length} moves`} below: <b>${pct(after)}</b> <span class="pnl up">(+${Math.round((after - base) * 100)})</span></div>` : ""}
+    <div class="deadlines">${gwDeadlinesHtml(gwInfo(state, ev))}</div>
+  </div>`;
+  // Suggested moves, with the numbers behind each.
+  const cmpRow = (label, a, b, va, vb, lowerBetter) => {
+    const cls = (x, y) => x == null || y == null || x === y ? "" : (lowerBetter ? x < y : x > y) ? "hi" : "lo";
+    return `<div class="mv-l">${label}</div><div class="mv-v ${cls(va, vb)}">${a}</div><div class="mv-v ${cls(vb, va)}">${b}</div>`;
+  };
+  const moveCard = (mv, i) => {
+    const o = mv.out, n = mv.in;
+    const gain = opp ? `${pct(mv.before)} → ${pct(mv.after)} to win` : `+${f1((mv.after - mv.before) * 100)} projected pts`;
+    return `<article class="move-card">
+      <header><span class="mv-n">${i + 1}</span><span class="mv-title">Drop <button type="button" class="linkish" data-key="${o.key}">${o.name}</button>, add <button type="button" class="linkish" data-key="${n.key}">${n.name}</button></span><span class="mv-gain">${gain}</span></header>
+      <div class="mv-tag">${n.pos}, ${n.on_waivers ? "on waivers: needs a claim before the waiver deadline" : "free agent: can be added straight away"}</div>
+      <div class="mv-grid">
+        <div class="mv-l"></div><div class="mv-h">Out</div><div class="mv-h">In</div>
+        ${cmpRow(`GW${ev} match`, nextFxChips(state, o, ev), nextFxChips(state, n, ev))}
+        ${cmpRow(`Projected GW${ev}`, f1(o.xp), f1(n.xp), o.xp, n.xp)}
+        ${cmpRow("Next 3 GWs", f1(o.n3), f1(n.n3), o.n3, n.n3)}
+        ${cmpRow("FPL projection", f1(o.ep ?? o.form ?? 0), f1(n.ep ?? n.form ?? 0), o.ep ?? o.form, n.ep ?? n.form)}
+        ${cmpRow("Minutes, last 3", recentMinutesHtml(o, gws), recentMinutesHtml(n, gws), minutesShare(o), minutesShare(n))}
+        ${cmpRow("Form", f1(o.form || 0), f1(n.form || 0), o.form || 0, n.form || 0)}
+        ${cmpRow("Season pts", o.pts ?? 0, n.pts ?? 0, o.pts ?? 0, n.pts ?? 0)}
+      </div>
+    </article>`;
+  };
+  const keys = squad.filter(r => r.isKey);
+  const movesHtml = moves.length ? moves.map(moveCard).join("")
+    : `<p class="empty">No free agent raises your chance to win by a point or more without dropping a key player or costing you over the next three gameweeks. Your squad is already close to the best you can field.</p>`;
+  const othersHtml = others.length ? `<details class="ms-others"><summary>Other single moves</summary>${others.map(m =>
+    `<div class="ms-alt"><span>Drop <button type="button" class="linkish" data-key="${m.out.key}">${m.out.name}</button>, add <button type="button" class="linkish" data-key="${m.in.key}">${m.in.name}</button>${m.in.on_waivers ? " (waivers)" : ""}</span><b>${opp ? `+${Math.max(1, Math.round(m.gain * 100))}% to win` : `+${f1(m.gain * 100)} pts`}</b></div>`).join("")}</details>` : "";
+  // Best lineup and how it differs from the current one.
+  const inXI = new Set(myXI.xi.map(r => r.key));
+  const startNow = squad.filter(r => inXI.has(r.key) && !r.inLineup), benchNow = squad.filter(r => !inXI.has(r.key) && r.inLineup);
+  const lineupChanges = startNow.length
+    ? `<p class="ms-change">Change from your current lineup: start ${startNow.map(r => `<b>${r.name}</b> (${f1(r.xp)})`).join(", ")} instead of ${benchNow.map(r => `<b>${r.name}</b> (${f1(r.xp)})`).join(", ")}.</p>`
+    : `<p class="ms-change">Your current lineup is already the best eleven on these projections.</p>`;
+  const row = r => `<div class="ms-row${inXI.has(r.key) ? "" : " bench"}">
+      <button type="button" class="ms-main" data-key="${r.key}"><span class="pl-name"><span class="nn">${r.name}</span>${availChip({ status: r.status, chance_next: r.chance, news: r.news })}</span>
+        <span class="pl-sub">${nextFxChips(state, r, ev)}<span>Next 3: ${f1(r.n3)}</span>${r.isKey ? '<span class="key-tag">Key</span>' : ""}</span></button>
+      <span class="ms-xp">${f1(r.xp)}</span>
+      <button type="button" class="lock-btn" data-lock="${r.key}" aria-pressed="${r.isKey}" title="${r.isKey ? "Key player: never suggested as a drop. Tap to allow." : "Tap to protect him from being dropped"}" aria-label="${r.isKey ? "Unlock" : "Lock"} ${r.name}">${r.isKey
+        ? '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>'
+        : '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 7.5-2" stroke="currentColor" stroke-width="2"/></svg>'}</button>
+    </div>`;
+  let list = "";
+  for (const pos of POSITION_ORDER) {
+    const g = squad.filter(r => r.pos === pos).sort((a, b) => b.xp - a.xp);
+    list += `<div class="pl-group"><span>${pos}</span><span>${g.filter(r => inXI.has(r.key)).length} starting</span></div>` + g.map(row).join("");
+  }
+  const oppHtml = oppXI ? `<details class="ms-others"><summary>${opp.name}'s likely eleven (${f1(oppXI.mean)})</summary>${
+    oppXI.xi.map(r => `<div class="ms-alt"><span><button type="button" class="linkish" data-key="${r.key}">${r.name}</button> ${r.pos} ${nextFxChips(state, r, ev)}</span><b>${f1(r.xp)}</b></div>`).join("")}</details>` : "";
+  el.innerHTML = hero
+    + `<section class="ms-section"><h3>Suggested moves</h3>${movesHtml}${othersHtml}
+       <p class="cmp-note">${keys.length ? `Never suggested as drops (key players): ${keys.map(r => r.name).join(", ")}. ` : ""}Tap a lock in your squad below to change who is protected.</p></section>`
+    + `<section class="ms-section"><h3>Best lineup for GW${ev}: ${myXI.formation}</h3>${lineupChanges}${list}${oppHtml}</section>`
+    + `<details class="table-footnote"><summary>How the projection works</summary>
+       <p>Each player's projected points for a gameweek = fixture factor × (0.72 × FPL's own expected points + 0.87 × his share of the minutes in the last three gameweeks), with the minutes part scaled by FPL's chance of him playing. The fixture factor is how much players score against each FPL difficulty compared with their usual level; a defender facing a 5 scores about half what he does facing a 2.</p>
+       <p>The weights were fitted on every player-gameweek of 2022-23 and 2023-24 and tested on 2024-25, a season the model hadn't seen: an average error of 0.85 points per player-match against 0.90 for FPL's projection alone.</p>
+       <p>The chance to win compares your best eleven with your opponent's, allowing for how much scores swing (variance 3.1 × projection − 0.76 per player). Tested on 2024-25 matchups, teams given 55-65% won 61% of the time and teams given 65-80% won 80%. Bench points don't count, as in the league.</p>
+       <p>Moves are picked one at a time, the biggest gain first, up to three. Each must add at least a point of win chance and can't leave you with fewer projected points over the next three gameweeks. Key players are the four best in your squad over the next five gameweeks plus anyone in the top 10% at his position this season.</p>
+     </details>`;
+}
+
+document.getElementById("ms-body").addEventListener("click", (e) => {
+  const lock = e.target.closest("[data-lock]");
+  if (lock) {
+    const k = lock.dataset.lock, on = lock.getAttribute("aria-pressed") !== "true";
+    keyOverrides[k] = on; saveKeyOverrides();
+    if (lastState) renderMySquad(lastState);
+    return;
+  }
+  if (e.target.closest('[data-act="pick-team"]')) { openSheet({ type: "myteam" }); return; }
+  const row = e.target.closest("[data-key]");
+  if (row) openSheet({ type: "player", key: row.dataset.key });
+});
 
 let standingsSortKey = "league_points"; // which Standings column currently drives the ranking
 let standingsSortDir = "desc";

@@ -590,6 +590,8 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "season_pos_rank_of": pos_counts.get(position),
             # FPL's form (average points per match over the last 30 days) and availability flag.
             "form": float(el.get("form") or 0),
+            # FPL's own expected points for the next gameweek (one input to My squad's projection).
+            "ep_next": float(el.get("ep_next") or 0),
             # Season numbers shared with the free-agent list, so a squad player can be
             # weighed against a free agent column for column.
             "ppg": float(el.get("points_per_game") or 0),
@@ -747,7 +749,7 @@ def _recent_minutes(last_done_gw, n=3):
     return gws, minutes
 
 
-def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, teams_by_id, transactions, entries, pl_pos=None, recent=None):
+def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, teams_by_id, transactions, entries, pl_pos=None, recent=None, classic_by_id=None):
     """Every unowned player in this league who has played this season, with the numbers
     managers use for waiver calls: form, points, starts, xGI, defensive contributions,
     penalty duty, availability, the next three fixtures, and who dropped him last.
@@ -774,6 +776,8 @@ def _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw, t
             "club": teams_by_id.get(e.get("team"), {}).get("short_name", "?"),
             "club_pos": (pl_pos or {}).get(e.get("team")),
             "form": float(e.get("form") or 0),
+            # FPL's expected points for next gameweek: only the classic game publishes it.
+            "ep": float(((classic_by_id or {}).get(cid) or {}).get("ep_next") or 0),
             "pts": e.get("total_points") or 0,
             "ppg": float(e.get("points_per_game") or 0),
             "starts": e.get("starts") or 0,
@@ -923,7 +927,7 @@ def poll_once(league_cfg):
     try:
         free_agents = _free_agents(league_id, draft_bootstrap, to_classic, difficulty_index, gw,
                                    teams_by_id, transactions, entries,
-                                   {r["team_id"]: r["pos"] for r in pl_table}, recent)
+                                   {r["team_id"]: r["pos"] for r in pl_table}, recent, classic_elements_by_id)
     except Exception as e:
         log.warning("Free agent list failed for league %s: %s", league_id, e)
         free_agents = []
