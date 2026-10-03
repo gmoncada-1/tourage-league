@@ -169,6 +169,24 @@ def _fixture_status(fixture):
 DEFAULT_PLAYER_MEAN = 2.5
 DEFAULT_PLAYER_STD = 3.0
 
+# Expected points still to come for a player, used for the live chance to win. Fitted on
+# every player-match of 2022-23 and 2023-24 and tested on 2024-25 (the same model as the
+# My squad tab): 0.86 x FPL's own expected points for the gameweek (ep_this) x how players
+# score against that fixture difficulty, by position. A score's spread around it:
+# variance = 3.10 x expected - 0.76. Tested on 2024-25 head-to-heads, teams given 55-65%
+# won 61% of the time.
+FIXTURE_FACTOR = {  # element_type -> factor for FPL difficulty 1..5
+    1: (0.996, 0.996, 0.874, 0.773, 0.700),
+    2: (1.038, 1.038, 0.876, 0.653, 0.501),
+    3: (1.060, 1.060, 0.985, 0.846, 0.733),
+    4: (1.024, 1.024, 0.949, 0.772, 0.582),
+}
+EP_WEIGHT = 0.86
+
+
+def _player_var(expected):
+    return max(0.5, 3.10 * expected - 0.76)
+
 
 def _win_probability(mean_a, var_a, mean_b, var_b):
     """P(team A's final score > team B's), modeling each team's remaining points as
@@ -352,26 +370,22 @@ FORMATION_MAX = {2: 5, 3: 5, 4: 3}  # element_type -> maximum on the pitch (DEF/
 
 
 def _apply_autosubs(starting, bench, live_stats_by_element, classic_elements_by_id, fixture_status_by_team):
-    """Fill in for starting-XI players confirmed not to be playing (0 minutes, their real
-    fixture already live/finished) using bench players in priority order — mirrors FPL's
-    own autosub rule. Position 12 (bench GKP) only covers a benched starting GKP;
-    positions 13-15 (outfield bench, in priority order) cover any other benched starter,
-    but only if doing so keeps the squad in a legal formation (1 GK, 3-5 DEF, 2-5 MID,
-    1-3 FWD) — e.g. if the starting XI has exactly 3 defenders and one doesn't play, only
-    a defender can come on, no matter what the bench's priority order says, since bringing
-    on anyone else would drop below the 3-defender minimum. A bench player only comes in
-    once we know they actually played (minutes > 0) — no point swapping one zero for another.
-    """
-    def is_confirmed_out(pick):
-        stats = live_stats_by_element.get(pick["element"], {})
-        if stats.get("minutes", 0) > 0:
-            return False
-        team_id = classic_elements_by_id.get(pick["element"], {}).get("team")
-        status = fixture_status_by_team.get(team_id, "not_started")
-        return status in ("started", "finished_provisional", "finished")
+    """FPL's automatic substitutions, applied provisionally as matches finish.
 
-    def has_played(pick):
-        return live_stats_by_element.get(pick["element"], {}).get("minutes", 0) > 0
+    A starter is replaced only once his club's match is over and he played no minutes (a
+    substitute who comes on late still counts). Bench players are tried strictly in order:
+    slot 12 only for the goalkeeper, slots 13-15 for outfield players. A bench player who
+    played comes on if the team stays in a legal formation (1 GK, 3-5 DEF, 2-5 MID, 1-3 FWD);
+    one whose match is over without him playing is skipped; one whose match isn't over yet
+    holds the place, because FPL would use him first if he plays, so nobody lower on the
+    bench comes on until we know.
+    """
+    def minutes(pick):
+        return live_stats_by_element.get(pick["element"], {}).get("minutes", 0)
+
+    def match_over(pick):
+        team_id = classic_elements_by_id.get(pick["element"], {}).get("team")
+        return fixture_status_by_team.get(team_id, "not_started") in ("finished_provisional", "finished")
 
     def real_position(pick):
         return classic_elements_by_id.get(pick["element"], {}).get("element_type")
@@ -392,29 +406,32 @@ def _apply_autosubs(starting, bench, live_stats_by_element, classic_elements_by_
         return counts
 
     for i, pick in enumerate(result):
-        if not is_confirmed_out(pick):
+        if minutes(pick) > 0 or not match_over(pick):
             continue
         is_gkp = pick.get("position") == 1
         pool = gkp_bench if is_gkp else outfield_bench
         out_pos = real_position(pick)
-        counts = formation_counts()
         for sub in pool:
-            if sub["element"] in used_bench_ids or not has_played(sub):
+            if sub["element"] in used_bench_ids:
                 continue
             if not is_gkp:
                 in_pos = real_position(sub)
                 if in_pos != out_pos:
-                    new_defmidfwd = dict(counts)
-                    if out_pos in new_defmidfwd:
-                        new_defmidfwd[out_pos] -= 1
-                    if in_pos in new_defmidfwd:
-                        new_defmidfwd[in_pos] += 1
-                    if not all(FORMATION_MIN[p] <= new_defmidfwd[p] <= FORMATION_MAX[p] for p in (2, 3, 4)):
-                        continue  # would break the squad's legal formation — try the next bench player
-            result[i] = sub
-            used_bench_ids.add(sub["element"])
-            subs_made.append({"out": pick["element"], "in": sub["element"]})
-            break
+                    counts = formation_counts()
+                    if out_pos in counts:
+                        counts[out_pos] -= 1
+                    if in_pos in counts:
+                        counts[in_pos] += 1
+                    if not all(FORMATION_MIN[p] <= counts[p] <= FORMATION_MAX[p] for p in (2, 3, 4)):
+                        continue  # would break the legal formation: FPL moves on to the next
+            if minutes(sub) > 0:
+                result[i] = sub
+                used_bench_ids.add(sub["element"])
+                subs_made.append({"out": pick["element"], "in": sub["element"]})
+                break
+            if match_over(sub):
+                continue  # didn't play either
+            break  # his match is still to finish: he has first call on this place
     return result, subs_made
 
 
@@ -455,6 +472,8 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
         # Live per-player stats (goals/bps/minutes) can be transiently unavailable
         # (observed pre-season). Degrade gracefully rather than losing fixture-status
         # info (e.g. "pending") that doesn't depend on this endpoint at all.
+        if any(f.get("started") for f in fx):
+            raise  # matches under way: publishing zeros would be worse than the last good state
         log.warning("event_live fetch failed for gw %s, proceeding without live stats: %s", gw, e)
         live_stats_by_element = {}
 
@@ -544,6 +563,19 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
         assists_points = assists * ASSIST_POINTS
         clean_sheet_points = clean_sheets * CLEAN_SHEET_POINTS_BY_POSITION.get(position, 0)
         fixture_minutes = fixture_minutes_by_team.get(team_id, 0)
+        # Points still to come: the full projection for a match not yet started, the
+        # unplayed share of one in progress, nothing once it's over or he's been left out.
+        ep_this = float(el.get("ep_this") or 0)
+        factors = FIXTURE_FACTOR.get(position, FIXTURE_FACTOR[3])
+        expected_full, remaining_xp = 0.0, 0.0
+        for cf in current_fixtures_by_team.get(team_id, []):
+            proj = EP_WEIGHT * ep_this * factors[min(5, max(1, cf.get("difficulty") or 3)) - 1]
+            expected_full += proj
+            if cf["status"] == "not_started":
+                remaining_xp += proj
+            elif cf["status"] == "started" and (minutes > 0 or fixture_minutes < 5):
+                remaining_xp += proj * max(0, 90 - fixture_minutes) / 90
+        remaining_var = _player_var(expected_full) * (remaining_xp / expected_full) if expected_full > 0 else 0.0
         if minutes > 0 and status == "started":
             club_status = "live"
         elif minutes > 0:
@@ -580,6 +612,8 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "bps": stats.get("bps", 0),
             "bonus_points": bonus_points,
             "auto_sub": eid in subbed_in_ids,
+            "remaining_xp": round(remaining_xp, 2),
+            "remaining_var": round(remaining_var, 2),
             "difficulty": difficulty_index.get(team_id, {}),
             "current_fixtures": current_fixtures_by_team.get(team_id, []),
             "club": teams_by_id.get(team_id, {}).get("short_name"),
@@ -910,6 +944,11 @@ def poll_once(league_cfg):
             )
         except Exception as e:
             log.warning("Live score computation failed for league %s gw %s: %s", league_id, gw, e)
+            raise  # keep the last good state on the site rather than publishing blank scores
+        if gameweek_status and gameweek_status["started"]:
+            missing = [eid for eid, lu in lineups.items() if not lu["starting"]]
+            if missing:
+                raise RuntimeError(f"No lineup for entries {missing} in gw {gw}; keeping the last good state")
 
     recent_gws = []
     try:
@@ -1044,17 +1083,9 @@ def poll_once(league_cfg):
             "bonus_points": sum(p["bonus_points"] for p in players),
         }
 
-    # Win probability for this gameweek's H2H matchups: model each team's remaining
-    # score as Normal(current_live_score + pending_players * mu, pending_players * sigma^2)
-    # and estimate P(team A finishes higher) from the normal difference. mu/sigma come
-    # from this season's actual gameweek average once we have one; otherwise fall back
-    # to a generic assumption (see DEFAULT_PLAYER_MEAN/STD).
-    if global_context and global_context.get("average_entry_score"):
-        player_mean = global_context["average_entry_score"] / 11
-    else:
-        player_mean = DEFAULT_PLAYER_MEAN
-    player_std = DEFAULT_PLAYER_STD
-
+    # Win probability for this gameweek's H2H matchups: each team's final score is its
+    # live score plus every starter's points still to come, treated as normal, and we
+    # take P(team A finishes higher) from the difference of the two.
     summaries_by_entry = {e["entry_id"]: _team_summary(e["entry_id"]) for e in entries}
 
     current_matchups = []
@@ -1076,11 +1107,14 @@ def poll_once(league_cfg):
             score2 = m.get("league_entry_2_points", score2)
             prob1 = 1.0 if score1 > score2 else 0.0 if score1 < score2 else 0.5
         else:
-            pending1 = summaries_by_entry.get(entry1, {}).get("pending", 0)
-            pending2 = summaries_by_entry.get(entry2, {}).get("pending", 0)
-            mean1, var1 = score1 + pending1 * player_mean, pending1 * player_std ** 2
-            mean2, var2 = score2 + pending2 * player_mean, pending2 * player_std ** 2
-            prob1 = _win_probability(mean1, var1, mean2, var2)
+            # Each starter's points still to come (see FIXTURE_FACTOR), added to the score so far.
+            def still_to_come(entry_id):
+                starters = [p for p in team_scores.get(entry_id, {}).get("players", []) if not p.get("is_bench")]
+                return (sum(p.get("remaining_xp", 0) for p in starters),
+                        sum(p.get("remaining_var", 0) for p in starters))
+            add1, var1 = still_to_come(entry1)
+            add2, var2 = still_to_come(entry2)
+            prob1 = _win_probability(score1 + add1, var1, score2 + add2, var2)
         current_matchups.append({
             "team1": {
                 "entry_id": entry1, "name": manager_by_entry[entry1]["entry_name"],
@@ -1220,9 +1254,19 @@ def api_refresh():
 if __name__ == "__main__":
     once = "--once" in sys.argv
     if once:
+        # One pass for GitHub Actions. A league that fails keeps its last good state (its
+        # file is left untouched) while the others update. Tells the workflow whether
+        # matches are live or about to be, so it can keep polling every couple of minutes.
+        fast = False
         for lg in LEAGUES:
-            poll_once(lg)
-        print("Wrote state for all configured leagues")
+            try:
+                fast = poll_once(lg) or fast
+            except Exception:
+                log.exception("Poll failed for league %s; keeping its last good state", lg["league_id"])
+        if os.environ.get("GITHUB_OUTPUT"):
+            with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                f.write(f"fast_poll={'true' if fast else 'false'}\n")
+        print(f"Wrote state for all configured leagues (fast poll: {fast})")
     else:
         threading.Thread(target=poll_loop, daemon=True).start()
         app.run(host="0.0.0.0", port=DASHBOARD_PORT)

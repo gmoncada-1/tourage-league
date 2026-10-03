@@ -1101,8 +1101,8 @@
       <div id="score-chart"></div>
       <details class="win-prob-explainer">
         <summary>How the chance to win is worked out</summary>
-        <p>Each team's likely final score is its live points plus a typical score for every starter who hasn't played yet. The more players a team still has to come, the less certain its final score, and that uncertainty is factored in. The win % is the chance one team's projected final score beats the other's.</p>
-        <p>It's a statistical estimate, not a prediction from FPL. It updates with every refresh and swings most early in a gameweek, when few players have played.</p>
+        <p>Each team's likely final score is its live points plus what every starter is still expected to add: FPL's own expected points for him this gameweek, scaled by how players in his position score against that fixture's difficulty, and only the unplayed part of a match that's under way. Scores swing, so that uncertainty is factored in too, and the win % is the chance one team's final score beats the other's.</p>
+        <p>The same model, fitted on 2022-23 and 2023-24 and tested on 2024-25 head-to-heads, gave teams 55-65% that won 61% of the time. It's an estimate, not FPL's, and it updates every couple of minutes while matches are on.</p>
       </details>
     </div>
     <div id="cmp-body"></div>
