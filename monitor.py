@@ -1159,6 +1159,15 @@ def poll_once(league_cfg):
             "involves_me": entry1 == my_entry_id or entry2 == my_entry_id,
         })
 
+    if os.environ.get("GITHUB_ACTIONS") and current_matchups:
+        # One-line odds summary on each run, readable without opening the site.
+        odds = "; ".join(
+            f"{mu['team1']['name']} {mu['team1']['score']} ({mu['team1_win_prob']:.1%}) v "
+            f"{mu['team2']['name']} {mu['team2']['score']} ({mu['team2_win_prob']:.1%}), "
+            f"draw {mu['draw_prob']:.1%}{', decided' if mu['decided'] else ''}"
+            for mu in current_matchups)
+        print(f"::notice title=GW{gw} odds::{odds}")
+
     for ts in team_scores.values():  # simulation inputs aren't published
         for p in ts.get("players", []):
             p.pop("_sim", None)
