@@ -1261,8 +1261,13 @@ if __name__ == "__main__":
         for lg in LEAGUES:
             try:
                 fast = poll_once(lg) or fast
-            except Exception:
+            except Exception as e:
                 log.exception("Poll failed for league %s; keeping its last good state", lg["league_id"])
+                if os.environ.get("GITHUB_ACTIONS"):
+                    # Surface the failure as a run annotation, so a stale site isn't silent.
+                    import traceback
+                    tb = traceback.format_exc().replace("%", "%25").replace("\r", "").replace("\n", "%0A")
+                    print(f"::error title=Poll failed for league {lg['league_id']}::{tb}")
         if os.environ.get("GITHUB_OUTPUT"):
             with open(os.environ["GITHUB_OUTPUT"], "a") as f:
                 f.write(f"fast_poll={'true' if fast else 'false'}\n")
