@@ -1411,11 +1411,11 @@ function renderMatchList(state, matchups) {
   const isMine = mu => mu.team1.entry_id === myTeam || mu.team2.entry_id === myTeam;
   el.innerHTML = matchups.slice().sort((x, y) => isMine(y) - isMine(x)).map(mu => {
     const a = mu.team1, b = mu.team2;
-    const pa = Math.round(mu.team1_win_prob * 100), pb = 100 - pa;
+    const pa = mu.team1_win_prob, pb = 1 - pa;
     // Who is "ahead": the odds while live, the score once it's settled.
     const aAhead = live ? pa >= pb : a.score >= b.score;
     const bAhead = live ? pb >= pa : b.score >= a.score;
-    const pct = (v, fav) => live ? `<span class="mr-pct${fav ? " fav" : ""}">${v}% to win</span>` : "";
+    const pct = (v, fav) => live ? `<span class="mr-pct${fav ? " fav" : ""}">${winPctLabel(v, mu.decided)} to win</span>` : "";
     const mine = isMine(mu);
     return `<button type="button" class="match-row${mine ? " mine" : ""}" data-a="${a.entry_id}" data-b="${b.entry_id}" aria-label="Compare ${a.name} and ${b.name}">
       ${mine ? '<span class="match-label">Your match</span>' : ""}<span class="mr-name a${aAhead ? "" : " behind"}">${a.name}${pct(pa, pa > pb)}</span>
@@ -1425,6 +1425,15 @@ function renderMatchList(state, matchups) {
       <span class="mr-name b${bAhead ? "" : " behind"}">${b.name}${pct(pb, pb > pa)}</span>
     </button>`;
   }).join("");
+}
+
+// Chance to win as shown: never 0% or 100% while the result can still change.
+function winPctLabel(p, decided) {
+  const v = Math.round(p * 100);
+  if (decided) return `${v}%`;
+  if (v <= 0) return "<1%";
+  if (v >= 100) return ">99%";
+  return `${v}%`;
 }
 
 // Next gameweek: the coming head-to-heads, with table position and last five results.
@@ -1810,13 +1819,13 @@ function renderCompare(state) {
   const rankOf = id => ranks.findIndex(t => t.m.entry_id === id) + 1;
   const sa = A.live_score ?? 0, sb = B.live_score ?? 0;
   let probA = null;
-  if (mu && live) probA = Math.round((mu.team1.entry_id === cmpA ? mu.team1_win_prob : mu.team2_win_prob) * 100);
-  const sub = (id, prob) => (prob != null ? `<span class="${prob >= 50 ? "fav" : ""}">${prob}% to win</span>` : "")
+  if (mu && live) probA = mu.team1.entry_id === cmpA ? mu.team1_win_prob : mu.team2_win_prob;
+  const sub = (id, prob) => (prob != null ? `<span class="${prob >= 0.5 ? "fav" : ""}">${winPctLabel(prob, mu && mu.decided)} to win</span>` : "")
     + `<span>Squad rank ${ordinal(rankOf(id))}</span>`;
   document.getElementById("cmp-summary").innerHTML = `<div class="cmp-board">
     <div class="side a${sa < sb ? " behind" : ""}"><div class="tn">${A.name}</div><div class="big">${sa}</div><div class="sub">${sub(cmpA, probA)}</div></div>
     <div class="vs">${mu ? `GW${gw}` : `GW${gw}<br>scores`}</div>
-    <div class="side b${sb < sa ? " behind" : ""}"><div class="tn">${B.name}</div><div class="big">${sb}</div><div class="sub">${sub(cmpB, probA == null ? null : 100 - probA)}</div></div>
+    <div class="side b${sb < sa ? " behind" : ""}"><div class="tn">${B.name}</div><div class="big">${sb}</div><div class="sub">${sub(cmpB, probA == null ? null : 1 - probA)}</div></div>
   </div>`;
 
   // Live odds chart, only while the two teams are actually playing each other.

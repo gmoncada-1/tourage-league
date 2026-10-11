@@ -15,6 +15,7 @@ from datetime import datetime, timedelta, timezone
 from flask import Flask, jsonify, request, send_from_directory
 
 import fpl_api
+import win_model
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_F = os.path.join(BASE_DIR, "config.json")
@@ -576,6 +577,24 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             elif cf["status"] == "started" and (minutes > 0 or fixture_minutes < 5):
                 remaining_xp += proj * max(0, 90 - fixture_minutes) / 90
         remaining_var = _player_var(expected_full) * (remaining_xp / expected_full) if expected_full > 0 else 0.0
+        # Inputs for the chance-to-win simulation (win_model.py); dropped before publishing.
+        sim_fixtures = []
+        for cf in current_fixtures_by_team.get(team_id, []):
+            e = EP_WEIGHT * ep_this * factors[min(5, max(1, cf.get("difficulty") or 3)) - 1]
+            if cf["status"] == "not_started" or (cf["status"] == "started" and minutes == 0 and fixture_minutes < 5):
+                # Not started, or only just kicked off (FPL's minutes can lag the clock).
+                sim_fixtures.append({"state": "not_started", "e": e})
+            elif cf["status"] == "started":
+                sim_fixtures.append({"state": "live", "e": e, "difficulty": cf.get("difficulty"),
+                                     "left": max(0, 90 - fixture_minutes) / 90})
+        sim = {
+            "pos": POSITION_LABEL.get(position, "MID"),
+            "points": player_total,
+            "minutes": minutes,
+            "goals_conceded": stats.get("goals_conceded", 0),
+            "clean_sheet_points": clean_sheets * CLEAN_SHEET_POINTS_BY_POSITION.get(position, 0),
+            "fixtures": sim_fixtures,
+        }
         if minutes > 0 and status == "started":
             club_status = "live"
         elif minutes > 0:
@@ -614,6 +633,7 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "auto_sub": eid in subbed_in_ids,
             "remaining_xp": round(remaining_xp, 2),
             "remaining_var": round(remaining_var, 2),
+            "_sim": sim,
             "difficulty": difficulty_index.get(team_id, {}),
             "current_fixtures": current_fixtures_by_team.get(team_id, []),
             "club": teams_by_id.get(team_id, {}).get("short_name"),
@@ -1098,6 +1118,8 @@ def poll_once(league_cfg):
             continue
         score1 = team_scores.get(entry1, {}).get("total") or 0
         score2 = team_scores.get(entry2, {}).get("total") or 0
+        draw = 0.0
+        decided = False
         if m.get("finished"):
             # Deterministic once FPL has closed the book on this H2H match — use their
             # own final points and snap the probability to the actual result, rather
@@ -1106,15 +1128,19 @@ def poll_once(league_cfg):
             score1 = m.get("league_entry_1_points", score1)
             score2 = m.get("league_entry_2_points", score2)
             prob1 = 1.0 if score1 > score2 else 0.0 if score1 < score2 else 0.5
+            draw = 1.0 if score1 == score2 else 0.0
+            decided = True
         else:
-            # Each starter's points still to come (see FIXTURE_FACTOR), added to the score so far.
-            def still_to_come(entry_id):
-                starters = [p for p in team_scores.get(entry_id, {}).get("players", []) if not p.get("is_bench")]
-                return (sum(p.get("remaining_xp", 0) for p in starters),
-                        sum(p.get("remaining_var", 0) for p in starters))
-            add1, var1 = still_to_come(entry1)
-            add2, var2 = still_to_come(entry2)
-            prob1 = _win_probability(score1 + add1, var1, score2 + add2, var2)
+            # Simulate the rest of the gameweek for both squads (see win_model.py). A draw
+            # counts as half a win for each side, so the two chances still add up to 100%.
+            def sim_team(entry_id):
+                rows = team_scores.get(entry_id, {}).get("players", [])
+                return {"starters": [p["_sim"] for p in rows if not p.get("is_bench") and "_sim" in p],
+                        "bench": [p["_sim"] for p in rows if p.get("is_bench") and not p.get("subbed_off") and "_sim" in p]}
+            h2h = win_model.head_to_head(sim_team(entry1), sim_team(entry2), seed=(gw or 0) * 1000003 + entry1 + entry2)
+            draw = h2h["draw"]
+            prob1 = h2h["win_a"] + 0.5 * draw
+            decided = h2h["decided"]
         current_matchups.append({
             "team1": {
                 "entry_id": entry1, "name": manager_by_entry[entry1]["entry_name"],
@@ -1124,10 +1150,18 @@ def poll_once(league_cfg):
                 "entry_id": entry2, "name": manager_by_entry[entry2]["entry_name"],
                 "score": score2, "is_me": entry2 == my_entry_id,
             },
-            "team1_win_prob": round(prob1, 3),
-            "team2_win_prob": round(1 - prob1, 3),
+            "team1_win_prob": round(prob1, 4),
+            "team2_win_prob": round(1 - prob1, 4),
+            "draw_prob": round(draw, 4),
+            # True once nothing left can change the result; until then the page never
+            # shows 0% or 100%.
+            "decided": decided,
             "involves_me": entry1 == my_entry_id or entry2 == my_entry_id,
         })
+
+    for ts in team_scores.values():  # simulation inputs aren't published
+        for p in ts.get("players", []):
+            p.pop("_sim", None)
 
     probability_history_points = _update_probability_history(league_id, gw, current_matchups) if gw else []
     h2h_standings = _compute_h2h_standings(league, gw, team_scores, league_entry_id_to_entry_id)
