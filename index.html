@@ -630,6 +630,12 @@
   .team-strip div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 10px 9px; min-width: 0; }
   .team-strip b { display: block; font: 800 26px/1 var(--font-display); }
   .team-strip span { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .team-strip .ts-player b { font-size: 20px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .team-strip .ts-form { grid-column: span 2; }
+  .team-strip .ts-form b { display: flex; gap: 6px; }
+  .team-strip .ts-form i { font-style: normal; color: var(--muted); }
+  .team-strip .ts-form i.f-w { color: var(--good); }
+  .team-strip .ts-form i.f-l { color: var(--red); }
   .sheet-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
   .sheet-actions .btn { min-height: 44px; }
   .pl-group { font-size: 12px; font-weight: 700; color: var(--muted); padding: 16px 0 6px; border-bottom: 1px solid var(--line-strong); display: flex; justify-content: space-between; }
@@ -1443,6 +1449,16 @@ function winPctLabel(p, decided) {
 
 // Next gameweek: the coming head-to-heads, with table position and last five results.
 // H2H fixtures in `matches` use the league's own team ids (league_entry_id).
+function teamFormLetters(state, leId, n = 5) {
+  return (state.matches || [])
+    .filter(m => m.finished && (m.league_entry_1 === leId || m.league_entry_2 === leId))
+    .sort((a, b) => a.event - b.event).slice(-n)
+    .map(m => {
+      const mine = m.league_entry_1 === leId ? m.league_entry_1_points : m.league_entry_2_points;
+      const theirs = m.league_entry_1 === leId ? m.league_entry_2_points : m.league_entry_1_points;
+      return mine > theirs ? "W" : mine < theirs ? "L" : "D";
+    });
+}
 function teamForm(state, leId, n = 5) {
   return (state.matches || [])
     .filter(m => m.finished && (m.league_entry_1 === leId || m.league_entry_2 === leId))
@@ -2349,11 +2365,21 @@ function teamSheet(state, id) {
   const s = m.summary || {};
   const mu = (state.current_matchups || []).find(x => x.team1.entry_id === id || x.team2.entry_id === id);
   const opp = mu ? (mu.team1.entry_id === id ? mu.team2 : mu.team1) : null;
+  // Squad highlights: best player over the season (any player in the squad now), the
+  // starter who scored most this gameweek, and the last five head-to-head results.
+  const squad = m.players || [];
+  const top = squad.filter(p => p.season_points != null).sort((a, b) => b.season_points - a.season_points)[0];
+  const best = squad.filter(p => !p.is_bench).sort((a, b) => (b.points ?? 0) - (a.points ?? 0))[0];
+  const formLetters = teamFormLetters(state, m.league_entry_id);
+  const form = formLetters.map(r => `<i class="f-${r.toLowerCase()}">${r}</i>`).join("");
   const strip = `<div class="team-strip">
     <div><b>${m.live_score ?? "–"}</b><span>GW${gw}${m.score_finalized ? ", final" : state.gameweek_live ? ", live" : ""}</span></div>
     <div><b>${h.rank ? ordinal(h.rank) : "–"}</b><span>${h.league_points ?? 0} league pts</span></div>
     <div><b>${h.won ?? 0}-${h.drawn ?? 0}-${h.lost ?? 0}</b><span>Won, drawn, lost</span></div>
     <div><b>${h.points_for ?? 0}</b><span>Season FPL pts</span></div>
+    ${top ? `<div class="ts-player"><b>${top.name}</b><span>Top player, ${top.season_points} season pts</span></div>` : ""}
+    ${best ? `<div class="ts-player"><b>${best.name}</b><span>Best in GW${gw}, ${best.points} pts${state.gameweek_live && !m.score_finalized ? " so far" : ""}</span></div>` : ""}
+    <div class="ts-form"><b>${form || "–"}</b><span>Form: last ${formLetters.length || 5} results, oldest first</span></div>
   </div>`;
   const acts = [];
   if (opp) acts.push(`<button type="button" class="btn" data-act="compare" data-a="${id}" data-b="${opp.entry_id}">GW${gw} match v ${opp.name}</button>`);
