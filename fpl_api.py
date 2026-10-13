@@ -49,6 +49,11 @@ def league_transactions(league_id):
     return _get(f"{DRAFT_BASE}/draft/league/{league_id}/transactions")
 
 
+def draft_choices(league_id):
+    """Every pick of the league's draft, in order (fixed once the draft is done)."""
+    return _get(f"{DRAFT_BASE}/draft/{league_id}/choices")
+
+
 def game_status():
     return _get(f"{DRAFT_BASE}/game")
 

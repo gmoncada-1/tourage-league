@@ -74,6 +74,32 @@ def _probability_history_path(league_id):
     return os.path.join(STATE_DIR, f"probability_history_{league_id}.json")
 
 
+def _first_picks(league_id, to_classic, classic_elements_by_id):
+    """{entry_id: first-round draft pick} — the player, his overall pick number and his
+    season points. The draft never changes, so it's fetched once and kept in state/.
+    Only the player is kept: FPL's draft record also names each manager, which this
+    public site never shows."""
+    path = os.path.join(STATE_DIR, f"draft_first_picks_{league_id}.json")
+    picks = _load_json(path, None)
+    if not picks:
+        try:
+            choices = fpl_api.draft_choices(league_id).get("choices", [])
+        except Exception as e:
+            log.warning("Draft picks unavailable for league %s: %s", league_id, e)
+            return {}
+        picks = {str(c["entry"]): {"element": c["element"], "pick": c["pick"]}
+                 for c in choices if c.get("round") == 1}
+        if picks:
+            _save_json(path, picks)
+    out = {}
+    for entry_id, c in picks.items():
+        eid = to_classic.get(c["element"], c["element"])
+        el = classic_elements_by_id.get(eid, {})
+        out[int(entry_id)] = {"element": eid, "name": el.get("web_name", "?"), "pick": c["pick"],
+                              "season_points": el.get("total_points")}
+    return out
+
+
 def _load_json(path, default):
     if os.path.exists(path):
         with open(path) as f:
@@ -1054,6 +1080,7 @@ def poll_once(league_cfg):
             break
 
     manager_by_entry = {e["entry_id"]: e for e in entries}
+    first_picks = _first_picks(league_id, to_classic, classic_elements_by_id)
 
     RESULT_LABELS = {
         "a": {"status": "accepted", "label": "Accepted"},
@@ -1206,6 +1233,7 @@ def poll_once(league_cfg):
                     for s in team_scores.get(e["entry_id"], {}).get("subs_made", [])
                 ],
                 "score_finalized": e["entry_id"] in finalized_entries,
+                "first_pick": first_picks.get(e["entry_id"]),
                 "summary": summaries_by_entry[e["entry_id"]],
             }
             for e in entries

@@ -631,7 +631,6 @@
   .team-strip b { display: block; font: 800 26px/1 var(--font-display); }
   .team-strip span { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
   .team-strip .ts-player b { font-size: 20px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .team-strip .ts-form { grid-column: span 2; }
   .team-strip .ts-form b { display: flex; gap: 6px; }
   .team-strip .ts-form i { font-style: normal; color: var(--muted); }
   .team-strip .ts-form i.f-w { color: var(--good); }
@@ -2370,6 +2369,7 @@ function teamSheet(state, id) {
   const squad = m.players || [];
   const top = squad.filter(p => p.season_points != null).sort((a, b) => b.season_points - a.season_points)[0];
   const best = squad.filter(p => !p.is_bench).sort((a, b) => (b.points ?? 0) - (a.points ?? 0))[0];
+  const fp = m.first_pick; // first-round draft pick, for reference
   const formLetters = teamFormLetters(state, m.league_entry_id);
   const form = formLetters.map(r => `<i class="f-${r.toLowerCase()}">${r}</i>`).join("");
   const strip = `<div class="team-strip">
@@ -2379,7 +2379,8 @@ function teamSheet(state, id) {
     <div><b>${h.points_for ?? 0}</b><span>Season FPL pts</span></div>
     ${top ? `<div class="ts-player"><b>${top.name}</b><span>Top player, ${top.season_points} season pts</span></div>` : ""}
     ${best ? `<div class="ts-player"><b>${best.name}</b><span>Best in GW${gw}, ${best.points} pts${state.gameweek_live && !m.score_finalized ? " so far" : ""}</span></div>` : ""}
-    <div class="ts-form"><b>${form || "–"}</b><span>Form: last ${formLetters.length || 5} results, oldest first</span></div>
+    ${fp ? `<div class="ts-player"><b>${fp.name}</b><span>First pick (#${fp.pick})${fp.season_points != null ? `, ${fp.season_points} pts` : ""}${squad.some(p => p.element === fp.element) ? "" : " (gone)"}</span></div>` : ""}
+    <div class="ts-form"><b>${form || "–"}</b><span>Last ${formLetters.length || 5}, oldest first</span></div>
   </div>`;
   const acts = [];
   if (opp) acts.push(`<button type="button" class="btn" data-act="compare" data-a="${id}" data-b="${opp.entry_id}">GW${gw} match v ${opp.name}</button>`);
