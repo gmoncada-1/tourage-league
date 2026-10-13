@@ -286,7 +286,8 @@
   th.sortable { cursor: pointer; user-select: none; }
   th.sortable:hover, th.sortable.active { color: var(--ink); }
   .sort-caret { font-size: 10px; }
-  #standings-table td:first-child { width: 36px; color: var(--muted); font-weight: 600; box-shadow: inset 3px 0 0 transparent; }
+  #standings-table th:first-child { padding-left: 14px; }
+  #standings-table td:first-child { width: 36px; padding-left: 14px; color: var(--muted); font-weight: 600; box-shadow: inset 3px 0 0 transparent; }
   /* Prize places: 1st a full yellow bar, 2nd and 3rd (paid) a softer one; the two who pay in red. */
   #standings-table tr.pos-top td:first-child { box-shadow: inset 5px 0 0 var(--card); color: var(--ink); }
   #standings-table tr.pos-paid td:first-child { box-shadow: inset 3px 0 0 color-mix(in srgb, var(--card) 45%, transparent); color: var(--ink); }
@@ -731,7 +732,9 @@
     .avail { font-size: 11px; }
 
     #standings-table { table-layout: fixed; }
-    #standings-table th:nth-child(1) { width: 24px; }
+    #standings-table th:nth-child(1) { width: 32px; }
+    /* Room for the prize-place bar (up to 5px) before the rank number. */
+    #standings-table > thead > tr > th:first-child, #standings-table > tbody > tr.team-row > td:first-child { padding-left: 12px; }
     #standings-table th:nth-child(3) { width: 40px; }
     #standings-table th:nth-child(7) { width: 50px; }
     #standings-table th:nth-child(8) { width: 54px; }
