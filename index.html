@@ -287,7 +287,9 @@
   th.sortable:hover, th.sortable.active { color: var(--ink); }
   .sort-caret { font-size: 10px; }
   #standings-table td:first-child { width: 36px; color: var(--muted); font-weight: 600; box-shadow: inset 3px 0 0 transparent; }
-  #standings-table tr.pos-top td:first-child { box-shadow: inset 3px 0 0 var(--card); color: var(--ink); }
+  /* Prize places: 1st a full yellow bar, 2nd and 3rd (paid) a softer one; the two who pay in red. */
+  #standings-table tr.pos-top td:first-child { box-shadow: inset 5px 0 0 var(--card); color: var(--card-ink); }
+  #standings-table tr.pos-paid td:first-child { box-shadow: inset 3px 0 0 color-mix(in srgb, var(--card) 45%, transparent); color: var(--ink); }
   #standings-table tr.pos-bottom td:first-child { box-shadow: inset 3px 0 0 var(--red); }
 
   .team-cell { font-weight: 600; }
@@ -900,7 +902,7 @@
       <p>Teams are ranked by league points: 3 for a win and 1 for a draw. Ties are broken by total FPL points scored this season, the same rule FPL Draft uses. While a gameweek is in progress, points and "This GW" are worked out from the live scores, so the table moves as the matches do.</p>
       <p>Bonus points only become official when FPL marks a match finished. Until then, "This GW" includes FPL's own live bonus estimate, based on each player's current BPS ranking in his match.</p>
       <p>Prize shows what each position pays if the season ended now. The pool is 0.0201 BTC, valued at the live BTC price. First takes the pool minus $300, second takes $300, and third collects $150: $100 from last place and $50 from seventh.</p>
-      <p><span class="key-swatch" style="background:var(--card)"></span>Top of the table <span class="key-swatch" style="background:var(--red); margin-left:14px"></span>Bottom of the table</p>
+      <p><span class="key-swatch" style="background:var(--card)"></span>Winner <span class="key-swatch" style="background:color-mix(in srgb, var(--card) 45%, transparent); margin-left:14px"></span>Paid places <span class="key-swatch" style="background:var(--red); margin-left:14px"></span>Pay in</p>
     </details>
   </section>
 
@@ -2111,8 +2113,10 @@ function render(state) {
     tr.className = "team-row";
     const s = m.summary || {};
     const h2h = h2hByEntry.get(m.entry_id) || { league_points: 0, played: 0, won: 0, drawn: 0, lost: 0, points_for: 0 };
+    // Mirrors the prize rules: 1st wins the pool, 2nd and 3rd are paid, the last two pay 3rd.
     if (h2h.rank === 1) tr.classList.add("pos-top");
-    if (h2h.rank === allManagers.length) tr.classList.add("pos-bottom");
+    else if (h2h.rank === 2 || h2h.rank === 3) tr.classList.add("pos-paid");
+    else if (h2h.rank >= allManagers.length - 1) tr.classList.add("pos-bottom");
     if (m.entry_id === myTeam) tr.classList.add("is-mine");
     const scoreFlash = scoreFlashClass(`${leagueKey}:${m.entry_id}`, m.live_score);
     const ptsFlash = scoreFlashClass(`${leagueKey}:${m.entry_id}:h2hpts`, h2h.league_points);
