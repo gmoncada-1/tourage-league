@@ -67,6 +67,8 @@ jobs:
           cp state/dashboard_state_*.json _site/state/
           python -c "import json;c=json.load(open('config.json'));json.dump([{'league_id':l['league_id'],'label':l['label']} for l in c['leagues']],open('_site/leagues.json','w'))"
           touch _site/.nojekyll
+          # Note on the run which data this deploy carries, to spot a stale site.
+          python -c "import json,glob;[print('::notice title=Deploying '+f.split('/')[-1]+'::generated_at '+json.load(open(f)).get('generated_at','?')) for f in glob.glob('_site/state/dashboard_state_*.json')]"
 
       - uses: actions/upload-pages-artifact@v3
         with:
