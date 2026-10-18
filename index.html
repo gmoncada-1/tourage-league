@@ -1363,10 +1363,11 @@ function scoreFlashClass(key, value) {
 const POSITION_ORDER = ["GK", "DEF", "MID", "FWD"];
 const CLUB_STATUS_ICON = {
   live: '<span class="live-dot" title="On the pitch now"></span>',
-  finished: "", benched: "", pending: "",
+  finished: "", benched: "", unused: "", pending: "",
 };
 const CLUB_STATUS_TAG = {
   benched: '<span class="tag" title="His club has played and he did not feature">Didn\'t play</span>',
+  unused: '<span class="tag" title="His match is on and he hasn\'t come on yet">Not on yet</span>',
   pending: '<span class="tag" title="His club hasn\'t played yet">To play</span>',
 };
 const CLUB_STATUS_CLASS = { benched: "club-benched", live: "club-live" };
@@ -1777,7 +1778,7 @@ function cmpPlayerMeta(p) {
   if (cmpMode === "season") return p.season_rank ? `${ordinal(p.season_pos_rank)} ${p.position}` : "Unranked";
   if (p.auto_sub) return "Auto-sub";
   if (p.subbed_off) return "Subbed off";
-  return { pending: "To play", live: "Playing", benched: "Didn't play" }[p.club_status] || "Played";
+  return { pending: "To play", live: "Playing", unused: "Not on yet", benched: "Didn't play" }[p.club_status] || "Played";
 }
 // Compare: a scoreboard, then one mirrored table. Matchup pairs the squads best against
 // best by position with season and this gameweek's points meeting in the middle; Stats
@@ -1796,7 +1797,7 @@ function cmpStatus(p) {
   if (p.auto_sub) return "Auto-sub";
   if (p.subbed_off) return "Subbed off";
   if (p.is_bench) return "Bench";
-  return { pending: "To play", live: "Playing", benched: "Didn't play" }[p.club_status] || "Played";
+  return { pending: "To play", live: "Playing", unused: "Not on yet", benched: "Didn't play" }[p.club_status] || "Played";
 }
 function cmpNameCell(p, side, meta) {
   if (!p) return `<td class="pl ${side}"></td>`;

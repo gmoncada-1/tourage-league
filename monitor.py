@@ -628,12 +628,10 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
         elif status in ("finished_provisional", "finished"):
             club_status = "benched"
         elif status == "started" and fixture_minutes >= 5:
-            # A brief grace window right at kickoff — FPL's per-player minutes counter
-            # can lag the fixture clock by a poll cycle or two, so a genuine starter can
-            # transiently show 0 minutes the instant their fixture flips to "started".
-            # Without this, every starter would flash "benched" for a few seconds at
-            # kickoff before their first live stats land.
-            club_status = "benched"
+            # His match is on and he isn't (yet): a substitute can still come on, so this is
+            # "not on yet", never "didn't play" — that's only known once the match is over.
+            # (The 5-minute wait covers FPL's minutes counter lagging the clock at kickoff.)
+            club_status = "unused"
         else:
             club_status = "pending"
         row = {
@@ -1121,6 +1119,7 @@ def poll_once(league_cfg):
             "live_now": sum(1 for p in players if p["club_status"] == "live"),
             "club_benched": sum(1 for p in players if p["club_status"] == "benched"),
             "pending": sum(1 for p in players if p["club_status"] == "pending"),
+            "not_on_yet": sum(1 for p in players if p["club_status"] == "unused"),
             "goals_points": sum(p["goals_points"] for p in players),
             "assists_points": sum(p["assists_points"] for p in players),
             "defensive_contribution": sum(p["defensive_contribution"] for p in players),
