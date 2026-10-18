@@ -1188,9 +1188,12 @@ def poll_once(league_cfg):
 
     if os.environ.get("GITHUB_ACTIONS") and current_matchups:
         # One-line odds summary on each run, readable without opening the site.
+        def left(entry_id):  # starters whose matches aren't over yet
+            return sum(1 for p in team_scores.get(entry_id, {}).get("players", [])
+                       if not p.get("is_bench") and any(f["state"] != "done" for f in p.get("_sim", {}).get("fixtures", [])))
         odds = "; ".join(
-            f"{mu['team1']['name']} {mu['team1']['score']} ({mu['team1_win_prob']:.1%}) v "
-            f"{mu['team2']['name']} {mu['team2']['score']} ({mu['team2_win_prob']:.1%}), "
+            f"{mu['team1']['name']} {mu['team1']['score']} [{left(mu['team1']['entry_id'])} left] ({mu['team1_win_prob']:.1%}) v "
+            f"{mu['team2']['name']} {mu['team2']['score']} [{left(mu['team2']['entry_id'])} left] ({mu['team2_win_prob']:.1%}), "
             f"draw {mu['draw_prob']:.1%}{', decided' if mu['decided'] else ''}"
             for mu in current_matchups)
         print(f"::notice title=GW{gw} odds::{odds}")
