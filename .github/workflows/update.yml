@@ -15,7 +15,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write   # pushes the latest data to the live-data branch
   actions: write    # lets a run start the next one while matches are live
   pages: write
   id-token: write
@@ -69,6 +69,18 @@ jobs:
           touch _site/.nojekyll
           # Note on the run which data this deploy carries, to spot a stale site.
           python -c "import json,glob;[print('::notice title=Deploying '+f.split('/')[-1]+'::generated_at '+json.load(open(f)).get('generated_at','?')) for f in glob.glob('_site/state/dashboard_state_*.json')]"
+
+      # The page reads the data from this branch first: it's live within seconds, while
+      # Pages deploys can lag far behind. One commit, force-pushed, so it never grows.
+      - name: Publish data to the live-data branch
+        continue-on-error: true
+        run: |
+          d=$(mktemp -d); mkdir -p "$d/state"
+          cp state/dashboard_state_*.json "$d/state/"
+          cd "$d" && git init -q -b live-data && git add state
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "Live data $(date -u +%FT%TZ)"
+          git push -q --force "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" live-data
 
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -2734,11 +2734,29 @@ document.querySelectorAll(".chart-filter-btn[data-range]").forEach(btn => {
 
 
 
+// Live data comes from two places and the newer copy wins:
+//  1. the "live-data" branch, read through GitHub's API. Every update run pushes there, and
+//     it is live within seconds.
+//  2. the copy deployed with this page on GitHub Pages. That's the backup, but Pages can lag
+//     for hours when it's redeployed every couple of minutes (seen on 24-25 Oct 2026).
+const LIVE_DATA_URL = id =>
+  `https://api.github.com/repos/gmoncada-1/tourage-league/contents/state/dashboard_state_${id}.json?ref=live-data`;
+async function loadState(id) {
+  const fromBranch = fetch(LIVE_DATA_URL(id), {
+    cache: "no-cache", headers: { Accept: "application/vnd.github.raw+json" },
+  }).then(r => r.ok ? r.json() : null).catch(() => null);
+  const fromPages = fetch(`state/dashboard_state_${id}.json?t=${Date.now()}`, {cache: "no-store"})
+    .then(r => r.ok ? r.json() : null).catch(() => null);
+  const [a, b] = await Promise.all([fromBranch, fromPages]);
+  if (!a && !b) throw new Error("no data from either source");
+  if (!a || !b) return a || b;
+  return (Date.parse(a.generated_at) || 0) >= (Date.parse(b.generated_at) || 0) ? a : b;
+}
+
 async function refresh() {
   try {
     // "no-cache" asks GitHub Pages whether the file changed (ETag) and only downloads it when it has.
-    const resp = await fetch(`state/dashboard_state_${currentLeagueId}.json`, {cache: "no-cache"});
-    lastState = await resp.json();
+    lastState = await loadState(currentLeagueId);
     render(lastState);
     afterDataLoaded(lastState);
     renderSheet();
@@ -2896,8 +2914,7 @@ document.getElementById("refresh-btn").addEventListener("click", async () => {
   btn.disabled = true;
   btn.classList.add("spinning");
   try {
-    const resp = await fetch(`state/dashboard_state_${currentLeagueId}.json`, {cache: "no-cache"});
-    lastState = await resp.json();
+    lastState = await loadState(currentLeagueId);
     render(lastState);
     afterDataLoaded(lastState);
     renderSheet();
@@ -2961,7 +2978,7 @@ async function initLeagues() {
   leagueSwitcherEl.value = currentLeagueId;
   leagueSwitcherEl.hidden = leagues.length < 2;
   refresh();
-  setInterval(refresh, 60000); // data is rebuilt by GitHub Actions every ~5 min
+  setInterval(refresh, 75000); // ~48 GitHub API reads an hour, under its 60/hour limit per visitor
 }
 
 initLeagues();
