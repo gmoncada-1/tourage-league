@@ -639,6 +639,8 @@ def _compute_live_scores(gw, entries_lineups, draft_elements_by_id, classic_elem
             "name": classic_elements_by_id.get(eid, {}).get("web_name", "?"),
             "position": POSITION_LABEL.get(position, "?"),
             "is_bench": is_bench,
+            # Signed after this gameweek: his points here were for another team.
+            "new_signing": bool(pick.get("new_signing")),
             "bonus_provisional": status == "started",
             "points": player_total,
             "fixture_status": status,
@@ -738,6 +740,70 @@ def _apply_lineup_override(league_id, entry_id, gw, starting, bench):
                 )
                 break
     return starting, bench
+
+
+def _roll_squads_forward(lineups, gw, transactions, league_id, entries, to_classic, classic_by_id):
+    """Bring each squad up to date with who the team owns right now (element-status).
+
+    The picks for a finished gameweek are frozen until the next deadline, so after waivers
+    they still show the old players. Each player who has left is replaced in his own slot
+    by the one who came in for him (FPL does the same), so the lineup shape stays right.
+    Incoming players are marked "new_signing" for the page."""
+    statuses = (fpl_api.element_status(league_id) or {}).get("element_status", [])
+    entry_ids = {e["entry_id"] for e in entries}
+    by_league_entry = {e["id"]: e["entry_id"] for e in entries}
+    owner_of = {}
+    for st in statuses:
+        o = st.get("owner")
+        if not o:
+            continue
+        o = o if o in entry_ids else by_league_entry.get(o)
+        if o is not None:
+            owner_of[to_classic.get(st["element"], st["element"])] = o
+    if not owner_of:
+        return
+    pos = lambda el: (classic_by_id.get(el) or {}).get("element_type")
+    moves = sorted((t for t in transactions if t.get("result") == "a" and (t.get("event") or 0) > (gw or 0)),
+                   key=lambda t: t.get("added") or "")
+    for entry_id, lu in lineups.items():
+        picks = lu["starting"] + lu["bench"]
+        if not picks:
+            continue
+        owned = {el for el, o in owner_of.items() if o == entry_id}
+        have = {p["element"] for p in picks}
+        outs, ins = have - owned, owned - have
+        if not outs or not ins:
+            continue
+        swap = {}
+        # Pair each player who left with the one signed for him, in the order the moves
+        # happened (a player picked up and then dropped again follows the chain).
+        for t in moves:
+            if t.get("entry") != entry_id:
+                continue
+            out_el, in_el = t.get("element_out"), t.get("element_in")
+            for k, v in list(swap.items()):
+                if v == out_el:
+                    swap[k] = in_el
+                    break
+            else:
+                if out_el in outs:
+                    swap[out_el] = in_el
+        swap = {k: v for k, v in swap.items() if v in ins}
+        # Anything left (a trade, or a move we didn't see): pair by position.
+        left_out = [el for el in outs if el not in swap]
+        left_in = [el for el in ins if el not in swap.values()]
+        for el in list(left_out):
+            match = next((i for i in left_in if pos(i) == pos(el)), None)
+            if match is not None:
+                swap[el] = match
+                left_in.remove(match)
+        for p in picks:
+            if p["element"] in swap:
+                p["element"] = swap[p["element"]]
+                p["new_signing"] = True
+        if swap:
+            log.info("[league %s] Squad for entry %s rolled forward past gw %s: %s",
+                     league_id, entry_id, gw, swap)
 
 
 def _fetch_lineups(gw, entry_ids, league_id):
@@ -983,6 +1049,15 @@ def poll_once(league_cfg):
                 "started": sum(1 for f in gw_fx if f.get("started")),
                 "finished": sum(1 for f in gw_fx if f.get("finished") or f.get("finished_provisional")),
             }
+            # Once every match of the gameweek is over, squads move on: waivers, free-agent
+            # pickups and trades for the next gameweek show up straight away instead of only
+            # at the next deadline. The scores stay the official ones for this gameweek.
+            if gameweek_status["total"] and gameweek_status["finished"] >= gameweek_status["total"]:
+                try:
+                    _roll_squads_forward(lineups, gw, transactions, league_id, entries, to_classic,
+                                         classic_elements_by_id)
+                except Exception as e:
+                    log.warning("Rolling squads forward failed for league %s: %s", league_id, e)
             team_scores, any_live, fast_poll_needed, match_events = _compute_live_scores(
                 gw, lineups, draft_elements_by_id, classic_elements_by_id, teams_by_id, difficulty_index
             )
