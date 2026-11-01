@@ -89,15 +89,21 @@ jobs:
       - id: deploy
         uses: actions/deploy-pages@v4
 
-      # GitHub's 5-minute schedule often runs 10-20 minutes apart (sometimes far more), so
-      # while matches are live, about to kick off or settling, each run starts the next
-      # one itself: an update about every 2 minutes. It stops on its own once matches are
-      # over; the schedule above stays as the backstop.
-      - name: Keep updating every couple of minutes while matches are on
-        if: steps.poll.outputs.fast_poll == 'true' || inputs.chain_test
+      # GitHub's 5-minute schedule is unreliable: it often runs 40-60 minutes apart, and on
+      # 1 Nov 2026 it skipped more than 5 hours, straight through kickoff. So each run
+      # starts the next one itself, always: about every 2 minutes while matches are live,
+      # about to kick off or settling, and every ~10 minutes otherwise (so waivers and new
+      # signings show quickly too). The schedule above only restarts the chain if it breaks.
+      # Public repo, so the waiting costs nothing.
+      - name: Start the next update
+        if: ${{ !cancelled() }}
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          sleep 45
+          if [ "${{ steps.poll.outputs.fast_poll }}" = "true" ] || [ "${{ inputs.chain_test }}" = "true" ]; then
+            sleep 45
+          else
+            sleep 540
+          fi
           gh workflow run "${{ github.workflow }}" --ref main
