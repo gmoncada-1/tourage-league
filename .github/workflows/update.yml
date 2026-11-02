@@ -106,4 +106,12 @@ jobs:
           else
             sleep 540
           fi
-          gh workflow run "${{ github.workflow }}" --ref main
+          # GitHub's API sometimes answers 500 (2 Nov 2026: that one error stopped the chain
+          # and the schedule didn't fire for 1h45m, mid-match). Retry for up to ~10 minutes.
+          for wait in 5 15 30 60 120 240 0; do
+            gh workflow run "${{ github.workflow }}" --ref main && exit 0
+            echo "Starting the next run failed; trying again in ${wait}s"
+            [ "$wait" -gt 0 ] && sleep "$wait"
+          done
+          echo "::error title=Update chain stopped::Could not start the next run; the schedule will restart it"
+          exit 1
